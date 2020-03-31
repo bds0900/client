@@ -3,7 +3,7 @@ import {TextField,Button,FormControl} from '@material-ui/core'
 import { Redirect } from 'react-router-dom';
 // import { FormGroup, FormControl, ControlLabel, Button, Glyphicon } from "react-bootstrap";
 //import { Auth } from "aws-amplify";
-import React from 'react'
+import React, { ReactElement, ReactComponentElement, useState } from 'react'
 
 
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -22,76 +22,74 @@ interface LoginState {
   passwordValid: "success" | "error" | "warning" | undefined;
 }
 
-export default class Login extends React.Component<LoginProps, LoginState>  {
-    constructor(props:LoginProps){
-      super(props);
-      this.state = {
-        loading: false,
-        redirect: false,
-        email: "",
-        password: "",
-        emailValid: undefined,
-        passwordValid: undefined,
-      };
-    }
+export default function Login(props:LoginProps): ReactElement <LoginProps>  {
+
+    const [loading,setLoading]=useState(false);
+    const [redirect, setReirect] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [emailValid, setEmailValid] = useState<string>();
+    const [passwordValid,setPasswrodValid] =useState<string>();
 
 
-  onEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
-    this.setState({
-      email: target.value,
-      emailValid: emailRegex.test(target.value.toLowerCase()) ? 'success' : 'error'
-    });
+    setEmail(target.value)
+    setEmailValid(emailRegex.test(target.value.toLowerCase()) ? 'success' : 'error')
   }
 
-  onPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
-    this.setState({
-      password: target.value,
-      passwordValid: target.value.length < 8 ? 'error' : 'success'
-    });
+    setPassword(target.value);
+    setPasswrodValid(target.value.length < 8 ? 'error' : 'success')
+    
   }
 
-  onLogin = async (event: React.MouseEvent<HTMLButtonElement,MouseEvent>) => {
+  const onLogin = async (event: React.MouseEvent<HTMLButtonElement,MouseEvent>) => {
     event.preventDefault();
-    this.setState({ loading: true });
+    setLoading( true );
 
     // try {
-    //   await Auth.signIn(this.state.email, this.state.password);
-    //   this.props.userHasAuthenticated(true);
-    //   this.setState({ redirect: true })
+    //   await Auth.signIn(email, password);
+    //   props.userHasAuthenticated(true);
+    //   setReirect(true )
     // } catch (e) {
     //   alert(e.message);
-    //   this.setState({ loading: false });
+    //   setLoading(false);
     // }
   }
 
-  render() {
-    if (this.state.redirect) return <Redirect to='/' />
 
     return (
+      <div>
+      {redirect
+        ?
+      <Redirect to='/' />
+        :
       <div className="Login">
-        
         <div>
            <TextField
              placeholder="Enter your Username"
              label="Username"
-             value={this.state.email}
-             onChange={this.onEmailChange}
+             value={email}
+             onChange={onEmailChange}
              />
            <br/>
             <TextField
             type="password"
             placeholder="Enter your Password"
             label="Password"
-            value={this.state.password}
-            onChange={this.onPasswordChange}
+            value={password}
+            onChange={onPasswordChange}
             />
-            <br/>
-            <Button color="primary" variant="text" onClick={this.onLogin}
-            disabled={this.state.passwordValid !== 'success' || this.state.emailValid !== 'success' }>Log in</Button>
+           <br/>
+            <Button color="primary" variant="text" onClick={onLogin}
+            disabled={passwordValid !== 'success' || emailValid !== 'success' }>Log in</Button>
          </div>
       </div>
+
+      }
+    </div>
     );
-  }
+  
 }
