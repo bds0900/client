@@ -279,3 +279,29 @@ export const CREATE_ENROLLMENT=gql`
 
 
 `;
+
+
+export const GET_FACULTIES=gql`
+    query{
+        faculties{
+            id
+            firstName
+            LastName
+        }
+    }
+`;
+export const  GET_FACULTY=gql`
+    query($id:ID){
+        faculty{
+            id
+            firstName
+            LastName
+            email
+            instructings{
+                id
+            }
+
+        }
+    }
+
+`;

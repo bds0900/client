@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { NavLink } from 'react-router-dom';
 import { StudentType } from '../Interfaces';
 import { GET_STUDENTS } from '../Query';
+import { List } from '@material-ui/core';
 
 interface StudentListData {
     students: StudentType[];
@@ -29,9 +30,9 @@ export default function StudentList(props: Props): ReactElement {
               ) : (
                 <Fragment>
                 {data && data.students.map(student => (
-                    <li key={student.id} className="student-list"> 
+                    <List key={student.id} className="student-list"> 
                     <NavLink to={"/student/"+student.id}> {student.firstName} {student.LastName}</NavLink>
-                    </li>
+                    </List>
                 ))}
                 </Fragment>
               )}

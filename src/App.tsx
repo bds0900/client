@@ -127,7 +127,12 @@ class App extends Component<AppProps, AppState> {
       </NavLink>
 
       <NavLink to="/students">
-          Users
+          Students
+      </NavLink>
+
+      
+      <NavLink to="/faculties">
+          Faculties
       </NavLink>
 
       <NavLink to="/program/create">
