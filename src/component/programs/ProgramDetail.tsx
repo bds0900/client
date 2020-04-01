@@ -52,25 +52,22 @@ export default function Program(props: Props): ReactElement {
     <Typography variant="h5" gutterBottom>
     Program ID: {data && data?.program.id}
     </Typography>
-
     <Typography variant="h5" gutterBottom>
     Program name: {data && data?.program.name}
     </Typography>
 
-
     <Button onClick={()=>setUpdate(!update)}>update</Button>
+
     <ExpansionPanel>
       <ExpansionPanelSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
-        id={data?.program.id}
+        id="panel1a-header"
       >
         <Typography >{data?.program.name} Course List</Typography>
-        
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
       <List>
-        
         {data?.program.courses?.map(course=>(
           <ListItem key={course.id}>
             <NavLink to={"/course/"+course.id}>
@@ -78,10 +75,50 @@ export default function Program(props: Props): ReactElement {
             </NavLink> 
           </ListItem>
         ))}
-        
       </List>
       </ExpansionPanelDetails>
     </ExpansionPanel>
+    <ExpansionPanel>
+      <ExpansionPanelSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel2a-content"
+        id="panel2a-header"
+      >
+        <Typography >{data?.program.name} Faculty List</Typography>
+      </ExpansionPanelSummary>
+      <ExpansionPanelDetails>
+      <List>
+        {data?.program.faculties?.map(faculty=>(
+          <ListItem key={faculty.id}>
+            <NavLink to={"/faculty/"+faculty.id}>
+            <Typography>{faculty.firstName} {faculty.LastName}</Typography>
+            </NavLink> 
+          </ListItem>
+        ))}
+      </List>
+      </ExpansionPanelDetails>
+    </ExpansionPanel>
+    <ExpansionPanel>
+      <ExpansionPanelSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel3a-content"
+        id="panel3a-header"
+      >
+        <Typography >{data?.program.name} Student List</Typography>
+      </ExpansionPanelSummary>
+      <ExpansionPanelDetails>
+      <List>
+        {data?.program.students?.map(student=>(
+          <ListItem key={student.id}>
+            <NavLink to={"/student/"+student.id}>
+            <Typography>{student.firstName} {student.LastName}</Typography>
+            </NavLink> 
+          </ListItem>
+        ))}
+      </List>
+      </ExpansionPanelDetails>
+    </ExpansionPanel>
+    
     </div>
     }
     </div>

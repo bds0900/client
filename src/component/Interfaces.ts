@@ -6,7 +6,7 @@ export interface ProgramType {
     name: string;
     courses: CourseType[];
     faculties: FacultyType[];
-    students: string[];   
+    students: StudentType[];   
 }
 
 export interface CourseType{
