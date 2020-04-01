@@ -135,19 +135,19 @@ class App extends Component<AppProps, AppState> {
           Faculties
       </NavLink>
 
-      <NavLink to="/program/create">
+      <NavLink to="/create/program">
           Add Program
       </NavLink>
 
-      <NavLink to="/course/create">
+      <NavLink to="/create/course">
           Add Course
       </NavLink>
 
-      <NavLink to="/faculty/create">
+      <NavLink to="/create/faculty">
           Add Faculty
       </NavLink>
 
-      <NavLink to="/signup">
+      <NavLink to="/create/student">
           Add Student
       </NavLink>
       </Breadcrumbs>
