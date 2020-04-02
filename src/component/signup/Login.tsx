@@ -28,8 +28,8 @@ export default function Login(props:LoginProps): ReactElement <LoginProps>  {
     const [redirect, setReirect] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [emailValid, setEmailValid] = useState<string>();
-    const [passwordValid,setPasswrodValid] =useState<string>();
+    const [emailValid, setEmailValid] = useState<"success" | "error" | "warning" | undefined>();
+    const [passwordValid,setPasswrodValid] =useState<"success" | "error" | "warning" | undefined>();
 
 
   const onEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -6,6 +6,10 @@ import { ProgramType, StudentType, FacultyType } from '../Interfaces';
 import { GET_PROGRAMS, CREATE_STUDENT } from '../Query';
 import SelectProgram from '../common/SelectProgram';
 
+
+const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const nameRegex= /(?!^.*[A-Z]{2,}.*$)^[A-Za-z]*$/;
+
 interface Props {
     
 }
@@ -29,6 +33,9 @@ export default function CreateFaculty({}: Props): ReactElement {
     const [password, setPassword] = useState("")
     const [id, setID] = useState("")
     const [email, setEmail] = useState("")
+    const [firstNameValid,setFirstNameValid]=useState<"success" | "error" | "warning" | undefined>();
+    const [lastNameValid,setLastNameValid]=useState<"success" | "error" | "warning" | undefined>();
+    const [passwordValid,setPasswrodValid] =useState<"success" | "error" | "warning" | undefined>();
 
     function onProgramClick(program_id:string):any{
         setProgram(program_id)
@@ -97,6 +104,8 @@ export default function CreateFaculty({}: Props): ReactElement {
                     value={firstName}
                     onChange={e=>{
                         setFirstName(e.target.value)
+                        setFirstNameValid(nameRegex.test(e.target.value.toLowerCase()) ? 'success' : 'error')
+                        {console.log(firstNameValid)}
                         genEmail(firstName,lastName,genID(1111,9999))
                         }}
                     />
@@ -107,6 +116,8 @@ export default function CreateFaculty({}: Props): ReactElement {
                 value={lastName}
                 onChange={e=>{
                     setLastName(e.target.value)
+                    setLastNameValid(nameRegex.test(e.target.value.toLowerCase()) ? 'success' : 'error')
+                    {console.log(lastNameValid)}
                     genEmail(firstName,lastName,genID(1111,9999))
                 }}
                 />
@@ -118,14 +129,17 @@ export default function CreateFaculty({}: Props): ReactElement {
                 value={password}
                 onChange={e=>{
                     setPassword(e.target.value)
+                    setPasswrodValid(e.target.value.length < 8 ? 'error' : 'success')
+                    {console.log(passwordValid)}
                     genEmail(firstName,lastName,genID(1111,9999))
                 }}
                 />
                 <br/>
                 <SelectProgram programs={result.data?.programs} onProgramClick={onProgramClick}/>
                 <br/>
-                <Button color="primary" variant="text" onClick={() => 
-                    id && firstName && lastName && email && program && saveFaculty()}>
+                <Button color="primary" variant="text" 
+                disabled={passwordValid !== 'success' || firstNameValid !== 'success' || lastNameValid !== 'success' }    
+                onClick={() =>id && firstName && lastName && email && program && saveFaculty()}>
                     Add
                 </Button>
             </form>

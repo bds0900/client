@@ -15,7 +15,7 @@ interface FacultyListVars {
 }
 
 interface Props {
-    match:any
+    
 }
 
 export default function FacultyList(props: Props): ReactElement {
