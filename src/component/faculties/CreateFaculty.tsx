@@ -105,7 +105,7 @@ export default function CreateFaculty({}: Props): ReactElement {
                     onChange={e=>{
                         setFirstName(e.target.value)
                         setFirstNameValid(nameRegex.test(e.target.value.toLowerCase()) ? 'success' : 'error')
-                        {console.log(firstNameValid)}
+                        {console.log(nameRegex.test(e.target.value.toLowerCase()) ? 'success' : 'error')}
                         genEmail(firstName,lastName,genID(1111,9999))
                         }}
                     />
@@ -117,7 +117,7 @@ export default function CreateFaculty({}: Props): ReactElement {
                 onChange={e=>{
                     setLastName(e.target.value)
                     setLastNameValid(nameRegex.test(e.target.value.toLowerCase()) ? 'success' : 'error')
-                    {console.log(lastNameValid)}
+                    {console.log(nameRegex.test(e.target.value.toLowerCase()) ? 'success' : 'error')}
                     genEmail(firstName,lastName,genID(1111,9999))
                 }}
                 />

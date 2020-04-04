@@ -5,7 +5,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { ProgramType, StudentType } from '../Interfaces';
 import { GET_PROGRAMS, CREATE_STUDENT } from '../Query';
 import SelectProgram from '../common/SelectProgram';
-
+const nameRegex= /(?!^.*[A-Z]{2,}.*$)^[A-Za-z]*$/;
 interface Props {
     
 }
@@ -31,6 +31,9 @@ export default function Signup({}: Props): ReactElement {
     const [password, setPassword] = useState("")
     const [id, setID] = useState("")
     const [email, setEmail] = useState("")
+    const [firstNameValid,setFirstNameValid]=useState<"success" | "error" | "warning" | undefined>();
+    const [lastNameValid,setLastNameValid]=useState<"success" | "error" | "warning" | undefined>();
+    const [passwordValid,setPasswrodValid] =useState<"success" | "error" | "warning" | undefined>();
 
     function onProgramClick(program_id:string):any{
         setProgram(program_id)
@@ -99,6 +102,7 @@ export default function Signup({}: Props): ReactElement {
                     value={firstName}
                     onChange={e=>{
                         setFirstName(e.target.value)
+                        setFirstNameValid(nameRegex.test(e.target.value.toLowerCase()) ? 'success' : 'error')
                         genEmail(firstName,lastName,genID(1111,9999))
                         }}
                     />
@@ -109,6 +113,7 @@ export default function Signup({}: Props): ReactElement {
                 value={lastName}
                 onChange={e=>{
                     setLastName(e.target.value)
+                    setLastNameValid(nameRegex.test(e.target.value.toLowerCase()) ? 'success' : 'error')
                     genEmail(firstName,lastName,genID(1111,9999))
                 }}
                 />
@@ -120,15 +125,16 @@ export default function Signup({}: Props): ReactElement {
                 value={password}
                 onChange={e=>{
                     setPassword(e.target.value)
+                    setPasswrodValid(e.target.value.length < 8 ? 'error' : 'success')
                     genEmail(firstName,lastName,genID(1111,9999))
                 }}
                 />
                 <br/>
                 <SelectProgram programs={result.data?.programs} onProgramClick={onProgramClick}/>
                 <br/>
-                <Button color="primary" variant="text" onClick={() => 
-                    
-                    id && firstName && lastName && email && program && saveStudent()}>
+                <Button color="primary" variant="text"
+                disabled={passwordValid !== 'success' || firstNameValid !== 'success' || lastNameValid !== 'success' }
+                onClick={() => id && firstName && lastName && email && program && saveStudent()}>
                     Sign Up
                 </Button>
             </form>

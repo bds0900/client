@@ -4,9 +4,24 @@ import { Redirect } from 'react-router-dom';
 // import { FormGroup, FormControl, ControlLabel, Button, Glyphicon } from "react-bootstrap";
 //import { Auth } from "aws-amplify";
 import React, { ReactElement, ReactComponentElement, useState } from 'react'
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
+import { LOGIN } from '../Query';
+import { FacultyType } from '../Interfaces';
 
 
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+
+
+const LOGIN_MUTATION = gql`
+  mutation LoginMutation($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+    }
+  }
+`
+
 
 interface LoginProps {
   isAuthenticated: boolean;
@@ -21,7 +36,22 @@ interface LoginState {
   emailValid: "success" | "error" | "warning" | undefined;
   passwordValid: "success" | "error" | "warning" | undefined;
 }
+interface LoginVars {
+  email: string;
+  password: string;
+}
 
+interface authPayloadType {
+  faculty: FacultyType;
+  token: string;
+}
+interface LoginData{
+  authPayload: authPayloadType
+}
+
+interface Props {
+  login:LoginProps;
+}
 export default function Login(props:LoginProps): ReactElement <LoginProps>  {
 
     const [loading,setLoading]=useState(false);
@@ -58,11 +88,17 @@ export default function Login(props:LoginProps): ReactElement <LoginProps>  {
     //   setLoading(false);
     // }
   }
+  const [login, { error, data }] = useMutation<LoginData, LoginVars>(
+    LOGIN,
+    {variables:{email: email, password: password}}
+  )
+  
 
 
     return (
       <div>
-      {redirect
+      {error ? <p>Oh no! {error.message}</p> : null}
+      {data && data.authPayload.token
         ?
       <Redirect to='/' />
         :
