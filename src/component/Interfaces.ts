@@ -89,3 +89,9 @@ export interface AttendancePreviousValues{
     id: string
     time: string
 }
+
+export enum Role {
+    SUPERADMIN, 
+    ADMIN,
+    USER
+}
