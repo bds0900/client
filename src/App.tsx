@@ -184,6 +184,7 @@ function App(props:AppProps): ReactElement<AppProps> {
     isAuthenticated: isAuthenticated,
     userHasAuthenticated: userHasAuthenticated
   };
+
   
 
     
@@ -191,7 +192,7 @@ function App(props:AppProps): ReactElement<AppProps> {
     <div>
     <ApolloProvider client={client}>
     <div>
-      {isAuthenticated ? showLoggedInBar() : showLoggedOutBar()}
+      {isAuthenticated ? showLoggedInBar() : <Login isAuthenticated={childProps.isAuthenticated} userHasAuthenticated={childProps.userHasAuthenticated}/>}
       <Routes isAuthenticated={childProps.isAuthenticated} userHasAuthenticated={childProps.userHasAuthenticated} />
     </div>
     </ApolloProvider>

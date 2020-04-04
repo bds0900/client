@@ -49,9 +49,6 @@ interface LoginData{
   authPayload: authPayloadType
 }
 
-interface Props {
-  login:LoginProps;
-}
 export default function Login(props:LoginProps): ReactElement <LoginProps>  {
 
     const [loading,setLoading]=useState(false);
