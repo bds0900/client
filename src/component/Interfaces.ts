@@ -17,6 +17,7 @@ export interface CourseType{
     enrollments: EnrollmentType[];
     instructings:InstructingType[];
     attendances:Array<AttendanceType>;// same with Attendance[]
+    class:ClassType[];
 }
 
 export interface StudentType{
@@ -40,6 +41,15 @@ export interface FacultyType{
     status: string
     program: ProgramType
     instructings: InstructingType[]
+
+}
+
+export interface ClassType{
+    id: string
+    course: CourseType
+    room: string
+    startTime: string
+    endTime: string
 }
 
 export interface EnrollmentType{
@@ -59,6 +69,7 @@ export interface AttendanceType{
     course: CourseType
     student: StudentType
     time: string
+    class:ClassType
 }
 
 export const type = {

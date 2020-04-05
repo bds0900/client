@@ -20,7 +20,7 @@ interface Props {
 
 
 export default function Course(props: Props): ReactElement {
-    console.log(props.match.params.id)
+  
     const [update, setUpdate] = useState(false);
     const { loading, data } = useQuery<CourseData, CourseVars>(
         GET_COURSE,
@@ -49,14 +49,26 @@ export default function Course(props: Props): ReactElement {
           </Typography>
           
           Student List
-          {data && data.course.enrollments.map(enrollment=>(
+          <List>
+          {data && data.course.enrollments && data.course.enrollments.map(enrollment=>(
             <NavLink to={"/student/"+enrollment.student.id}>
             <ListItem key={enrollment.student.id}>
               {enrollment.student.firstName} {enrollment.student.LastName}
             </ListItem>
             </NavLink>
           ))} 
-          
+          </List>
+
+          Class List
+          <List>
+          {data && data.course.class && data.course.class.map(clas=>(
+
+            <ListItem key={clas.id}>
+              Room: {clas.room}   start: {clas.startTime}   end:{clas.endTime}
+            </ListItem>
+
+          ))} 
+          </List>
 
           <Button onClick={()=>setUpdate(!update)}>update</Button>
           </Fragment>
