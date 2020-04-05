@@ -15,6 +15,7 @@ import FacultyList from './component/faculties/FacultyList';
 import StudentList from './component/students/StudentList';
 
 import { Role } from './component/Interfaces';
+import Nav from './component/Nav';
 
 interface AppProps {
   history: any;
@@ -39,9 +40,12 @@ const useStyles = makeStyles({
 
 function App(props:AppProps): ReactElement<AppProps> {
   const classes = useStyles();
-  const [isAuthenticated,setIsAuth]=useState(false)
+  const [isAuthenticated,setIsAuth]=useState(localStorage.getItem("role")?true:false)
   const [isAuthenticating,setIsAuth2]=useState(false)
   const [value,setValue]=useState(0)
+
+
+
   // async componentDidMount() {
     // try {
     //   if (await Auth.currentSession()) {
@@ -138,7 +142,7 @@ function App(props:AppProps): ReactElement<AppProps> {
     <div>
     <ApolloProvider client={client}>
     <div>
-      {isAuthenticated ? showLoggedInBar() : <Login isAuthenticated={childProps.isAuthenticated} userHasAuthenticated={childProps.userHasAuthenticated}/>}
+      {isAuthenticated ? <Nav/> : <Login isAuthenticated={childProps.isAuthenticated} userHasAuthenticated={childProps.userHasAuthenticated}/>}
       <Routes isAuthenticated={childProps.isAuthenticated} userHasAuthenticated={childProps.userHasAuthenticated} />
     </div>
     </ApolloProvider>
