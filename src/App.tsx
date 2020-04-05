@@ -45,7 +45,6 @@ function App(props:AppProps): ReactElement<AppProps> {
   const [value,setValue]=useState(0)
 
 
-
   // async componentDidMount() {
     // try {
     //   if (await Auth.currentSession()) {
@@ -142,7 +141,9 @@ function App(props:AppProps): ReactElement<AppProps> {
     <div>
     <ApolloProvider client={client}>
     <div>
-      {isAuthenticated ? <Nav/> : <Login isAuthenticated={childProps.isAuthenticated} userHasAuthenticated={childProps.userHasAuthenticated}/>}
+      {isAuthenticated ? 
+        <Nav history={props.history} isAuthenticated={childProps.isAuthenticated} userHasAuthenticated={childProps.userHasAuthenticated}/> : 
+        <Login isAuthenticated={childProps.isAuthenticated} userHasAuthenticated={childProps.userHasAuthenticated}/>}
       <Routes isAuthenticated={childProps.isAuthenticated} userHasAuthenticated={childProps.userHasAuthenticated} />
     </div>
     </ApolloProvider>

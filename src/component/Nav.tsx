@@ -4,7 +4,9 @@ import { NavLink } from 'react-router-dom';
 import { Role } from './Interfaces';
 
 interface Props {
-
+  history:any
+  isAuthenticated: boolean;
+  userHasAuthenticated: (authenticated: boolean) => void;
 }
 const useStyles = makeStyles({
     root:{textDecoration:'none'},
@@ -19,10 +21,16 @@ const useStyles = makeStyles({
       textDecoration:'none'
     }
   });
-const Nav = ({}: Props):ReactElement => {
+const Nav = (props: Props):ReactElement => {
     const classes = useStyles();
     const role=localStorage.getItem("role");
     console.log("role:"+role)
+
+    const handleLogout =  () => {
+      props.userHasAuthenticated(false);
+
+      localStorage.clear()
+    }
 
     return (
     role==Role.SUPERADMIN
@@ -39,7 +47,7 @@ const Nav = ({}: Props):ReactElement => {
         <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/course">Add Course</NavLink>
         <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/faculty">Add Faculty</NavLink>
         <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/student">Add Student</NavLink>
-        <NavLink to="/login">Login</NavLink>
+        <NavLink to="/" onClick={handleLogout}>Log out</NavLink>
         </Breadcrumbs>
         </Fragment>
         :
@@ -54,7 +62,7 @@ const Nav = ({}: Props):ReactElement => {
         <NavLink activeClassName={classes.avtive} className={classes.root} to="/faculties">Faculties</NavLink>
         <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/course">Add Course</NavLink>
         <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/student">Add Student</NavLink>
-        <NavLink to="/login">Login</NavLink>
+        <NavLink to="/" onClick={handleLogout}>Log out</NavLink>
         </Breadcrumbs>
         </Fragment>
         :
@@ -64,9 +72,8 @@ const Nav = ({}: Props):ReactElement => {
         <NavLink activeClassName={classes.avtive} className={classes.root} to="/programs">Programs</NavLink>
         <NavLink activeClassName={classes.avtive} className={classes.root} to="/courses">Courses</NavLink>
         <NavLink activeClassName={classes.avtive} className={classes.root} to="/students">Students</NavLink>
-        <NavLink activeClassName={classes.avtive} className={classes.root} to="/faculties">Faculties</NavLink>
         <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/course">Add Course</NavLink>
-        <NavLink to="/login">Login</NavLink>
+        <NavLink to="/" onClick={handleLogout}>Log out</NavLink>
         </Breadcrumbs>
         </Fragment>
     )
