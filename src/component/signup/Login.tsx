@@ -42,7 +42,7 @@ interface LoginVars {
 }
 
 interface authPayloadType {
-  faculty: FacultyType;
+  Faculty: FacultyType;
   token: string;
 }
 interface LoginData{
@@ -94,14 +94,14 @@ export default function Login(props:LoginProps): ReactElement <LoginProps>  {
   {
     props.userHasAuthenticated(true);
     localStorage.setItem('token',data.login.token)
-    localStorage.setItem('role',data.login.faculty.status)
+    localStorage.setItem('role',data.login.Faculty.status)
   }
     return (
       <div>
       {error ? <p>Oh no! {error.message}</p> : null}
       {data && data.login.token!=="Unable to login"
         ?
-      <Redirect to='/' />
+      <Redirect to='/home' />
         :
       <div className="Login">
         <div>

@@ -318,6 +318,7 @@ export const LOGIN=gql`
                 firstName,
                 LastName,
                 email
+                status
             },
             token
         }

@@ -21,36 +21,6 @@ interface AppProps {
 }
 
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: any;
-  value: any;
-}
-
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <Typography
-      component="div"
-      role="tabpanel"
-      hidden={value !== index}
-      id={`wrapped-tabpanel-${index}`}
-      aria-labelledby={`wrapped-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box p={3}>{children}</Box>}
-    </Typography>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-
-
 
 
 const useStyles = makeStyles({
@@ -69,7 +39,7 @@ const useStyles = makeStyles({
 
 function App(props:AppProps): ReactElement<AppProps> {
   const classes = useStyles();
-  const [isAuthenticated,setIsAuth]=useState(true)
+  const [isAuthenticated,setIsAuth]=useState(false)
   const [isAuthenticating,setIsAuth2]=useState(false)
   const [value,setValue]=useState(0)
   // async componentDidMount() {
@@ -105,7 +75,7 @@ function App(props:AppProps): ReactElement<AppProps> {
   const showLoggedInBar = () => {
     const role=localStorage.getItem("role");
     console.log("role:"+role)
-    if(role==Role.ADMIN)
+    if(role==Role.SUPERADMIN)
     {
       return <Fragment>
 
@@ -123,10 +93,9 @@ function App(props:AppProps): ReactElement<AppProps> {
       </Breadcrumbs>
     </Fragment>
     }
-    else
+    else if(role==Role.ADMIN)
     {
       return <Fragment>
-
       <Breadcrumbs aria-label="breadcrumb">
       <NavLink activeClassName={classes.avtive} className={classes.root} to="/home">Home</NavLink>
       <NavLink activeClassName={classes.avtive} className={classes.root} to="/programs">Programs</NavLink>
