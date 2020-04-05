@@ -14,6 +14,7 @@ import CourseList from './component/courses/CourseList';
 import FacultyList from './component/faculties/FacultyList';
 import StudentList from './component/students/StudentList';
 
+import { Role } from './component/Interfaces';
 
 interface AppProps {
   history: any;
@@ -101,35 +102,13 @@ function App(props:AppProps): ReactElement<AppProps> {
   };
 
 
-  const showLoggedInBar = () => (
-    <Fragment>
-      
-    {/*
-      <AppBar position="static">
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-          <Tab icon={<Loyalty />}  label="Programs" />
-          <Tab icon={<Subject />} label="Courses" />
-          <Tab icon={<Person />} label="Faculties" />
-          <Tab icon={<Person />} label="Studnets" />
-        </Tabs>
-      </AppBar>
-      <TabPanel value={value} index={0}>
-        <ProgramList/>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <CourseList/>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <FacultyList/>
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        <StudentList/>
-      </TabPanel>
-    */}
+  const showLoggedInBar = () => {
+    const role=localStorage.getItem("role");
+    console.log("role:"+role)
+    if(role==Role.ADMIN)
+    {
+      return <Fragment>
 
-
-
-      
       <Breadcrumbs aria-label="breadcrumb">
       <NavLink activeClassName={classes.avtive} className={classes.root} to="/home">Home</NavLink>
       <NavLink activeClassName={classes.avtive} className={classes.root} to="/programs">Programs</NavLink>
@@ -143,7 +122,26 @@ function App(props:AppProps): ReactElement<AppProps> {
       <NavLink to="/login">Login</NavLink>
       </Breadcrumbs>
     </Fragment>
-  );
+    }
+    else
+    {
+      return <Fragment>
+
+      <Breadcrumbs aria-label="breadcrumb">
+      <NavLink activeClassName={classes.avtive} className={classes.root} to="/home">Home</NavLink>
+      <NavLink activeClassName={classes.avtive} className={classes.root} to="/programs">Programs</NavLink>
+      <NavLink activeClassName={classes.avtive} className={classes.root} to="/courses">Courses</NavLink>
+      <NavLink activeClassName={classes.avtive} className={classes.root} to="/students">Students</NavLink>
+      <NavLink activeClassName={classes.avtive} className={classes.root} to="/faculties">Faculties</NavLink>
+      <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/course">Add Course</NavLink>
+      <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/student">Add Student</NavLink>
+      <NavLink to="/login">Login</NavLink>
+      </Breadcrumbs>
+    </Fragment>
+    }
+    
+  };
+
 
   const showLoggedOutBar = () => (
     <Fragment>
@@ -151,28 +149,7 @@ function App(props:AppProps): ReactElement<AppProps> {
       <NavLink to="/">Home</NavLink>
       <NavLink to="/login">Login</NavLink>
     </Breadcrumbs>
-    {/*
-      <AppBar position="static">
-        <Tabs centered value={this.state.value} onChange={this.handleChange} aria-label="simple tabs example">
-          <Tab icon={<LockOpen />} label="Sign in" />
-          <Tab icon={<Loyalty />}  label="Login" />
-          {this.state.isAuthenticated? <Tab icon={<Person />} label="Users" />:<div/>}
-      
-        </Tabs>
-      </AppBar>
-      <TabPanel value={this.state.value} index={0}>
-        
-      </TabPanel>
-      <TabPanel value={this.state.value} index={1}>
-        <Login isAuthenticated={this.state.isAuthenticated} userHasAuthenticated={this.userHasAuthenticated}/>
-      </TabPanel>
-      <TabPanel value={this.state.value} index={2}>
-        
-      </TabPanel>
-      <TabPanel value={this.state.value} index={3}>
-        
-      </TabPanel>
-      */}
+
       
     </Fragment>
   );

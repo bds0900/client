@@ -91,7 +91,7 @@ export interface AttendancePreviousValues{
 }
 
 export enum Role {
-    SUPERADMIN, 
-    ADMIN,
-    USER
+    SUPERADMIN="SUPERADMIN", 
+    ADMIN="ADMIN",
+    USER="USER"
 }

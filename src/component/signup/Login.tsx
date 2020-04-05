@@ -46,7 +46,7 @@ interface authPayloadType {
   token: string;
 }
 interface LoginData{
-  authPayload: authPayloadType
+  login: authPayloadType
 }
 
 export default function Login(props:LoginProps): ReactElement <LoginProps>  {
@@ -89,13 +89,17 @@ export default function Login(props:LoginProps): ReactElement <LoginProps>  {
     LOGIN,
     {variables:{email: email, password: password}}
   )
-  
-
-
+  //if get the data then save it
+  if(data && data.login.token!=="Unable to login")
+  {
+    props.userHasAuthenticated(true);
+    localStorage.setItem('token',data.login.token)
+    localStorage.setItem('role',data.login.faculty.status)
+  }
     return (
       <div>
       {error ? <p>Oh no! {error.message}</p> : null}
-      {data && data.authPayload.token
+      {data && data.login.token!=="Unable to login"
         ?
       <Redirect to='/' />
         :
@@ -116,7 +120,7 @@ export default function Login(props:LoginProps): ReactElement <LoginProps>  {
             onChange={onPasswordChange}
             />
            <br/>
-            <Button color="primary" variant="text" onClick={onLogin}
+            <Button color="primary" variant="text" onClick={()=>login()}
             disabled={passwordValid !== 'success' || emailValid !== 'success' }>Log in</Button>
          </div>
       </div>
