@@ -98,6 +98,7 @@ export default function Login(props:LoginProps): ReactElement <LoginProps>  {
   }
     return (
       <div>
+      <h5>Log in</h5> 
       {error ? <p>Oh no! {error.message}</p> : null}
       {data && data.login.token!=="Unable to login"
         ?

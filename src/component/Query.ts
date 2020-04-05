@@ -306,7 +306,32 @@ export const  GET_FACULTY=gql`
 
 `;
 
+export const CREATE_FACULTY=gql`
+    mutation CREATE_FACULTY(
+        $id:ID!,$firstName:String!,$lastName:String!,$password:String!,
+        $email:String!,$program_id:ID){
+        createFaculty(data:{
+            id:$id
+            firstName:$firstName
+            LastName:$lastName
+            email:$email
+            password:$password
+            status:"USER"
+            program:{
+                connect:{id:$program_id}
+            }
+        }){
+            id
+            firstName
+            LastName
+            email
+            program{
+                name
+            }
+        }
+    }
 
+`;
 export const LOGIN=gql`
     mutation LOGIN($email:String!,$password: String!){
         login(data:{

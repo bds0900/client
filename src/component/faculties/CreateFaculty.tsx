@@ -3,7 +3,7 @@ import { TextField, Button, InputLabel, Select, MenuItem, Typography } from '@ma
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { ProgramType, StudentType, FacultyType } from '../Interfaces';
-import { GET_PROGRAMS, CREATE_STUDENT } from '../Query';
+import { GET_PROGRAMS, CREATE_FACULTY } from '../Query';
 import SelectProgram from '../common/SelectProgram';
 
 
@@ -45,7 +45,7 @@ export default function CreateFaculty({}: Props): ReactElement {
 
     const [saveFaculty, { error, data }]=  
     useMutation<FacultyData>(
-        CREATE_STUDENT,
+        CREATE_FACULTY,
         {variables:{
             id:id,
             firstName:firstName,
@@ -57,10 +57,8 @@ export default function CreateFaculty({}: Props): ReactElement {
     )
 
     const genID=(min:number,max:number)=>{
-        const user_id="999"+String(Math.floor(Math.random() * (max - min)) + min);
-        
+        const user_id="888"+String(Math.floor(Math.random() * (max - min)) + min);
         setID(user_id)
-        console.log(user_id)
         return user_id
     }
     
@@ -68,10 +66,9 @@ export default function CreateFaculty({}: Props): ReactElement {
         
         const email= firstName[0]+
                 lastName+
-                id.substring(3)+
                 "@conestogac.on.ca";
         setEmail(email)
-        console.log(email)
+
         return email
     }
     return (
@@ -83,16 +80,16 @@ export default function CreateFaculty({}: Props): ReactElement {
             <div>
             <p>Saved!</p> 
             <Typography variant="h5" gutterBottom>
-                Student ID: {data && data.createFaculty.id}
+                Faculty ID: {data && data.createFaculty.id}
             </Typography>
             <Typography variant="h5" gutterBottom>
-                Student name: {data && data.createFaculty.firstName} {data.createFaculty.LastName}
+                Faculty name: {data && data.createFaculty.firstName} {data.createFaculty.LastName}
             </Typography>
             <Typography variant="h5" gutterBottom>
-                Student Email: {data && data.createFaculty.email}
+                Faculty Email: {data && data.createFaculty.email}
             </Typography>
             <Typography variant="h5" gutterBottom>
-                Status: {data && data.createFaculty.status}
+                Faculty: {data && data.createFaculty.status}
             </Typography>
             </div>
                 : 
@@ -105,7 +102,6 @@ export default function CreateFaculty({}: Props): ReactElement {
                     onChange={e=>{
                         setFirstName(e.target.value)
                         setFirstNameValid(nameRegex.test(e.target.value.toLowerCase()) ? 'success' : 'error')
-                        {console.log(nameRegex.test(e.target.value.toLowerCase()) ? 'success' : 'error')}
                         genEmail(firstName,lastName,genID(1111,9999))
                         }}
                     />
@@ -117,7 +113,6 @@ export default function CreateFaculty({}: Props): ReactElement {
                 onChange={e=>{
                     setLastName(e.target.value)
                     setLastNameValid(nameRegex.test(e.target.value.toLowerCase()) ? 'success' : 'error')
-                    {console.log(nameRegex.test(e.target.value.toLowerCase()) ? 'success' : 'error')}
                     genEmail(firstName,lastName,genID(1111,9999))
                 }}
                 />
@@ -130,7 +125,6 @@ export default function CreateFaculty({}: Props): ReactElement {
                 onChange={e=>{
                     setPassword(e.target.value)
                     setPasswrodValid(e.target.value.length < 8 ? 'error' : 'success')
-                    {console.log(passwordValid)}
                     genEmail(firstName,lastName,genID(1111,9999))
                 }}
                 />
