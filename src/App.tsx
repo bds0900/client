@@ -76,41 +76,7 @@ function App(props:AppProps): ReactElement<AppProps> {
 
 
   const showLoggedInBar = () => {
-    const role=localStorage.getItem("role");
-    console.log("role:"+role)
-    if(role==Role.SUPERADMIN)
-    {
-      return <Fragment>
-
-      <Breadcrumbs aria-label="breadcrumb">
-      <NavLink activeClassName={classes.avtive} className={classes.root} to="/home">Home</NavLink>
-      <NavLink activeClassName={classes.avtive} className={classes.root} to="/programs">Programs</NavLink>
-      <NavLink activeClassName={classes.avtive} className={classes.root} to="/courses">Courses</NavLink>
-      <NavLink activeClassName={classes.avtive} className={classes.root} to="/students">Students</NavLink>
-      <NavLink activeClassName={classes.avtive} className={classes.root} to="/faculties">Faculties</NavLink>
-      <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/program">Add Program</NavLink>
-      <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/course">Add Course</NavLink>
-      <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/faculty">Add Faculty</NavLink>
-      <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/student">Add Student</NavLink>
-      <NavLink to="/login">Login</NavLink>
-      </Breadcrumbs>
-    </Fragment>
-    }
-    else if(role==Role.ADMIN)
-    {
-      return <Fragment>
-      <Breadcrumbs aria-label="breadcrumb">
-      <NavLink activeClassName={classes.avtive} className={classes.root} to="/home">Home</NavLink>
-      <NavLink activeClassName={classes.avtive} className={classes.root} to="/programs">Programs</NavLink>
-      <NavLink activeClassName={classes.avtive} className={classes.root} to="/courses">Courses</NavLink>
-      <NavLink activeClassName={classes.avtive} className={classes.root} to="/students">Students</NavLink>
-      <NavLink activeClassName={classes.avtive} className={classes.root} to="/faculties">Faculties</NavLink>
-      <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/course">Add Course</NavLink>
-      <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/student">Add Student</NavLink>
-      <NavLink to="/login">Login</NavLink>
-      </Breadcrumbs>
-    </Fragment>
-    }
+    
     
   };
 

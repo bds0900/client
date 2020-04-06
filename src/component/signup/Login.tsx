@@ -130,6 +130,7 @@ export default function Login(props:LoginProps): ReactElement <LoginProps>  {
     props.userHasAuthenticated(true);
     localStorage.setItem('token',data.login.token)
     localStorage.setItem('role',data.login.Faculty.status)
+    localStorage.setItem('id',data.login.Faculty.id)
   }
     return (
       <Container component="main" maxWidth="xs">
