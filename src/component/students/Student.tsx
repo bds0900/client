@@ -34,7 +34,7 @@ export default function Student(props: Props): ReactElement {
     if(!sub.loading) refetch()
     const [open, setOpen] = useState(true);
     const [update,setUpdate]=useState(false);
-
+    const role = localStorage.getItem('role')
     return (
         <div>
         {
@@ -60,27 +60,35 @@ export default function Student(props: Props): ReactElement {
                 Program: {data && data.student.program.name}
             </Typography>
 
+            {role!=='USER'? 
+                <div>
+                Enrolled Course List
+                {data && data.student.enrollments.map(enrollment=>(
+                    
+                    <List>
+                        <ListItem button onClick={()=>(setOpen(!open))} >
+                            {enrollment.course.name}
+                        </ListItem>
+                        <Collapse in={open} timeout="auto" unmountOnExit>
+                            <List>
+                            {enrollment.course.attendances.map(att=>(
+                                <ListItem >{att.time}</ListItem>
+                            ))}
+                            </List>
+                        </Collapse>
+                    </List>
+                    
+                ))}
+                <Button onClick={()=>setUpdate(!update)}>Update</Button>
+                </div>
 
-            Enrolled Course List
-            {data && data.student.enrollments.map(enrollment=>(
+                :
                 
-                <List>
-                    <ListItem button onClick={()=>(setOpen(!open))} >
-                        {enrollment.course.name}
-                    </ListItem>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <List>
-                        {enrollment.course.attendances.map(att=>(
-                            <ListItem >{att.time}</ListItem>
-                        ))}
-                        </List>
-                    </Collapse>
-                </List>
+                <div/>
+            }
                 
-            ))}
-
             
-            <Button onClick={()=>setUpdate(!update)}>Update</Button>
+
             </Fragment>
           )
         }

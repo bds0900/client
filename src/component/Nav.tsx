@@ -71,8 +71,6 @@ const Nav = (props: Props):ReactElement => {
         <NavLink activeClassName={classes.avtive} className={classes.root} to="/home">Home</NavLink>
         <NavLink activeClassName={classes.avtive} className={classes.root} to="/programs">Programs</NavLink>
         <NavLink activeClassName={classes.avtive} className={classes.root} to="/courses">Courses</NavLink>
-        <NavLink activeClassName={classes.avtive} className={classes.root} to="/students">Students</NavLink>
-        <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/course">Add Course</NavLink>
         <NavLink to="/" onClick={handleLogout}>Log out</NavLink>
         </Breadcrumbs>
         </Fragment>
