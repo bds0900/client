@@ -448,3 +448,17 @@ export const UPDATE_FACULTY=gql`
     }
 
 `;
+export const CREATE_CLASS=gql`
+    mutation CREATE_CLASS($course_id:ID,$room:string,$start:string,$end:string){
+        createClass(data:{
+            room:$room
+            startTime:$start
+            endTime:$end
+            course:{
+                connect:{id:$course_id}
+            }
+        }){
+            id
+        }
+    }
+`;

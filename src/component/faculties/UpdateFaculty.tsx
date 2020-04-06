@@ -85,13 +85,11 @@ export default function Signup(props: Props): ReactElement {
                 </div>
                     : 
                 <div>
-                
                 <Button color="primary" variant="text" onClick={() => 
                     setCourse(true) }>
                     Add courese
                 </Button>
                 <br/>
-
                     <TextField
                     disabled
                     placeholder="Enter your ID"

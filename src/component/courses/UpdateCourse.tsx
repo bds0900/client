@@ -8,6 +8,7 @@ import { NavLink, withRouter, Route } from "react-router-dom";
 import {ProgramType, CourseType} from '../Interfaces'
 import {UPDATE_COURSE, GET_PROGRAMS}from '../Query'
 import Course from '../courses/Course';
+import CreateClass from './CreateClass';
 
 
 interface CourseData {
@@ -40,6 +41,8 @@ export default function UpdateCourse(props: Props): ReactElement {
   const [id, setID] = useState(course.id)
   const [program,setProgram]=useState(course.program.name)
   const [NOS, setNOS] = useState(course.numOfStudent)
+  const [addClass, setClass] = useState(false)
+  
 
   const result=useQuery<ProgramData,ProgramVars>(GET_PROGRAMS)
   const [saveCourse, { error, data }]=  useMutation<CourseData,CourseVars>(
@@ -50,13 +53,22 @@ export default function UpdateCourse(props: Props): ReactElement {
   return (
     <div>
     <h3>Update a Course</h3>
+    {addClass?<CreateClass course_id={id}/>:
+    <div>
     {error ? <p>Oh no! {error.message}</p> : null}
     {data && data.updateCourse 
         ? 
     <p>Saved!</p> 
         : 
 
+
+    
     <div className="UpdateCourse">
+    <Button color="primary" variant="text" onClick={() => 
+        setClass(true) }>
+        Add Class
+    </Button>
+    <br/>
     <TextField
     placeholder="Enter the Course name"
     label="Course Name"
@@ -100,9 +112,8 @@ export default function UpdateCourse(props: Props): ReactElement {
     </Button>
     </div>
 
-
     }
-
+    </div>}
     </div>
   )
 }
