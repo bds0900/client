@@ -226,6 +226,12 @@ export const GET_COURSE = gql`
           LastName
         }
       }
+      class{
+          id
+          room
+          startTime
+          endTime
+      }
 
     }
   }
@@ -292,7 +298,7 @@ export const GET_FACULTIES=gql`
 `;
 export const  GET_FACULTY=gql`
     query($id:ID){
-        faculty{
+        faculty(where:{id:$id}){
             id
             firstName
             LastName

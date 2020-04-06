@@ -7,7 +7,7 @@ import {List,ListItem,Collapse,Typography, Button} from '@material-ui/core';
 import UpdateFaculty from './UpdateFaculty'
 
 import Attendance from '../attendances/Attendance';
-import { GET_ATTENDANCE, GET_STUDENT } from '../Query';
+import { GET_ATTENDANCE, GET_FACULTY } from '../Query';
 
 interface CheckIn{
     attendance:AttendanceSubscriptionPayload
@@ -24,10 +24,10 @@ interface Props {
     match:any
 }
 
-export default function Student(props: Props): ReactElement {
+export default function Faculty(props: Props): ReactElement {
     console.log(props.match.params.id)
     const{loading,data,refetch}=useQuery<FacultyData,FacultyVars>(
-        GET_STUDENT,
+        GET_FACULTY,
         {variables:{faculty_id:props.match.params.id}}
     )
     const sub=useSubscription<CheckIn>(GET_ATTENDANCE);
@@ -46,13 +46,13 @@ export default function Student(props: Props): ReactElement {
             <Fragment>
             {console.log(data)}
             <Typography variant="h5" gutterBottom>
-                {data && data.faculty.firstName} {data && data.faculty.LastName}
+                {data && data.faculty && data.faculty.firstName} {data && data.faculty && data.faculty.LastName}
             </Typography>
             <Typography variant="h5" gutterBottom>
-                {data && data.faculty.email}
+                {data && data.faculty && data.faculty.email}
             </Typography>
             
-            {data && data.faculty.instructings.map(instructing=>(
+            {data && data.faculty && data.faculty.instructings.map(instructing=>(
                 
                 <List>
                 

@@ -44,18 +44,27 @@ export default function Student(props: Props): ReactElement {
             : 
         (
             <Fragment>
-            {console.log(data)}
             <Typography variant="h5" gutterBottom>
-                {data && data.student.firstName} {data && data.student.LastName}
+                Student ID: {data && data.student.id}
             </Typography>
             <Typography variant="h5" gutterBottom>
-                {data && data.student.email}
+               Name: {data && data.student.firstName} {data && data.student.LastName}
             </Typography>
-            
+            <Typography variant="h5" gutterBottom>
+                Email: {data && data.student.email}
+            </Typography>
+            <Typography variant="h5" gutterBottom>
+                Status: {data && data.student.status}
+            </Typography>
+            <Typography variant="h5" gutterBottom>
+                Program: {data && data.student.program.name}
+            </Typography>
+
+
+            Enrolled Course List
             {data && data.student.enrollments.map(enrollment=>(
                 
                 <List>
-                
                     <ListItem button onClick={()=>(setOpen(!open))} >
                         {enrollment.course.name}
                     </ListItem>
