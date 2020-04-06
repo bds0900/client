@@ -54,6 +54,7 @@
   },
   "devDependencies": {
     "@types/js-cookie": "^2.2.5",
+    "@types/material-ui": "^0.21.7",
     "@types/react-router-dom": "^5.1.3"
   },
   "homepage": "https://bds0900.github.io/client"
