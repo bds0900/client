@@ -5,32 +5,18 @@ import { Role } from './Interfaces';
 
 
 import {  } from '@material-ui/core'
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Drawer from '@material-ui/core/Drawer';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
-import MenuIcon from '@material-ui/icons/Menu';
 import LibraryBooksOutlinedIcon from '@material-ui/icons/LibraryBooksOutlined';
 import QueueOutlinedIcon from '@material-ui/icons/QueueOutlined';
 import PeopleIcon from '@material-ui/icons/People';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import PeopleAltTwoToneIcon from '@material-ui/icons/PeopleAltTwoTone';
 import GroupAddTwoToneIcon from '@material-ui/icons/GroupAddTwoTone';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import clsx from 'clsx';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 
 interface Props {
   history:any
@@ -132,6 +118,12 @@ const Nav = (props: Props):ReactElement => {
     role==Role.SUPERADMIN
         ?
         <div>
+          <ListItem button component={NavLink} to="/home">        
+            <ListItemIcon className={classes.sidebarIcon}>
+              <HomeOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
           <ListItem button component={NavLink} to="/programs">        
             <ListItemIcon className={classes.sidebarIcon}>
               <DashboardIcon />
@@ -197,27 +189,91 @@ const Nav = (props: Props):ReactElement => {
         :
     role==Role.ADMIN
         ?
-        <Fragment>
-        <Breadcrumbs aria-label="breadcrumb">
-        <NavLink activeClassName={classes.avtive} className={classes.root} to="/home">Home</NavLink>
-        <NavLink activeClassName={classes.avtive} className={classes.root} to="/programs">Programs</NavLink>
-        <NavLink activeClassName={classes.avtive} className={classes.root} to="/courses">Courses</NavLink>
-        <NavLink activeClassName={classes.avtive} className={classes.root} to="/students">Students</NavLink>
-        <NavLink activeClassName={classes.avtive} className={classes.root} to="/faculties">Faculties</NavLink>
-        <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/course">Add Course</NavLink>
-        <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/student">Add Student</NavLink>
-        <NavLink to="/" onClick={handleLogout}>Log out</NavLink>
-        </Breadcrumbs>
-        </Fragment>
+        <div>
+          <ListItem button component={NavLink} to="/home">        
+            <ListItemIcon className={classes.sidebarIcon}>
+              <HomeOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem button component={NavLink} to="/programs">        
+            <ListItemIcon className={classes.sidebarIcon}>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary="Programs" />
+          </ListItem>
+          <ListItem button component={NavLink} to="/courses"> 
+            <ListItemIcon>
+              <LibraryBooksOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Courses" />
+          </ListItem>
+          <ListItem button component={NavLink} to="/create/course">  
+            <ListItemIcon>
+              <QueueOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add Course" />
+          </ListItem>
+          <ListItem button component={NavLink} to="/students">     
+            <ListItemIcon>
+              <PeopleIcon />
+            </ListItemIcon>
+            <ListItemText primary="Student" />
+          </ListItem>
+          <ListItem button component={NavLink} to="/create/student">  
+            <ListItemIcon>
+              <GroupAddIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add Student" />
+          </ListItem>
+          <ListItem button component={NavLink} to="/faculties">  
+            <ListItemIcon>
+              <PeopleAltTwoToneIcon />
+            </ListItemIcon>
+            <ListItemText primary="Faculty" />
+          </ListItem>
+        </div>
+        // <Fragment>
+        // <Breadcrumbs aria-label="breadcrumb">
+        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/home">Home</NavLink>
+        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/programs">Programs</NavLink>
+        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/courses">Courses</NavLink>
+        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/students">Students</NavLink>
+        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/faculties">Faculties</NavLink>
+        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/course">Add Course</NavLink>
+        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/student">Add Student</NavLink>
+        // <NavLink to="/" onClick={handleLogout}>Log out</NavLink>
+        // </Breadcrumbs>
+        // </Fragment>
         :
-        <Fragment>
-        <Breadcrumbs aria-label="breadcrumb">
-        <NavLink activeClassName={classes.avtive} className={classes.root} to="/home">Home</NavLink>
-        <NavLink activeClassName={classes.avtive} className={classes.root} to="/programs">Programs</NavLink>
-        <NavLink activeClassName={classes.avtive} className={classes.root} to="/courses">Courses</NavLink>
-        <NavLink to="/" onClick={handleLogout}>Log out</NavLink>
-        </Breadcrumbs>
-        </Fragment>
+        <div>
+          <ListItem button component={NavLink} to="/home">        
+            <ListItemIcon className={classes.sidebarIcon}>
+              <HomeOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem button component={NavLink} to="/programs">        
+            <ListItemIcon className={classes.sidebarIcon}>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary="Programs" />
+          </ListItem>
+          <ListItem button component={NavLink} to="/courses"> 
+            <ListItemIcon>
+              <LibraryBooksOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Courses" />
+          </ListItem>
+        </div>
+        // <Fragment>
+        // <Breadcrumbs aria-label="breadcrumb">
+        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/home">Home</NavLink>
+        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/programs">Programs</NavLink>
+        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/courses">Courses</NavLink>
+        // <NavLink to="/" onClick={handleLogout}>Log out</NavLink>
+        // </Breadcrumbs>
+        // </Fragment>
     )
 }
 
