@@ -3,10 +3,11 @@ import { TextField, Button, InputLabel, Select, MenuItem, Typography } from '@ma
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { ProgramType, StudentType, EnrollmentType, FacultyType } from '../Interfaces';
-import { GET_PROGRAMS, UPDATE_STUDENT , CREATE_ENROLLMENT} from '../Query';
+import { GET_PROGRAMS, UPDATE_FACULTY , CREATE_ENROLLMENT} from '../Query';
 import SelectProgram from '../common/SelectProgram';
 import SelectCourses from '../common/SelectCourses';
 import CreateEnrollment from '../enrollment/CreateEnrollment';
+import CreateInstructing from '../instructing/CreateInstructing';
 
 interface Props {
     faculty:FacultyType
@@ -38,7 +39,7 @@ export default function Signup(props: Props): ReactElement {
     const faculty=props.faculty
     const [firstName, setFirstName] = useState(faculty.firstName)
     const [lastName, setLastName] = useState(faculty.LastName)
-    const [program, setProgram] = useState(faculty.program.id)
+    const [program, setProgram] = useState<string|undefined>(faculty.program?faculty.program.id:undefined)
     const [password, setPassword] = useState(faculty.password)
     const [id, setID] = useState(faculty.id)
     const [email, setEmail] = useState(faculty.email)
@@ -48,7 +49,7 @@ export default function Signup(props: Props): ReactElement {
 
     const [saveFaculty, { error, data }]=  
     useMutation<FacultyData,FacultyVars>(
-        UPDATE_STUDENT,
+        UPDATE_FACULTY,
         {variables:{
             id:id,
             firstName:firstName,
@@ -62,7 +63,7 @@ export default function Signup(props: Props): ReactElement {
     return (
         <div>
         <h3>Update User</h3>
-            {addCourse?<CreateEnrollment student_id={id}></CreateEnrollment>:
+            {addCourse?<CreateInstructing faculty_id={id}></CreateInstructing>:
             <div>
                 {error ? <p>Oh no! {error.message}</p> : null}
                 {data && data.updateFaculty 

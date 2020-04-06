@@ -46,10 +46,19 @@ export default function Faculty(props: Props): ReactElement {
             <Fragment>
             {console.log(data)}
             <Typography variant="h5" gutterBottom>
-                {data && data.faculty && data.faculty.firstName} {data && data.faculty && data.faculty.LastName}
+               Faculty ID: {data && data.faculty && data.faculty.id} 
             </Typography>
             <Typography variant="h5" gutterBottom>
-                {data && data.faculty && data.faculty.email}
+               Faculty Name: {data && data.faculty && data.faculty.firstName} {data && data.faculty && data.faculty.LastName}
+            </Typography>
+            <Typography variant="h5" gutterBottom>
+                Faculty Eamil: {data && data.faculty && data.faculty.email}
+            </Typography>
+            <Typography variant="h5" gutterBottom>
+                Faculty Status: {data && data.faculty && data.faculty.status}
+            </Typography>
+            <Typography variant="h5" gutterBottom>
+                Program: {data && data.faculty.program && data.faculty.program.name}
             </Typography>
             
             {data && data.faculty && data.faculty.instructings.map(instructing=>(

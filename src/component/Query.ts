@@ -125,6 +125,24 @@ export const GET_PROGRAMS = gql`
   }
 }
 `;
+export const GET_PROGRAMS_BY_FAULTY_ID = gql`
+query GET_PROGRAMS_BY_FAULTY_ID($id:ID){
+  programs(orderBy:name_ASC
+  where:{
+      faculties_every:{
+          id:$id
+      }
+  }) {
+    id
+    name
+    courses{
+      id
+      name
+    }
+  }
+}
+`;
+
 export const GET_PROGRAM = gql`
 query GET_PROGRAM($id:ID){
   program(where:{id:$id}){
@@ -209,7 +227,37 @@ export const GET_COURSES_BY_PROGRAM_ID = gql`
     }
   }
 `;
+export const GET_COURSES_BY_FACULTY_ID = gql`
+  query GET_COURSES_BY_FACULTY_ID($_id: ID) {
+    courses(where: {
+        instructings_every:{
+            faculty:{
+                id:$id
+            }
+        }}) {
+      id
+      name
+      numOfStudent
+      program{
+        name
+      }
+      enrollments{
+        student{
+          id
+          firstName
+          LastName
+        }
+      }
+      class{
+          id
+          room
+          startTime
+          endTime
+      }
 
+    }
+  }
+`;
 export const GET_COURSE = gql`
   query Get_COURSE($coure_id: ID!) {
     course(where: {id:$coure_id}) {
@@ -297,8 +345,8 @@ export const GET_FACULTIES=gql`
     }
 `;
 export const  GET_FACULTY=gql`
-    query($id:ID){
-        faculty(where:{id:$id}){
+    query($faculty_id:ID){
+        faculty(where:{id:$faculty_id}){
             id
             firstName
             LastName
@@ -354,4 +402,49 @@ export const LOGIN=gql`
             token
         }
     }
+`;
+
+export const CREATE_INSTRUCTING=gql`
+    mutation CREATE_INSTRUCTING($faculty_id:ID,$course_id:ID){
+        createInstructing(data:{
+            faculty:{
+                connect:{id:$faculty_id}
+            }
+            course:{
+                connect:{id:$course_id}
+            }
+        }){
+            faculty{
+                id
+            }
+            course{
+                id
+            }
+        }
+    }
+`;
+export const UPDATE_FACULTY=gql`
+    mutation UPDATE_FACULTY(
+        $id:ID!,$firstName:String!,$lastName:String!,$password:String!,
+        $program_id:ID){
+        updateFaculty(
+            where:{id:$id},
+            data:{
+                firstName:$firstName
+                LastName:$lastName
+                password:$password
+                status:"USER"
+                program:{
+                    connect:{id:$program_id}
+                }
+            }
+        ){
+            id
+            firstName
+            LastName
+            email
+
+        }
+    }
+
 `;

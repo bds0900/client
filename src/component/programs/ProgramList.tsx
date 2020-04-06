@@ -5,7 +5,7 @@ import Program from './Program'
 import {List,ListItem,Collapse,Typography} from '@material-ui/core';
 import {ProgramType} from '../Interfaces'
 import './programList.css'
-import {GET_PROGRAMS} from '../Query'
+import {GET_PROGRAMS, GET_PROGRAMS_BY_FAULTY_ID} from '../Query'
 
 interface ProgramListData {
     programs: ProgramType[];
@@ -19,7 +19,11 @@ interface Props {
 }
 export default function ProgramList({}: Props): ReactElement {
 
-    const { loading, data } = useQuery<ProgramListData,ProgramListVars>(GET_PROGRAMS);
+    const role=localStorage.getItem('role')
+    const id=localStorage.getItem('id')
+    const QERUY=role=='USER'?GET_PROGRAMS_BY_FAULTY_ID:GET_PROGRAMS
+    console.log(QERUY)
+    const { loading, data } = useQuery<ProgramListData,ProgramListVars>(QERUY,{variables:{id:id}});
 
     return (
         <Fragment>

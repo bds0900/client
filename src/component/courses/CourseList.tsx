@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import Course from './Course';
 import { NavLink } from 'react-router-dom';
 import {ExpansionPanel ,ExpansionPanelSummary ,ExpansionPanelDetails ,Typography ,List,ListItem} from '@material-ui/core';
-import {GET_COURSES} from '../Query'
+import {GET_COURSES, GET_COURSES_BY_FACULTY_ID } from '../Query'
 interface CourseListData {
     courses: CourseType[];
 }
@@ -19,7 +19,11 @@ interface Props {
 }
 
 export default function CourseList(props: Props): ReactElement {
-    const{loading,data}= useQuery<CourseListData,CourseListVars>(GET_COURSES);
+    const role=localStorage.getItem('role')
+    const id=localStorage.getItem('id')
+    const QERUY=role=='USER'?GET_COURSES_BY_FACULTY_ID:GET_COURSES
+    console.log(QERUY)
+    const{loading,data}= useQuery<CourseListData,CourseListVars>(QERUY,{variables:{id:id}});
     return (
         <div>
         {loading ? (
