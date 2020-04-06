@@ -133,7 +133,7 @@ export default function CreateFaculty({}: Props): ReactElement {
                 <br/>
                 <Button color="primary" variant="text" 
                 disabled={passwordValid !== 'success' || firstNameValid !== 'success' || lastNameValid !== 'success' }    
-                onClick={() =>id && firstName && lastName && email && program && saveFaculty()}>
+                onClick={() =>id && firstName && lastName && email && saveFaculty()}>
                     Add
                 </Button>
             </form>
