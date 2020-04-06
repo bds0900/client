@@ -449,7 +449,7 @@ export const UPDATE_FACULTY=gql`
 
 `;
 export const CREATE_CLASS=gql`
-    mutation CREATE_CLASS($course_id:ID,$room:string,$start:string,$end:string){
+    mutation CREATE_CLASS($course_id:ID,$room:String!,$start:String!,$end:String!){
         createClass(data:{
             room:$room
             startTime:$start
