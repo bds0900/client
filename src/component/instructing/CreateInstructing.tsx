@@ -30,7 +30,6 @@ export default function CreateInstructing(props: Props): ReactElement {
     function onCourseClick(course_id:string):any{
         setCourse(course_id)
     }
-    {console.log(id)}
 
     const [saveInstructing, { error, data }]=useMutation<InstructingData,InstructingVars>(
         CREATE_INSTRUCTING,
@@ -38,7 +37,7 @@ export default function CreateInstructing(props: Props): ReactElement {
             variables:{faculty_id:props.faculty_id,course_id:course}
         }
     )
-    
+
     return (
         <div>
         <h3>Add a Course</h3>
@@ -51,7 +50,7 @@ export default function CreateInstructing(props: Props): ReactElement {
         <SelectCourses onProgramClick={onProgramClick} onCourseClick={onCourseClick}/>
         <Button color="primary" variant="text" onClick={() => 
             id && course  && saveInstructing() }>
-            Update User
+            Add Course
         </Button>
         </div>
         }
