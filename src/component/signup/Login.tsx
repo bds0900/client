@@ -107,8 +107,8 @@ export default function Login(props:LoginProps): ReactElement <LoginProps>  {
       <div className="Login">
         <div>
            <TextField
-             placeholder="Enter your Username"
-             label="Username"
+             placeholder="Enter your email"
+             label="Email"
              value={email}
              onChange={onEmailChange}
              />
