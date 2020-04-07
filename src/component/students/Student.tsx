@@ -83,8 +83,26 @@ export default function Student(props: Props): ReactElement {
                 </div>
 
                 :
-                
-                <div/>
+                <div>
+                Enrolled Course List
+                {data && data.student.enrollments.map(enrollment=>(
+                    
+                    <List>
+                        <ListItem button onClick={()=>(setOpen(!open))} >
+                            {enrollment.course.name}
+                        </ListItem>
+                        <Collapse in={open} timeout="auto" unmountOnExit>
+                            <List>
+                            {enrollment.course.attendances.map(att=>(
+                                <ListItem >{att.time}</ListItem>
+                            ))}
+                            </List>
+                        </Collapse>
+                    </List>
+                    
+                ))}
+                <Button onClick={()=>setUpdate(!update)}>Update</Button>
+                </div>
             }
                 
             
