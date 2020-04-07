@@ -341,6 +341,21 @@ export const GET_FACULTIES=gql`
             id
             firstName
             LastName
+            email
+            status
+            instructings{
+                id
+                course{
+                    name
+                    attendances{
+                        time
+                    }
+                }
+            }
+            program{
+                id
+                name
+            }
         }
     }
 `;
@@ -360,6 +375,10 @@ export const  GET_FACULTY=gql`
                         time
                     }
                 }
+            }
+            program{
+                id
+                name
             }
 
         }
@@ -450,7 +469,7 @@ export const UPDATE_FACULTY=gql`
             firstName
             LastName
             email
-
+            status
         }
     }
 

@@ -63,7 +63,7 @@ export default function Signup(props: Props): ReactElement {
     function onProgramClick(program_id:string):any{
         setProgram(program_id)
     }
-
+    console.log(data)
 
     return (
         <div>
@@ -145,8 +145,6 @@ export default function Signup(props: Props): ReactElement {
                      <SelectProgram programs={result.data.programs} onProgramClick={onProgramClick}/>
                     }
                         
-                    
-
 
                     <br/>
                     
