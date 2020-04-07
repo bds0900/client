@@ -16,6 +16,7 @@ import Enrollment from "./component/enrollment/Enrollment";
 import FacultyList from "./component/faculties/FacultyList";
 import Faculty from "./component/faculties/Faculty";
 import CreateFaculty from "./component/faculties/CreateFaculty";
+import Instructing from "./component/faculties/Instructing";
 interface RouteProps {
   isAuthenticated: boolean;
   userHasAuthenticated: (authenticated: boolean) => void;
@@ -41,6 +42,7 @@ export const Routes: React.FunctionComponent<RouteProps> = (childProps) =>
     <Route path="/course/:id" exact component={Course} />
     <Route path="/faculty/:id" exact component={Faculty} />
     <Route path="/student/:id" exact component={Student} />
+    <Route path="/instructing/:id" exact component={Instructing} />
 
     <Route path="/" >Not Found</Route>
   </Switch>;

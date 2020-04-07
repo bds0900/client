@@ -1,7 +1,7 @@
 import React, { Fragment, ReactElement } from 'react'
 import { AppBar, Tabs, Tab, Box,Typography,makeStyles,Breadcrumbs,Chip, Button, Icon } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
-import { Role } from './Interfaces';
+import { Role, FacultyType } from './Interfaces';
 
 
 import {  } from '@material-ui/core'
@@ -107,6 +107,7 @@ const Nav = (props: Props):ReactElement => {
     const classes = useStyles();
     const role=localStorage.getItem("role");
     console.log("role:"+role)
+    
 
     const handleLogout =  () => {
       props.userHasAuthenticated(false);
@@ -259,7 +260,7 @@ const Nav = (props: Props):ReactElement => {
             </ListItemIcon>
             <ListItemText primary="Programs" />
           </ListItem>
-          <ListItem button component={NavLink} to="/courses"> 
+          <ListItem button component={NavLink} to="/instructings"> 
             <ListItemIcon>
               <LibraryBooksOutlinedIcon />
             </ListItemIcon>

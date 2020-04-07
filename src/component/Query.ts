@@ -385,6 +385,32 @@ export const  GET_FACULTY=gql`
     }
 
 `;
+export const  GET_FACULTY_BY_EMAIL=gql`
+    query($faculty_id:ID){
+        faculty(where:{id:$faculty_id}){
+            id
+            firstName
+            LastName
+            email
+            status
+            instructings{
+                id
+                course{
+                    name
+                    attendances{
+                        time
+                    }
+                }
+            }
+            program{
+                id
+                name
+            }
+
+        }
+    }
+
+`;
 
 export const CREATE_FACULTY=gql`
     mutation CREATE_FACULTY(
@@ -485,6 +511,16 @@ export const CREATE_CLASS=gql`
             }
         }){
             id
+        }
+    }
+`;
+export const GET_INSTRUCTING=gql`
+    query GET_INSTRUCTING($faculty_id:ID){
+        instructings(where:{faculty:{id:$faculty_id}}){
+            courses{
+                id
+                name
+            }
         }
     }
 `;

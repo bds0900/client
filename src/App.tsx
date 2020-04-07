@@ -13,8 +13,7 @@ import './App.css';
 import CourseList from './component/courses/CourseList';
 import FacultyList from './component/faculties/FacultyList';
 import StudentList from './component/students/StudentList';
-
-import { Role } from './component/Interfaces';
+import { Role, FacultyType } from './component/Interfaces';
 import Nav from './component/Nav';
 
 import clsx from 'clsx'
@@ -122,8 +121,6 @@ const useStyles = makeStyles((theme) => ({
 const drawerWidth = 240;
 
 
-
-
 function App(props:AppProps): ReactElement<AppProps> {
   const classes = useStyles();
   const [isAuthenticated,setIsAuth]=useState(localStorage.getItem("role")?true:false)
@@ -196,7 +193,6 @@ function App(props:AppProps): ReactElement<AppProps> {
     userHasAuthenticated: userHasAuthenticated
   };
 
-  
 
     
   return (
