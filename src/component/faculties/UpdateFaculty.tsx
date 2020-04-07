@@ -3,7 +3,7 @@ import { TextField, Button, InputLabel, Select, MenuItem, Typography } from '@ma
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { ProgramType, StudentType, EnrollmentType, FacultyType } from '../Interfaces';
-import { GET_PROGRAMS, UPDATE_FACULTY , CREATE_ENROLLMENT} from '../Query';
+import { GET_PROGRAMS, UPDATE_FACULTY , CREATE_ENROLLMENT, GET_PROGRAMS_BY_FAULTY_ID} from '../Query';
 import SelectProgram from '../common/SelectProgram';
 import SelectCourses from '../common/SelectCourses';
 import CreateEnrollment from '../enrollment/CreateEnrollment';
@@ -45,7 +45,9 @@ export default function Signup(props: Props): ReactElement {
     const [email, setEmail] = useState(faculty.email)
     const [addCourse,setCourse]=useState(false)
 
-    const result = useQuery<ProgramListData,ProgramListVars>(GET_PROGRAMS);
+    const role=localStorage.getItem('role')
+    const QERUY=role=='USER'?GET_PROGRAMS_BY_FAULTY_ID:GET_PROGRAMS
+    const result = useQuery<ProgramListData,ProgramListVars>(QERUY,{variables:{id:id}});
 
     const [saveFaculty, { error, data }]=  
     useMutation<FacultyData,FacultyVars>(
@@ -58,6 +60,9 @@ export default function Signup(props: Props): ReactElement {
             program_id:program
         }}
     )
+    function onProgramClick(program_id:string):any{
+        setProgram(program_id)
+    }
 
 
     return (
@@ -134,6 +139,15 @@ export default function Signup(props: Props): ReactElement {
                     label="Email"
                     value={email}
                     />
+                    <br/>
+                    Current program is {faculty.program ? faculty.program.name : "none"}
+                    {result && result.data && 
+                     <SelectProgram programs={result.data.programs} onProgramClick={onProgramClick}/>
+                    }
+                        
+                    
+
+
                     <br/>
                     
                     <Button color="primary" variant="text" onClick={() => 
