@@ -8,8 +8,6 @@ import {ExpansionPanel ,ExpansionPanelSummary ,ExpansionPanelDetails ,Typography
 import {GET_COURSES, GET_COURSES_BY_FACULTY_ID } from '../Query'
 
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import ClassIcon from '@material-ui/icons/Class';
@@ -38,6 +36,14 @@ const useStyles = makeStyles((theme) => ({
   title: {
     margin: theme.spacing(4, 0, 2),
   },
+  button: {
+    '&:hover': {
+      background: '#dadada',
+    }
+  },
+  list: {
+    width: "50%",
+  }
 }));
 
 export default function CourseList(props: Props): ReactElement {
@@ -58,9 +64,9 @@ export default function CourseList(props: Props): ReactElement {
                 Course List
               </Typography>
               <div className={classes.demo}>
-                <List>
+                <List className={classes.list}>
                   {data && data.courses.map(course => (
-                    <ListItem key={course.id} className="course-list" button component={NavLink} to={"/course/"+course.id}>
+                    <ListItem key={course.id} className={classes.button} button component={NavLink} to={"/course/"+course.id}>
                       <ListItemAvatar>
                         <Avatar>
                           <ClassIcon />
