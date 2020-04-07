@@ -228,7 +228,7 @@ export const GET_COURSES_BY_PROGRAM_ID = gql`
   }
 `;
 export const GET_COURSES_BY_FACULTY_ID = gql`
-  query GET_COURSES_BY_FACULTY_ID($_id: ID) {
+  query GET_COURSES_BY_FACULTY_ID($id:ID) {
     courses(where: {
         instructings_every:{
             faculty:{
