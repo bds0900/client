@@ -61,10 +61,9 @@ export default function Faculty(props: Props): ReactElement {
                 Program: {data && data.faculty.program && data.faculty.program.name}
             </Typography>
             
-            {data && data.faculty && data.faculty.instructings.map(instructing=>(
+            {data && data.faculty && data.faculty.instructings && data.faculty.instructings.map(instructing=>(
                 
                 <List>
-                
                     <ListItem button onClick={()=>(setOpen(!open))} >
                         {instructing.course.name}
                     </ListItem>

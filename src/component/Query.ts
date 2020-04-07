@@ -351,8 +351,15 @@ export const  GET_FACULTY=gql`
             firstName
             LastName
             email
+            status
             instructings{
                 id
+                course{
+                    name
+                    attendances{
+                        time
+                    }
+                }
             }
 
         }
