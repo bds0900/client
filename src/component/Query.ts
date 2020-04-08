@@ -575,6 +575,7 @@ export const GET_INSTRUCTINGS=gql`
 export const GET_COURSE_ATTENDANCE=gql`
     query GET_COURSE_ATTENDANCE($course_id:ID){
         attendances(where:{course:{id:$course_id}}){
+            id
             student{
                 firstName
                 LastName
@@ -603,9 +604,13 @@ export const GET_STUDENT_COURSE_ATTENDANCE=gql`
             student:{id:$student_id},
             course:{id:$course_id}
             }){
+            id
             student{
                 firstName
                 LastName
+            }
+            class{
+                id
             }
             time
         }
