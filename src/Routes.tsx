@@ -17,6 +17,10 @@ import FacultyList from "./component/faculties/FacultyList";
 import Faculty from "./component/faculties/Faculty";
 import CreateFaculty from "./component/faculties/CreateFaculty";
 import Instructing from "./component/faculties/Instructing";
+import Attendance from "./component/attendances/Attendance";
+import ClassAttendance from "./component/attendances/ClassAttendacne";
+import CourseAttendance from "./component/attendances/CourseAttendance";
+import ClassList from "./component/classes/ClassList";
 interface RouteProps {
   isAuthenticated: boolean;
   userHasAuthenticated: (authenticated: boolean) => void;
@@ -37,12 +41,14 @@ export const Routes: React.FunctionComponent<RouteProps> = (childProps) =>
     <Route path="/courses" exact component={CourseList} />
     <Route path="/faculties" exact component={FacultyList} />
     <Route path="/students" exact component={StudentList} />
+    <Route path="/classes" exact component={ClassList} />
 
     <Route path="/program/:id" exact component={ProgramDetail} />
     <Route path="/course/:id" exact component={Course} />
     <Route path="/faculty/:id" exact component={Faculty} />
     <Route path="/student/:id" exact component={Student} />
     <Route path="/instructing/:id" exact component={Instructing} />
+    
 
     <Route path="/" >Not Found</Route>
   </Switch>;

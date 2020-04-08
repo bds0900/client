@@ -164,8 +164,8 @@ export default function Student(props: Props): ReactElement {
                         </ListItem>
                         <Collapse in={open} timeout="auto" unmountOnExit>
                             <List>
-                            {enrollment.course.attendances.map(att=>(
-                                <ListItem >{att.time}</ListItem>
+                            {enrollment.course.class.map(clas=>(
+                                <ListItem >class room:{clas.room}</ListItem>
                             ))}
                             </List>
                         </Collapse>
@@ -186,8 +186,8 @@ export default function Student(props: Props): ReactElement {
                         </ListItem>
                         <Collapse in={open} timeout="auto" unmountOnExit>
                             <List>
-                            {enrollment.course.attendances.map(att=>(
-                                <ListItem >{att.time}</ListItem>
+                            {enrollment.course.class.map(clas=>(
+                                <ListItem >class room:{clas.room}</ListItem>
                             ))}
                             </List>
                         </Collapse>

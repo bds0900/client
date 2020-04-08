@@ -29,9 +29,13 @@ export const GET_STUDENT=gql`
                 attendances{
                     time
                 }
+                class{
+                    room
+                    startTime
+                    endTime
+                }
             }
         }
-        
     }
   }
 `;
@@ -350,12 +354,18 @@ export const GET_FACULTIES=gql`
                     attendances{
                         time
                     }
+                    class{
+                        room
+                        startTime
+                        endTime
+                    }
                 }
             }
             program{
                 id
                 name
             }
+            
         }
     }
 `;
@@ -373,6 +383,11 @@ export const  GET_FACULTY=gql`
                     name
                     attendances{
                         time
+                    }
+                    class{
+                        room
+                        startTime
+                        endTime
                     }
                 }
             }
@@ -399,6 +414,11 @@ export const  GET_FACULTY_BY_EMAIL=gql`
                     name
                     attendances{
                         time
+                    }
+                    class{
+                        room
+                        startTime
+                        endTime
                     }
                 }
             }
@@ -517,9 +537,68 @@ export const CREATE_CLASS=gql`
 export const GET_INSTRUCTING=gql`
     query GET_INSTRUCTING($faculty_id:ID){
         instructings(where:{faculty:{id:$faculty_id}}){
-            courses{
+            course{
+                name
+                id
+            }
+        }
+    }
+`;
+export const GET_COURSE_ATTENDANCE=gql`
+    query GET_COURSE_ATTENDANCE($course_id:ID){
+        attendances(where:{course:{id:$course_id}}){
+            student{
+                firstName
+                LastName
+                id
+            }
+            time
+        }
+    }
+`;
+
+export const GET_CLASS_ATTENDANCE=gql`
+    query GET_CLASS_ATTENDANCE($class_id:ID){
+        attendances(where:{class:{id:$class_id}}){
+            student{
+                firstName
+                LastName
+                id
+            }
+        }
+    }
+`;
+
+export const GET_CLASSES=gql`
+    query GET_CLASSES{
+        classes{
+            startTime
+            endTime
+            course{
                 id
                 name
+                attendances{
+                    courss{
+                        name
+                    }
+                }
+            }
+        }
+    }
+`;
+export const GET_CLASS=gql`
+    query GET_CLASS($class_id:ID){
+        class(where:{id:$class_id}){
+            startTime
+            endTime
+            course{
+                id
+                name
+                attendances{
+                    courss{
+                        name
+                    }
+                }
             }
         }
     }

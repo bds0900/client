@@ -260,7 +260,7 @@ const Nav = (props: Props):ReactElement => {
             </ListItemIcon>
             <ListItemText primary="Programs" />
           </ListItem>
-          <ListItem button component={NavLink} to="/instructings"> 
+          <ListItem button component={NavLink} to={`/instructing/${localStorage.getItem('id')}`}> 
             <ListItemIcon>
               <LibraryBooksOutlinedIcon />
             </ListItemIcon>

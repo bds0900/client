@@ -8,6 +8,7 @@ import UpdateFaculty from './UpdateFaculty'
 
 import Attendance from '../attendances/Attendance';
 import { GET_ATTENDANCE, GET_FACULTY } from '../Query';
+import Class from '../classes/Class';
 
 interface CheckIn{
     attendance:AttendanceSubscriptionPayload
@@ -69,8 +70,8 @@ export default function Faculty(props: Props): ReactElement {
                     </ListItem>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <List>
-                        {instructing.course.attendances.map(att=>(
-                            <ListItem >{att.time}</ListItem>
+                        {instructing.course.class.map(clas=>(
+                            <ListItem ><Class class={clas}/></ListItem>
                         ))}
                         </List>
                     </Collapse>
