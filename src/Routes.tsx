@@ -18,7 +18,7 @@ import Faculty from "./component/faculties/Faculty";
 import CreateFaculty from "./component/faculties/CreateFaculty";
 import Instructing from "./component/faculties/Instructing";
 import Attendance from "./component/attendances/Attendance";
-import ClassAttendance from "./component/attendances/ClassAttendacne";
+import ClassAttendance from "./component/attendances/ClassAttendance";
 import CourseAttendance from "./component/attendances/CourseAttendance";
 import ClassList from "./component/classes/ClassList";
 interface RouteProps {
