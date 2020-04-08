@@ -6,7 +6,7 @@ import  gql  from 'graphql-tag';
 import {List,ListItem,Collapse,Typography, Button, makeStyles} from '@material-ui/core';
 import UpdateStudent from './UpdateStudent'
 
-import Attendance from '../attendances/Attendance';
+import Attendance from '../attendances/SubscriptionAttendance';
 import { GET_ATTENDANCE, GET_STUDENT } from '../Query';
 
 import Table from '@material-ui/core/Table';

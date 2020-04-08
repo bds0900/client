@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { AttendanceType } from '../Interfaces'
 import { GET_COURSE_ATTENDANCE, GET_CLASS_ATTENDANCE } from '../Query'
+import { List, ListItem } from '@material-ui/core'
 
 interface Props {
     class_id:string
@@ -12,17 +13,17 @@ interface AttendanceData{
 export default function ClassAttendance(props: Props): ReactElement {
     const {loading,data}=useQuery<AttendanceData,{}>(
         GET_CLASS_ATTENDANCE,
-        {variables:{course_id:props.class_id}}
+        {variables:{class_id:props.class_id}}
     )
     return (
         <div>
             {loading?
             <div>loading...</div>
             :
-            <div>{data && data.attendances.map(attendance=>(
-                attendance.time
+            <List>{data && data.attendances.map(attendance=>(
+                <ListItem>{attendance.student.firstName} {attendance.time} </ListItem>
             ))}
-            </div>
+            </List>
             }
         </div>
     )

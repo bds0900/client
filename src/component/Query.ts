@@ -534,8 +534,8 @@ export const CREATE_CLASS=gql`
         }
     }
 `;
-export const GET_INSTRUCTING=gql`
-    query GET_INSTRUCTING($faculty_id:ID){
+export const GET_INSTRUCTINGS=gql`
+    query GET_INSTRUCTINGS($faculty_id:ID){
         instructings(where:{faculty:{id:$faculty_id}}){
             course{
                 name
@@ -565,6 +565,7 @@ export const GET_CLASS_ATTENDANCE=gql`
                 LastName
                 id
             }
+            time
         }
     }
 `;
@@ -572,6 +573,7 @@ export const GET_CLASS_ATTENDANCE=gql`
 export const GET_CLASSES=gql`
     query GET_CLASSES{
         classes{
+            id
             startTime
             endTime
             course{
@@ -595,7 +597,24 @@ export const GET_CLASS=gql`
                 id
                 name
                 attendances{
-                    courss{
+                    course{
+                        name
+                    }
+                }
+            }
+        }
+    }
+`;
+export const GET_CLASSES_BY_COURSE=gql`
+    query GET_CLASSES_BY_COURSE($course_id:ID){
+        classes(where:{course:{id:$course_id}}){
+            startTime
+            endTime
+            course{
+                id
+                name
+                attendances{
+                    course{
                         name
                     }
                 }

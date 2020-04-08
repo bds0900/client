@@ -16,8 +16,8 @@ import Enrollment from "./component/enrollment/Enrollment";
 import FacultyList from "./component/faculties/FacultyList";
 import Faculty from "./component/faculties/Faculty";
 import CreateFaculty from "./component/faculties/CreateFaculty";
-import Instructing from "./component/faculties/Instructing";
-import Attendance from "./component/attendances/Attendance";
+import InstructingList from "./component/instructing/InstructingList";
+import Attendance from "./component/attendances/SubscriptionAttendance";
 import ClassAttendance from "./component/attendances/ClassAttendance";
 import CourseAttendance from "./component/attendances/CourseAttendance";
 import ClassList from "./component/classes/ClassList";
@@ -41,14 +41,14 @@ export const Routes: React.FunctionComponent<RouteProps> = (childProps) =>
     <Route path="/courses" exact component={CourseList} />
     <Route path="/faculties" exact component={FacultyList} />
     <Route path="/students" exact component={StudentList} />
-    <Route path="/classes" exact component={ClassList} />
+    
 
     <Route path="/program/:id" exact component={ProgramDetail} />
     <Route path="/course/:id" exact component={Course} />
     <Route path="/faculty/:id" exact component={Faculty} />
     <Route path="/student/:id" exact component={Student} />
-    <Route path="/instructing/:id" exact component={Instructing} />
-    
+    <Route path="/instructing/:id" exact component={InstructingList} />
+    <Route path="/classes/:id" exact component={ClassList} />
 
     <Route path="/" >Not Found</Route>
   </Switch>;

@@ -1,19 +1,25 @@
 import React, { ReactElement } from 'react'
-import { ClassType } from '../Interfaces'
+import { ClassType, AttendanceType } from '../Interfaces'
 import { useQuery } from '@apollo/react-hooks'
-import { GET_CLASS } from '../Query'
+import { GET_CLASS, GET_CLASS_ATTENDANCE } from '../Query'
+import ClassAttendance from '../attendances/ClassAttendance'
+
 
 interface Props {
     class:ClassType
 }
 
 export default function Class(props: Props): ReactElement {
-    //const {loading,data}=useQuery<ClassData,{}>(GET_CLASS)
+    
     return (
         <div>
-            <h5>class room:{props.class.room}</h5>
-            <h5>class start:{props.class.startTime}</h5>
-            <h5>class end:{props.class.endTime}</h5>
+            <h5>
+            class room:{props.class.room}
+            class start:{props.class.startTime}
+            class end:{props.class.endTime}
+            </h5>
+            <ClassAttendance class_id={props.class.id}/>
+
         </div>
     )
 }

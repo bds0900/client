@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { useQuery } from '@apollo/react-hooks'
-import { GET_INSTRUCTING } from '../Query'
+import { GET_INSTRUCTINGS } from '../Query'
 import { InstructingType } from '../Interfaces'
 import { List, ListItem } from '@material-ui/core'
 import { NavLink } from 'react-router-dom'
@@ -14,7 +14,7 @@ interface InstructingData{
 
 export default function Instructing({}: Props): ReactElement {
     const {loading,data}=useQuery<InstructingData,{}>(
-        GET_INSTRUCTING,
+        GET_INSTRUCTINGS,
         {variables:{faculty_id:localStorage.getItem("id")}}
     )
     return (
@@ -24,7 +24,7 @@ export default function Instructing({}: Props): ReactElement {
                 :
                 <List>
                 {data && data.instructings.map(instructing=>(
-                    <ListItem button component={NavLink} to="/classes">{instructing.course.name}</ListItem>
+                    <ListItem button component={NavLink} to={`/classes/${instructing.course.id}`}>{instructing.course.name}</ListItem>
                 ))}
                 </List>
             }
