@@ -578,7 +578,7 @@ export const GET_CLASSES=gql`
                 id
                 name
                 attendances{
-                    courss{
+                    course{
                         name
                     }
                 }
