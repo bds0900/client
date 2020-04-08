@@ -52,8 +52,7 @@ export default function CourseList(props: Props): ReactElement {
     const role=localStorage.getItem('role')
     const id=localStorage.getItem('id')
     const QERUY=role=='USER'?GET_COURSES_BY_FACULTY_ID:GET_COURSES
-    console.log(QERUY)
-    const{loading,data}= useQuery<CourseListData,CourseListVars>(QERUY,{variables:{id:id}});
+    const{loading,data}= useQuery<CourseListData,CourseListVars>(QERUY,{variables:{id:localStorage.getItem('id')}});
     return (
         <div>
         {loading ? (
@@ -83,14 +82,6 @@ export default function CourseList(props: Props): ReactElement {
                 </List>
               </div>
 
-            {/* course list
-            <List>
-              {data && data.courses.map(course => (
-                <ListItem key={course.id} className="course-list"> 
-                  <NavLink to={"/course/"+course.id}> {course.name}</NavLink>
-                </ListItem>
-              ))}
-            </List> */}
             </Fragment>
           )}
         </div>

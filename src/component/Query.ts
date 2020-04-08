@@ -39,6 +39,18 @@ export const GET_STUDENT=gql`
     }
   }
 `;
+
+export const GET_STUDENTS_BY_COURSE=gql`
+    query GET_STUDENTS_BY_COURSE($course_id:ID){
+        students(where:{enrollments_every:{course:{id:$course_id}}}){
+            id
+            firstName
+            LastName
+            email
+        }
+    }
+`;
+
 export const CREATE_STUDENT=gql`
     mutation CREATE_STUDENT(
         $id:ID!,$firstName:String!,$lastName:String!,$password:String!,
@@ -251,6 +263,14 @@ export const GET_COURSES_BY_FACULTY_ID = gql`
           firstName
           LastName
         }
+        course{
+            class{
+                id
+                room
+                startTime
+                endTime
+            }
+        }
       }
       class{
           id
@@ -276,6 +296,14 @@ export const GET_COURSE = gql`
           id
           firstName
           LastName
+        }
+        course{
+            class{
+                id
+                room
+                startTime
+                endTime
+            }
         }
       }
       class{
@@ -569,7 +597,20 @@ export const GET_CLASS_ATTENDANCE=gql`
         }
     }
 `;
-
+export const GET_STUDENT_COURSE_ATTENDANCE=gql`
+    query GET_CLASS_ATTENDANCE($course_id:ID,$student_id:ID){
+        attendances(where:{
+            student:{id:$student_id},
+            course:{id:$course_id}
+            }){
+            student{
+                firstName
+                LastName
+            }
+            time
+        }
+    }
+`;
 export const GET_CLASSES=gql`
     query GET_CLASSES{
         classes{

@@ -57,7 +57,7 @@ export default function Student(props: Props): ReactElement {
     )
     const sub=useSubscription<CheckIn>(GET_ATTENDANCE);
     if(!sub.loading) refetch()
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const [update,setUpdate]=useState(false);
     const role = localStorage.getItem('role')
     return (
@@ -133,21 +133,7 @@ export default function Student(props: Props): ReactElement {
                   </TableRow>
                 </Table>
             </TableContainer>
-            {/* <Typography variant="h5" gutterBottom>
-                Student ID: {data && data.student.id}
-            </Typography>
-            <Typography variant="h5" gutterBottom>
-               Name: {data && data.student.firstName} {data && data.student.LastName}
-            </Typography>
-            <Typography variant="h5" gutterBottom>
-                Email: {data && data.student.email}
-            </Typography>
-            <Typography variant="h5" gutterBottom>
-                Status: {data && data.student.status}
-            </Typography>
-            <Typography variant="h5" gutterBottom>
-                Program: {data && data.student.program.name}
-            </Typography> */}
+
             {role!=='USER'? 
                 <div className={classes.marginTop}>
                     <Typography variant="h5">

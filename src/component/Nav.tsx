@@ -106,8 +106,6 @@ const drawerWidth = 240;
 const Nav = (props: Props):ReactElement => {
     const classes = useStyles();
     const role=localStorage.getItem("role");
-    console.log("role:"+role)
-    
 
     const handleLogout =  () => {
       props.userHasAuthenticated(false);
@@ -174,20 +172,9 @@ const Nav = (props: Props):ReactElement => {
             <ListItemText primary="Add Faculty" />
           </ListItem>
         </div>
-        // <Fragment>
-        // {/* <Breadcrumbs aria-label="breadcrumb">
-        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/home">Home</NavLink>
-        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/programs">Programs</NavLink>
-        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/courses">Courses</NavLink>
-        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/students">Students</NavLink>
-        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/faculties">Faculties</NavLink>
-        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/program">Add Program</NavLink>
-        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/course">Add Course</NavLink>
-        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/faculty">Add Faculty</NavLink>
-        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/student">Add Student</NavLink>
-        // <NavLink to="/" onClick={handleLogout}>Log out</NavLink>
-        // </Breadcrumbs> */} </Fragment>
+
         :
+
     role==Role.ADMIN
         ?
         <div>
@@ -234,19 +221,9 @@ const Nav = (props: Props):ReactElement => {
             <ListItemText primary="Faculty" />
           </ListItem>
         </div>
-        // <Fragment>
-        // <Breadcrumbs aria-label="breadcrumb">
-        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/home">Home</NavLink>
-        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/programs">Programs</NavLink>
-        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/courses">Courses</NavLink>
-        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/students">Students</NavLink>
-        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/faculties">Faculties</NavLink>
-        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/course">Add Course</NavLink>
-        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/create/student">Add Student</NavLink>
-        // <NavLink to="/" onClick={handleLogout}>Log out</NavLink>
-        // </Breadcrumbs>
-        // </Fragment>
+
         :
+
         <div>
           <ListItem button component={NavLink} to="/home">        
             <ListItemIcon className={classes.sidebarIcon}>
@@ -260,21 +237,14 @@ const Nav = (props: Props):ReactElement => {
             </ListItemIcon>
             <ListItemText primary="Programs" />
           </ListItem>
-          <ListItem button component={NavLink} to={`/instructing/${localStorage.getItem('id')}`}> 
+          <ListItem button component={NavLink} to={`/courses`}> 
             <ListItemIcon>
               <LibraryBooksOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Courses" />
           </ListItem>
         </div>
-        // <Fragment>
-        // <Breadcrumbs aria-label="breadcrumb">
-        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/home">Home</NavLink>
-        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/programs">Programs</NavLink>
-        // <NavLink activeClassName={classes.avtive} className={classes.root} to="/courses">Courses</NavLink>
-        // <NavLink to="/" onClick={handleLogout}>Log out</NavLink>
-        // </Breadcrumbs>
-        // </Fragment>
+
     )
 }
 
