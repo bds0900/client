@@ -2,8 +2,9 @@ import React, { ReactElement } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { GET_STUDENTS_BY_COURSE } from '../Query'
 import { StudentType, ClassType } from '../Interfaces'
-import { List, ListItem } from '@material-ui/core'
+import { List, ListItem, ExpansionPanel, ExpansionPanelSummary, Typography, ExpansionPanelDetails } from '@material-ui/core'
 import CourseStudentAttendance from './CourseStudentAttendance'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 interface Props {
     course_id:string
@@ -27,8 +28,19 @@ export default function CourseStudentList(props: Props): ReactElement {
             <List>
             {data && data.students.map(student=>(
                 <div>
-                <ListItem>{student.firstName}</ListItem>
-                <CourseStudentAttendance course_id={course_id} student_id={student.id} classes={classes}/>
+                <ExpansionPanel>
+                <ExpansionPanelSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id={student.id}
+                >
+                    <Typography >{student.firstName}</Typography>
+                    
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                    <CourseStudentAttendance course_id={course_id} student_id={student.id} classes={classes}/>
+                </ExpansionPanelDetails>
+                </ExpansionPanel>
                 </div>
             ))}
             </List>

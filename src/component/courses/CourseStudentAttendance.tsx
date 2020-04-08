@@ -2,8 +2,9 @@ import React, { ReactElement } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { GET_STUDENT_COURSE_ATTENDANCE } from '../Query'
 import { AttendanceType, ClassType } from '../Interfaces'
-import { Checkbox } from '@material-ui/core';
-
+import { Checkbox, TableHead, Table, TableCell, TableRow, TableBody } from '@material-ui/core';
+import CheckIcon from '@material-ui/icons/Check';
+import CloseIcon from '@material-ui/icons/Close';
 interface Props {
     course_id:string,
     student_id:string
@@ -37,11 +38,28 @@ export default function CourseStudentAttendance(props: Props): ReactElement {
             <div>loading...</div>
             :
             <div>
-            {data && classes.map(clas=>(
-                <li>
-                {clas.room}{clas.startTime}{clas.endTime}{data && check(clas.id, data.attendances).toString()}
-                </li>
-            ))}
+            <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell align="center">Room</TableCell>
+                      <TableCell align="center">Start Time</TableCell>
+                      <TableCell align="center">End Time</TableCell>
+                      <TableCell align="center">Check</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {data && classes.map(clas=>(
+                      <TableRow key={clas.id}>
+                        <TableCell align="center">{clas.room}</TableCell>
+                        <TableCell align="center">{clas.startTime}</TableCell>
+                        <TableCell align="center">{clas.endTime}</TableCell>
+                        <TableCell align="center">
+                        {data && check(clas.id, data.attendances)?<CheckIcon/>:<CloseIcon/>}
+                        </TableCell>
+                      </TableRow>
+                  ))} 
+                  </TableBody>
+                </Table>
             </div>
             }
         </div>
