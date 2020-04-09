@@ -42,7 +42,7 @@ export const GET_STUDENT=gql`
 
 export const GET_STUDENTS_BY_COURSE=gql`
     query GET_STUDENTS_BY_COURSE($course_id:ID){
-        students(where:{enrollments_every:{course:{id:$course_id}}}){
+        students(where:{enrollments_some:{course:{id:$course_id}}}){
             id
             firstName
             LastName
@@ -145,7 +145,7 @@ export const GET_PROGRAMS_BY_FAULTY_ID = gql`
 query GET_PROGRAMS_BY_FAULTY_ID($id:ID){
   programs(orderBy:name_ASC
   where:{
-      faculties_every:{
+      faculties_some:{
           id:$id
       }
   }) {
@@ -246,7 +246,7 @@ export const GET_COURSES_BY_PROGRAM_ID = gql`
 export const GET_COURSES_BY_FACULTY_ID = gql`
   query GET_COURSES_BY_FACULTY_ID($id:ID) {
     courses(where: {
-        instructings_every:{
+        instructings_some:{
             faculty:{
                 id:$id
             }
