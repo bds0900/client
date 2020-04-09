@@ -105,8 +105,8 @@ export const UPDATE_STUDENT=gql`
 
 
 
-export const GET_ATTENDANCE=gql`
-    subscription GET_ATTENDANCE{
+export const GET_ATTENDANCE_SUB=gql`
+    subscription GET_ATTENDANCE_SUB{
         attendance{
             mutation
             node{
@@ -126,6 +126,35 @@ export const GET_ATTENDANCE=gql`
         }
     }
   
+`;
+export const GET_COURSE_SUB=gql`
+    subscription GET_COURSE_SUB{
+        course{
+            mutation
+        }
+    }
+
+`;
+export const GET_CLASS_SUB=gql`
+    subscription GET_CLASS_SUB{
+        class{
+            mutation
+        }
+    }
+
+`;
+export const GET_STUDENT_COURSE_ATTENDANCE_SUB=gql`
+    subscription GET_STUDENT_COURSE_ATTENDANCE_SUB{
+        attendance{
+            mutation
+            class{
+                id
+                room
+                startTime
+                endTime
+            }
+        }
+    }
 `;
 
 

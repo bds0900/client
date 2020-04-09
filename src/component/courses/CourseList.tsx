@@ -1,11 +1,11 @@
 import React, { ReactElement, Fragment } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import { CourseType } from '../Interfaces'
+import { useQuery, useSubscription } from '@apollo/react-hooks'
+import { CourseType, CourseSubscriptionPayload } from '../Interfaces'
 import gql from 'graphql-tag';
 import Course from './Course';
 import { NavLink } from 'react-router-dom';
 import {ExpansionPanel ,ExpansionPanelSummary ,ExpansionPanelDetails ,Typography ,List,ListItem, makeStyles} from '@material-ui/core';
-import {GET_COURSES, GET_COURSES_BY_FACULTY_ID } from '../Query'
+import {GET_COURSES, GET_COURSES_BY_FACULTY_ID, GET_COURSE_SUB } from '../Query'
 
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -19,7 +19,9 @@ interface CourseListData {
 interface CourseListVars {
 
 }
-
+interface AddCourse{
+  course:CourseSubscriptionPayload
+}
 interface Props {
     
 }
@@ -52,7 +54,9 @@ export default function CourseList(props: Props): ReactElement {
     const role=localStorage.getItem('role')
     const id=localStorage.getItem('id')
     const QERUY=role=='USER'?GET_COURSES_BY_FACULTY_ID:GET_COURSES
-    const{loading,data}= useQuery<CourseListData,CourseListVars>(QERUY,{variables:{id:localStorage.getItem('id')}});
+    const{loading,data,refetch}= useQuery<CourseListData,CourseListVars>(QERUY,{variables:{id:localStorage.getItem('id')}});
+    const sub=useSubscription<AddCourse>(GET_COURSE_SUB);
+    if(!sub.loading) refetch()
     return (
         <div>
         {loading ? (

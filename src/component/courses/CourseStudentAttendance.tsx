@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import { GET_STUDENT_COURSE_ATTENDANCE } from '../Query'
+import { useQuery, useSubscription } from '@apollo/react-hooks'
+import { GET_STUDENT_COURSE_ATTENDANCE, GET_STUDENT_COURSE_ATTENDANCE_SUB } from '../Query'
 import { AttendanceType, ClassType } from '../Interfaces'
 import { Checkbox, TableHead, Table, TableCell, TableRow, TableBody } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
@@ -13,13 +13,19 @@ interface Props {
 interface AttendanceListData{
     attendances:AttendanceType[]
 }
+interface AddAttendace{
+    attendance:AttendanceType
+}
 
 export default function CourseStudentAttendance(props: Props): ReactElement {
     const classes=props.classes;
-    const {loading,data}=useQuery<AttendanceListData>(
+    const {loading,data,refetch}=useQuery<AttendanceListData>(
         GET_STUDENT_COURSE_ATTENDANCE,
         {variables:{student_id:props.student_id,course_id:props.course_id}}
     )
+    const sub=useSubscription<AddAttendace>(GET_STUDENT_COURSE_ATTENDANCE_SUB);
+    console.log(sub.loading)
+    if(!sub.loading) refetch()
     function check(class_id:string,attendances:AttendanceType[]){
         let ret=false;
         for (const att of attendances){
@@ -57,7 +63,9 @@ export default function CourseStudentAttendance(props: Props): ReactElement {
                         {data && check(clas.id, data.attendances)?<CheckIcon/>:<CloseIcon/>}
                         </TableCell>
                       </TableRow>
-                  ))} 
+                    ))}
+                    
+
                   </TableBody>
                 </Table>
             </div>

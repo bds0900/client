@@ -1,10 +1,10 @@
 import React, { ReactElement, Fragment, useState } from 'react'
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useSubscription } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import { CourseType, Role } from '../Interfaces';
+import { CourseType, Role, ClassSubscriptionPayload } from '../Interfaces';
 import { NavLink } from 'react-router-dom';
 import {ExpansionPanel ,ExpansionPanelSummary ,ExpansionPanelDetails ,Typography ,List,ListItem, Button, makeStyles, Collapse} from '@material-ui/core';
-import {GET_COURSE} from '../Query'
+import {GET_COURSE, GET_CLASS_SUB} from '../Query'
 import UpdateCourse from './UpdateCourse';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
@@ -27,7 +27,9 @@ interface CourseVars{
 interface Props {
     match:any
 }
-
+interface AddClass{
+    class:ClassSubscriptionPayload
+}
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -44,10 +46,12 @@ export default function Course(props: Props): ReactElement {
     const role=localStorage.getItem("role");
     const [open, setOpen] = useState(false);
     const [update, setUpdate] = useState(false);
-    const { loading, data } = useQuery<CourseData, CourseVars>(
+    const { loading, data, refetch } = useQuery<CourseData, CourseVars>(
         GET_COURSE,
         { variables: { coure_id: props.match.params.id } }
-      );
+    );
+    const sub=useSubscription<AddClass>(GET_CLASS_SUB);
+    if(!sub.loading) refetch()
 
     return (
         <Fragment>

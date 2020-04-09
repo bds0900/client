@@ -106,3 +106,37 @@ export enum Role {
     ADMIN="ADMIN",
     USER="USER"
 }
+
+export interface CourseSubscriptionPayload{
+    mutation: MutationType
+    node: CourseType
+    updatedFields: string[]
+    previousValues: CoursePreviousValues
+}
+export interface CoursePreviousValues{
+    id: string
+    time: string
+    numOfStudent:number
+}
+export interface ClassSubscriptionPayload{
+    mutation: MutationType
+    node: ClassType
+    updatedFields: string[]
+    previousValues: ClassPreviousValues
+}
+export interface ClassPreviousValues{
+    id: string
+    room: string
+    startTime: string
+    endTime: string
+}
+export interface AttendanceSubscriptionPayload{
+    mutation: MutationType
+    node: AttendanceType
+    updatedFields: string[]
+    previousValues: AttendancePreviousValues
+}
+export interface AttendancePreviousValues{
+    id: string
+    time: string
+}

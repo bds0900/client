@@ -7,7 +7,7 @@ import {List,ListItem,Collapse,Typography, Button} from '@material-ui/core';
 import UpdateFaculty from './UpdateFaculty'
 
 import Attendance from '../attendances/SubscriptionAttendance';
-import { GET_ATTENDANCE, GET_FACULTY } from '../Query';
+import { GET_ATTENDANCE_SUB, GET_FACULTY } from '../Query';
 import Class from '../classes/Class';
 
 interface CheckIn{
@@ -31,7 +31,7 @@ export default function Faculty(props: Props): ReactElement {
         GET_FACULTY,
         {variables:{faculty_id:props.match.params.id}}
     )
-    const sub=useSubscription<CheckIn>(GET_ATTENDANCE);
+    const sub=useSubscription<CheckIn>(GET_ATTENDANCE_SUB);
     if(!sub.loading) refetch()
     const [open, setOpen] = useState(true);
     const [update,setUpdate]=useState(false);

@@ -7,7 +7,7 @@ import {List,ListItem,Collapse,Typography, Button, makeStyles} from '@material-u
 import UpdateStudent from './UpdateStudent'
 
 import Attendance from '../attendances/SubscriptionAttendance';
-import { GET_ATTENDANCE, GET_STUDENT } from '../Query';
+import { GET_ATTENDANCE_SUB, GET_STUDENT } from '../Query';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -55,7 +55,7 @@ export default function Student(props: Props): ReactElement {
         GET_STUDENT,
         {variables:{student_id:props.match.params.id}}
     )
-    const sub=useSubscription<CheckIn>(GET_ATTENDANCE);
+    const sub=useSubscription<CheckIn>(GET_ATTENDANCE_SUB);
     if(!sub.loading) refetch()
     const [open, setOpen] = useState(false);
     const [update,setUpdate]=useState(false);
