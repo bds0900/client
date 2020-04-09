@@ -11,15 +11,10 @@ import StudentList from "./component/students/StudentList";
 import Student from "./component/students/Student";
 import CreateProgram from "./component/programs/CreateProgram";
 import CreateCourse from "./component/courses/CreateCourse";
-import UpdateProgram from "./component/programs/UpdateProgram";
-import Enrollment from "./component/enrollment/Enrollment";
 import FacultyList from "./component/faculties/FacultyList";
 import Faculty from "./component/faculties/Faculty";
 import CreateFaculty from "./component/faculties/CreateFaculty";
 import InstructingList from "./component/instructing/InstructingList";
-import Attendance from "./component/attendances/SubscriptionAttendance";
-import ClassAttendance from "./component/attendances/ClassAttendance";
-import CourseAttendance from "./component/attendances/CourseAttendance";
 import ClassList from "./component/classes/ClassList";
 interface RouteProps {
   isAuthenticated: boolean;

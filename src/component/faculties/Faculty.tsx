@@ -6,8 +6,8 @@ import  gql  from 'graphql-tag';
 import {List,ListItem,Collapse,Typography, Button} from '@material-ui/core';
 import UpdateFaculty from './UpdateFaculty'
 
-import Attendance from '../attendances/SubscriptionAttendance';
-import { GET_ATTENDANCE_SUB, GET_FACULTY } from '../Query';
+import { GET_FACULTY } from '../Query';
+import {GET_ATTENDANCE_SUB}from '../Subscription'
 import Class from '../classes/Class';
 
 interface CheckIn{

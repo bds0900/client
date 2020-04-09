@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import React, { ReactElement, ReactComponentElement, useState } from 'react'
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
-import { LOGIN } from '../Query';
+import { LOGIN } from '../Mutation';
 import { FacultyType } from '../Interfaces';
 
 import Avatar from '@material-ui/core/Avatar';

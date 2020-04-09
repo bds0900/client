@@ -1,8 +1,9 @@
 import React, { ReactElement } from 'react'
 import { useQuery, useSubscription } from '@apollo/react-hooks'
-import { GET_STUDENT_COURSE_ATTENDANCE, GET_STUDENT_COURSE_ATTENDANCE_SUB } from '../Query'
+import { GET_STUDENT_COURSE_ATTENDANCE,  } from '../Query'
+import {GET_STUDENT_COURSE_ATTENDANCE_SUB} from '../Subscription'
 import { AttendanceType, ClassType } from '../Interfaces'
-import { Checkbox, TableHead, Table, TableCell, TableRow, TableBody } from '@material-ui/core';
+import { TableHead, Table, TableCell, TableRow, TableBody } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 interface Props {

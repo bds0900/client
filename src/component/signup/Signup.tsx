@@ -3,7 +3,8 @@ import { TextField, Button, InputLabel, Select, MenuItem, Typography } from '@ma
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { ProgramType, StudentType } from '../Interfaces';
-import { GET_PROGRAMS, CREATE_STUDENT } from '../Query';
+import { GET_PROGRAMS} from '../Query';
+import {CREATE_STUDENT}from '../Mutation'
 import SelectProgram from '../common/SelectProgram';
 const nameRegex= /(?!^.*[A-Z]{2,}.*$)^[A-Za-z]*$/;
 interface Props {

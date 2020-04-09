@@ -1,5 +1,5 @@
 import React, { ReactElement, useState, ChangeEvent } from 'react'
-import { Select, MenuItem, InputLabel, FormGroup, FormControlLabel, Checkbox } from '@material-ui/core'
+import { Select, MenuItem} from '@material-ui/core'
 import {  CourseType, ProgramType } from '../Interfaces'
 import SelectProgram from './SelectProgram';
 import { GET_PROGRAMS, GET_COURSES_BY_PROGRAM_ID } from '../Query';

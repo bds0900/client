@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { useMutation  } from '@apollo/react-hooks';
 
 import {ProgramType} from '../Interfaces'
-import {CREATE_PROGRAM} from '../Query'
+import {CREATE_PROGRAM} from '../Mutation'
 interface Props {
     
 }

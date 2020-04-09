@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { useMutation } from '@apollo/react-hooks'
-import { CREATE_ENROLLMENT } from '../Query'
+import { CREATE_ENROLLMENT } from '../Mutation'
 import { EnrollmentType } from '../Interfaces'
 
 

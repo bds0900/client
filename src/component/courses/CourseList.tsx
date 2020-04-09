@@ -1,12 +1,10 @@
 import React, { ReactElement, Fragment } from 'react'
 import { useQuery, useSubscription } from '@apollo/react-hooks'
 import { CourseType, CourseSubscriptionPayload } from '../Interfaces'
-import gql from 'graphql-tag';
-import Course from './Course';
 import { NavLink } from 'react-router-dom';
-import {ExpansionPanel ,ExpansionPanelSummary ,ExpansionPanelDetails ,Typography ,List,ListItem, makeStyles} from '@material-ui/core';
-import {GET_COURSES, GET_COURSES_BY_FACULTY_ID, GET_COURSE_SUB } from '../Query'
-
+import {Typography ,List,ListItem, makeStyles} from '@material-ui/core';
+import {GET_COURSES, GET_COURSES_BY_FACULTY_ID } from '../Query'
+import {GET_COURSE_SUB}from '../Subscription'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';

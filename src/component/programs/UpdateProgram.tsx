@@ -1,14 +1,12 @@
-import React, { ReactElement, Fragment,useState } from 'react'
-import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
-import gql from 'graphql-tag';
-import { useLazyQuery ,useQuery, useMutation} from '@apollo/react-hooks';
-import {ExpansionPanel ,ExpansionPanelSummary ,ExpansionPanelDetails ,Typography ,List,ListItem, TextField, Button} from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { NavLink, withRouter, Route } from "react-router-dom";
+import React, { ReactElement,useState } from 'react'
+
+import { useMutation} from '@apollo/react-hooks';
+import {TextField, Button} from '@material-ui/core';
+
 import {ProgramType} from '../Interfaces'
-import {UPDATE_PROGRAM}from '../Query'
+import {UPDATE_PROGRAM}from '../Mutation'
 import './programList.css'
-import Course from '../courses/Course';
+
 
 
 interface ProgramData {

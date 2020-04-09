@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { GET_STUDENTS_BY_COURSE } from '../Query'
 import { StudentType, ClassType } from '../Interfaces'
-import { List, ListItem, ExpansionPanel, ExpansionPanelSummary, Typography, ExpansionPanelDetails } from '@material-ui/core'
+import { List, ExpansionPanel, ExpansionPanelSummary, Typography, ExpansionPanelDetails } from '@material-ui/core'
 import CourseStudentAttendance from './CourseStudentAttendance'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 

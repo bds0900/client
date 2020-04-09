@@ -1,10 +1,10 @@
 import React, { ReactElement, Fragment, useState } from 'react'
 import { useQuery, useSubscription } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { CourseType, Role, ClassSubscriptionPayload } from '../Interfaces';
 import { NavLink } from 'react-router-dom';
-import {ExpansionPanel ,ExpansionPanelSummary ,ExpansionPanelDetails ,Typography ,List,ListItem, Button, makeStyles, Collapse} from '@material-ui/core';
-import {GET_COURSE, GET_CLASS_SUB} from '../Query'
+import {Typography ,Button, makeStyles} from '@material-ui/core';
+import {GET_COURSE } from '../Query'
+import {GET_CLASS_SUB}from '../Subscription'
 import UpdateCourse from './UpdateCourse';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
@@ -17,6 +17,7 @@ import TableRow from '@material-ui/core/TableRow';
 
 import Paper from '@material-ui/core/Paper';
 import CourseStudentList from './CourseStudentList';
+import CreateClass from './CreateClass';
 
 interface CourseData{
     course:CourseType
@@ -51,8 +52,12 @@ export default function Course(props: Props): ReactElement {
         { variables: { coure_id: props.match.params.id } }
     );
     const sub=useSubscription<AddClass>(GET_CLASS_SUB);
-    if(!sub.loading) refetch()
-
+    if(sub.data?.class) 
+    {
+      console.log(sub.data?.class)
+      console.log("subscription get data")
+      refetch()
+    }
     return (
         <Fragment>
         {update ? (
@@ -188,7 +193,7 @@ export default function Course(props: Props): ReactElement {
               <Button variant="contained" color="primary" onClick={()=>setUpdate(!update)}>update</Button>
             </Grid>
           </Grid>
-          :
+            :
           
           <Grid container spacing={3} className={classes.container}>
             <Grid item xs={6}>
@@ -204,6 +209,7 @@ export default function Course(props: Props): ReactElement {
               <Typography variant="h6">
                 Class List
               </Typography>
+              
               <TableContainer component={Paper}>
                 <Table>
                   <TableHead>
@@ -224,6 +230,7 @@ export default function Course(props: Props): ReactElement {
                   </TableBody>
                 </Table>
               </TableContainer>
+              {data && <CreateClass course_id={data.course.id}></CreateClass>}
             </Grid>
 
           </Grid>

@@ -4,7 +4,8 @@ import gql from 'graphql-tag';
 import { useMutation, useQuery  } from '@apollo/react-hooks';
 
 import {CourseType,ProgramType} from '../Interfaces'
-import {CREATE_COURSE,GET_PROGRAMS} from '../Query'
+import {GET_PROGRAMS} from '../Query'
+import {CREATE_COURSE} from '../Mutation'
 import SelectProgram from '../common/SelectProgram';
 interface Props {
     

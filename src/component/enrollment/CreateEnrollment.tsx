@@ -1,11 +1,8 @@
 import React, { ReactElement, useState } from 'react'
-import {TextField,Button,FormControl, InputLabel, Select, MenuItem} from '@material-ui/core'
-import gql from 'graphql-tag';
-import { useMutation, useQuery  } from '@apollo/react-hooks';
-
-import {CourseType,ProgramType, EnrollmentType} from '../Interfaces'
-import {CREATE_COURSE,GET_PROGRAMS, CREATE_ENROLLMENT} from '../Query'
-import SelectProgram from '../common/SelectProgram';
+import {Button } from '@material-ui/core'
+import { useMutation  } from '@apollo/react-hooks';
+import {EnrollmentType} from '../Interfaces'
+import {CREATE_ENROLLMENT}from '../Mutation'
 import SelectCourses from '../common/SelectCourses';
 interface Props {
     student_id:string

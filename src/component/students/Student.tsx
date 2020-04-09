@@ -1,22 +1,14 @@
 import React, { ReactElement, Fragment, useState } from 'react'
 import { StudentType,AttendanceSubscriptionPayload } from '../Interfaces'
 import { useQuery,useSubscription } from '@apollo/react-hooks'
-import  gql  from 'graphql-tag';
-
 import {List,ListItem,Collapse,Typography, Button, makeStyles} from '@material-ui/core';
 import UpdateStudent from './UpdateStudent'
-
-import Attendance from '../attendances/SubscriptionAttendance';
-import { GET_ATTENDANCE_SUB, GET_STUDENT } from '../Query';
-
+import {  GET_STUDENT } from '../Query';
+import {GET_ATTENDANCE_SUB} from '../Subscription'
 import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Divider from '@material-ui/core/Divider'
-
 import Paper from '@material-ui/core/Paper';
 
 interface CheckIn{

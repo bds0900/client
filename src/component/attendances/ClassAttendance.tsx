@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { AttendanceType } from '../Interfaces'
-import { GET_COURSE_ATTENDANCE, GET_CLASS_ATTENDANCE } from '../Query'
+import {  GET_CLASS_ATTENDANCE } from '../Query'
 import { List, ListItem } from '@material-ui/core'
 
 interface Props {

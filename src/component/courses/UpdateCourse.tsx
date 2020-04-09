@@ -6,7 +6,8 @@ import {ExpansionPanel ,ExpansionPanelSummary ,ExpansionPanelDetails ,Typography
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { NavLink, withRouter, Route } from "react-router-dom";
 import {ProgramType, CourseType} from '../Interfaces'
-import {UPDATE_COURSE, GET_PROGRAMS}from '../Query'
+import {GET_PROGRAMS}from '../Query'
+import {UPDATE_COURSE} from '../Mutation'
 import Course from '../courses/Course';
 import CreateClass from './CreateClass';
 

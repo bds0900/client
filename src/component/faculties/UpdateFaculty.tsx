@@ -3,7 +3,8 @@ import { TextField, Button, InputLabel, Select, MenuItem, Typography } from '@ma
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { ProgramType, StudentType, EnrollmentType, FacultyType } from '../Interfaces';
-import { GET_PROGRAMS, UPDATE_FACULTY , CREATE_ENROLLMENT, GET_PROGRAMS_BY_FAULTY_ID} from '../Query';
+import { GET_PROGRAMS, GET_PROGRAMS_BY_FAULTY_ID} from '../Query';
+import {UPDATE_FACULTY,CREATE_ENROLLMENT}from '../Mutation'
 import SelectProgram from '../common/SelectProgram';
 import SelectCourses from '../common/SelectCourses';
 import CreateEnrollment from '../enrollment/CreateEnrollment';
