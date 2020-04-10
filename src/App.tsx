@@ -213,7 +213,7 @@ function App(props:AppProps): ReactElement<AppProps> {
                 <MenuIcon />
               </IconButton>
               <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                Pi-Porject
+                Pi-Project
               </Typography>
               <Button color="inherit" component={NavLink} to="/" onClick={handleLogout}>
                     Log Out
