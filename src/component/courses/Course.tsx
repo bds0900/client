@@ -99,26 +99,7 @@ export default function Course(props: Props): ReactElement {
         <Typography variant="h6">
           Class List
         </Typography>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell align="center">Room</TableCell>
-                <TableCell align="center">Start Time</TableCell>
-                <TableCell align="center">End Time</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data && data.course.class && data.course.class.map((clas)=>(
-                <TableRow key={clas.id}>
-                  <TableCell align="center">{clas.room}</TableCell>
-                  <TableCell align="center">{clas.startTime}</TableCell>
-                  <TableCell align="center">{clas.endTime}</TableCell>
-                </TableRow>
-            ))} 
-            </TableBody>
-          </Table>
-        </TableContainer>
+        {showClassTable()}
       </Grid>
       <Grid item xs={6}>
         <Button variant="contained" color="primary" onClick={()=>setUpdate(!update)}>update</Button>
@@ -162,26 +143,7 @@ export default function Course(props: Props): ReactElement {
         <Typography variant="h6">
           Class List
         </Typography>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell align="center">Room</TableCell>
-                <TableCell align="center">Start Time</TableCell>
-                <TableCell align="center">End Time</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data && data.course.class && data.course.class.map((clas)=>(
-                <TableRow key={clas.id}>
-                  <TableCell align="center">{clas.room}</TableCell>
-                  <TableCell align="center">{clas.startTime}</TableCell>
-                  <TableCell align="center">{clas.endTime}</TableCell>
-                </TableRow>
-            ))} 
-            </TableBody>
-          </Table>
-        </TableContainer>
+        {showClassTable()}
       </Grid>
       <Grid item xs={6}>
         <Button variant="contained" color="primary" onClick={()=>setUpdate(!update)}>update</Button>
@@ -197,7 +159,6 @@ export default function Course(props: Props): ReactElement {
          Enrolled Students
         </Typography>
         {data && <CourseStudentList course_id={data.course.id} classes={data.course.class}/> }
-        
       </Grid>
       <Grid item xs={6}>
         <Typography variant="h6">
@@ -209,6 +170,15 @@ export default function Course(props: Props): ReactElement {
         </Typography>
         
       {addClass?<div>{data && <CreateClass course_id={data.course.id}></CreateClass> }</div>:
+      showClassTable()
+      }
+        
+      </Grid>
+
+    </Grid>
+    </Fragment>
+    ); 
+    const showClassTable = () =>(
       <TableContainer component={Paper}>
       <Table>
         <TableHead>
@@ -229,14 +199,7 @@ export default function Course(props: Props): ReactElement {
         </TableBody>
       </Table>
       </TableContainer>
-      }
-        
-      </Grid>
-
-    </Grid>
-    </Fragment>
-    ); 
-
+    )
     
     return (
       <Fragment>
