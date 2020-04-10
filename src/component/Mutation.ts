@@ -139,6 +139,10 @@ export const CREATE_ENROLLMENT=gql`
             }
             course{
                 id
+                name
+                program{
+                    name
+                }
             }
         }
 
@@ -206,6 +210,10 @@ export const CREATE_INSTRUCTING=gql`
             }
             course{
                 id
+                name
+                program{
+                    name
+                }
             }
         }
     }

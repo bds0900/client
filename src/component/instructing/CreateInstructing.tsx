@@ -12,7 +12,7 @@ interface Props {
     faculty_id:string
 }
 interface InstructingData{
-    insctructing:InstructingType
+    createInstructing:InstructingType
 }
 interface InstructingVars{
 
@@ -43,9 +43,17 @@ export default function CreateInstructing(props: Props): ReactElement {
         <div>
         <h3>Add a Course</h3>
         {error ? <p>Oh no! {error.message}</p> : null}
-        {data && data.insctructing 
+        {data && data.createInstructing 
             ? 
-        <p>Saved!</p> 
+        <div>
+        saved!
+        {console.log(data)}
+        {data.createInstructing.course && 
+            <div>
+            {data.createInstructing.course.name}
+            </div>
+        }
+        </div>
             : 
         <div>
         <SelectCourses onProgramClick={onProgramClick} onCourseClick={onCourseClick}/>

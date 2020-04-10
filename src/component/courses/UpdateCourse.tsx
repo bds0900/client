@@ -9,7 +9,7 @@ import {ProgramType, CourseType} from '../Interfaces'
 import {GET_PROGRAMS}from '../Query'
 import {UPDATE_COURSE} from '../Mutation'
 import Course from '../courses/Course';
-import CreateClass from './CreateClass';
+import CreateClass from '../classes/CreateClass';
 
 
 interface CourseData {

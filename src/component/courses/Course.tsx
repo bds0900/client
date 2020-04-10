@@ -17,7 +17,7 @@ import TableRow from '@material-ui/core/TableRow';
 
 import Paper from '@material-ui/core/Paper';
 import CourseStudentList from './CourseStudentList';
-import CreateClass from './CreateClass';
+import CreateClass from '../classes/CreateClass';
 
 interface CourseData{
     course:CourseType

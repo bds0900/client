@@ -11,7 +11,7 @@ interface Props {
 
 
 interface EnrollmentData{
-    enrollment:EnrollmentType
+    createEnrollment:EnrollmentType
 }
 interface EnrollmentVars{
 
@@ -31,7 +31,6 @@ export default function CreateEnrollment(props: Props): ReactElement {
     function onCourseClick(course_id:string):any{
         setCourse(course_id)
     }
-    {console.log(id)}
 
     const [saveEnrollment, { error, data }]=useMutation<EnrollmentData,EnrollmentVars>(
         CREATE_ENROLLMENT,
@@ -44,9 +43,16 @@ export default function CreateEnrollment(props: Props): ReactElement {
         <div>
         <h3>Add a Course</h3>
         {error ? <p>Oh no! {error.message}</p> : null}
-        {data && data.enrollment 
+        {data && data.createEnrollment 
             ? 
-        <p>Saved!</p> 
+        <div>
+        saved!
+        {data.createEnrollment.course && 
+            <div>
+            {data.createEnrollment.course.name}
+            </div>
+        }
+        </div>
             : 
         <div>
         <SelectCourses onProgramClick={onProgramClick} onCourseClick={onCourseClick}/>
