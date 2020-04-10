@@ -117,56 +117,56 @@ const Nav = (props: Props):ReactElement => {
     role==Role.SUPERADMIN
         ?
         <div>
-          <ListItem button component={NavLink} to="/home">        
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to="/home">        
             <ListItemIcon className={classes.sidebarIcon}>
               <HomeOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
-          <ListItem button component={NavLink} to="/programs">        
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to="/programs">        
             <ListItemIcon className={classes.sidebarIcon}>
               <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="Programs" />
           </ListItem>
-          <ListItem button component={NavLink} to="/courses"> 
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to="/courses"> 
             <ListItemIcon>
               <LibraryBooksOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Courses" />
           </ListItem>
-          <ListItem button component={NavLink} to="/students">     
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to="/students">     
             <ListItemIcon>
               <PeopleIcon />
             </ListItemIcon>
             <ListItemText primary="Student" />
           </ListItem>
-          <ListItem button component={NavLink} to="/faculties">  
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to="/faculties">  
             <ListItemIcon>
               <PeopleAltTwoToneIcon />
             </ListItemIcon>
             <ListItemText primary="Faculty" />
           </ListItem>
           <Divider />
-          <ListItem button component={NavLink} to="/create/program">
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to="/create/program">
             <ListItemIcon>
               <AddBoxOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Add Program" />
           </ListItem>
-          <ListItem button component={NavLink} to="/create/course">  
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to="/create/course">  
             <ListItemIcon>
               <QueueOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Add Course" />
           </ListItem>
-          <ListItem button component={NavLink} to="/create/student">  
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to="/create/student">  
             <ListItemIcon>
               <GroupAddIcon />
             </ListItemIcon>
             <ListItemText primary="Add Student" />
           </ListItem>
-          <ListItem button component={NavLink} to="/create/faculty">
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to="/create/faculty">
             <ListItemIcon>
               <GroupAddTwoToneIcon />
             </ListItemIcon>
@@ -179,44 +179,44 @@ const Nav = (props: Props):ReactElement => {
     role==Role.ADMIN
         ?
         <div>
-          <ListItem button component={NavLink} to="/home">        
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to="/home">        
             <ListItemIcon className={classes.sidebarIcon}>
               <HomeOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
-          <ListItem button component={NavLink} to="/programs">        
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to="/programs">        
             <ListItemIcon className={classes.sidebarIcon}>
               <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="Programs" />
           </ListItem>
-          <ListItem button component={NavLink} to="/courses"> 
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to="/courses"> 
             <ListItemIcon>
               <LibraryBooksOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Courses" />
           </ListItem>
-          <ListItem button component={NavLink} to="/students">     
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to="/students">     
             <ListItemIcon>
               <PeopleIcon />
             </ListItemIcon>
             <ListItemText primary="Student" />
           </ListItem>
-          <ListItem button component={NavLink} to="/faculties">  
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to="/faculties">  
             <ListItemIcon>
               <PeopleAltTwoToneIcon />
             </ListItemIcon>
             <ListItemText primary="Faculty" />
           </ListItem>
           <Divider />
-          <ListItem button component={NavLink} to="/create/course">  
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to="/create/course">  
             <ListItemIcon>
               <QueueOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Add Course" />
           </ListItem>
-          <ListItem button component={NavLink} to="/create/student">  
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to="/create/student">  
             <ListItemIcon>
               <GroupAddIcon />
             </ListItemIcon>
@@ -227,25 +227,25 @@ const Nav = (props: Props):ReactElement => {
         :
 
         <div>
-          <ListItem button component={NavLink} to="/home">        
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to="/home">        
             <ListItemIcon className={classes.sidebarIcon}>
               <HomeOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
-          <ListItem button component={NavLink} to="/programs">        
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to="/programs">        
             <ListItemIcon className={classes.sidebarIcon}>
               <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="Programs" />
           </ListItem>
-          <ListItem button component={NavLink} to={`/courses`}> 
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to={`/courses`}> 
             <ListItemIcon>
               <LibraryBooksOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Courses" />
           </ListItem>
-          <ListItem button component={NavLink} to={`/faculty/${localStorage.getItem("id")}`}> 
+          <ListItem activeClassName={classes.avtive} button component={NavLink} to={`/faculty/${localStorage.getItem("id")}`}> 
             <ListItemIcon>
               <LibraryBooksOutlinedIcon />
             </ListItemIcon>
