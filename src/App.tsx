@@ -160,6 +160,7 @@ function App(props:AppProps): ReactElement<AppProps> {
     // await Auth.signOut();
   
     userHasAuthenticated(false);
+    localStorage.clear()
     //props.history.push("/login");
   }
 
@@ -214,6 +215,9 @@ function App(props:AppProps): ReactElement<AppProps> {
               </IconButton>
               <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                 Pi-Project
+              </Typography>
+              <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                {localStorage.getItem("firstName")}{localStorage.getItem("lastName")}
               </Typography>
               <Button color="inherit" component={NavLink} to="/" onClick={handleLogout}>
                     Log Out

@@ -131,6 +131,8 @@ export default function Login(props:LoginProps): ReactElement <LoginProps>  {
     localStorage.setItem('token',data.login.token)
     localStorage.setItem('role',data.login.Faculty.status)
     localStorage.setItem('id',data.login.Faculty.id)
+    localStorage.setItem('firstName',data.login.Faculty.FirstName)
+    localStorage.setItem('lastName',data.login.Faculty.LastName)
   }
     return (
       <Container component="main" maxWidth="xs">
