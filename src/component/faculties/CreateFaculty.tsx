@@ -120,7 +120,8 @@ export default function CreateFaculty({}: Props): ReactElement {
                 />
                 <br/>
                 <TextField
-                placeholder="Enter your password"
+                
+                placeholder="At least 8 digits password"
                 type="password"
                 label="Password"
                 value={password}
