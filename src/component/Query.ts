@@ -29,7 +29,7 @@ export const GET_STUDENT=gql`
                 attendances{
                     time
                 }
-                class{
+                classes{
                     room
                     startTime
                     endTime
