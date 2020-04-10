@@ -26,7 +26,8 @@ export default function CourseStudentList(props: Props): ReactElement {
             <div>loading...</div>:
             
             <List>
-            {data && data.students.map(student=>(
+            {data && data.students && data.students.map(student=>(
+                student &&
                 <div>
                 <ExpansionPanel>
                 <ExpansionPanelSummary

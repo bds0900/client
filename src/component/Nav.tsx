@@ -243,6 +243,12 @@ const Nav = (props: Props):ReactElement => {
             </ListItemIcon>
             <ListItemText primary="Courses" />
           </ListItem>
+          <ListItem button component={NavLink} to={`/faculty/${localStorage.getItem("id")}`}> 
+            <ListItemIcon>
+              <LibraryBooksOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="MyPage" />
+          </ListItem>
         </div>
 
     )

@@ -3,7 +3,7 @@ import { StudentType,AttendanceSubscriptionPayload, FacultyType } from '../Inter
 import { useQuery,useSubscription } from '@apollo/react-hooks'
 import  gql  from 'graphql-tag';
 
-import {List,ListItem,Collapse,Typography, Button} from '@material-ui/core';
+import {List,ListItem,Collapse,Typography, Button, TableContainer, Paper, Table, TableHead, TableRow, TableBody, TableCell} from '@material-ui/core';
 import UpdateFaculty from './UpdateFaculty'
 
 import { GET_FACULTY } from '../Query';
@@ -38,14 +38,17 @@ export default function Faculty(props: Props): ReactElement {
 
     return (
         <div>
-        {
+        {loading
+            ?
+        <div>loading...</div>
+            :
         update 
             ? 
-        (data && <UpdateFaculty faculty={data.faculty}></UpdateFaculty>) 
+        (data && <UpdateFaculty faculty={data.faculty}/>) 
             : 
         (
+            data &&
             <Fragment>
-            {console.log(data)}
             <Typography variant="h5" gutterBottom>
                Faculty ID: {data && data.faculty && data.faculty.id} 
             </Typography>
@@ -61,7 +64,7 @@ export default function Faculty(props: Props): ReactElement {
             <Typography variant="h5" gutterBottom>
                 Program: {data && data.faculty.program && data.faculty.program.name}
             </Typography>
-            
+
             {data && data.faculty && data.faculty.instructings && data.faculty.instructings.map(instructing=>(
                 
                 <List>
@@ -78,8 +81,6 @@ export default function Faculty(props: Props): ReactElement {
                 </List>
                 
             ))}
-
-            
             <Button onClick={()=>setUpdate(!update)}>Update</Button>
             </Fragment>
           )

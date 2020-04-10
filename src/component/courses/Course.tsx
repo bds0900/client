@@ -78,6 +78,7 @@ export default function Course(props: Props): ReactElement {
             </TableHead>
             <TableBody>
               {data && data.course.enrollments && data.course.enrollments.map(enrollment=>(
+                enrollment && enrollment.student &&
                 <TableRow>
                   <TableCell key={enrollment.student.id}>
                     <NavLink to={"/student/"+enrollment.student.id}>
@@ -122,6 +123,7 @@ export default function Course(props: Props): ReactElement {
             </TableHead>
             <TableBody>
               {data && data.course.enrollments && data.course.enrollments.map(enrollment=>(
+                enrollment && enrollment.student &&
                 <TableRow>
                   <TableCell key={enrollment.student.id}>
                     <NavLink to={"/student/"+enrollment.student.id}>
@@ -158,7 +160,7 @@ export default function Course(props: Props): ReactElement {
         <Typography variant="h6">
          Enrolled Students
         </Typography>
-        {data && <CourseStudentList course_id={data.course.id} classes={data.course.class}/> }
+        {data && data.course && <CourseStudentList course_id={data.course.id} classes={data.course.class}/> }
       </Grid>
       <Grid item xs={6}>
         <Typography variant="h6">
@@ -169,7 +171,7 @@ export default function Course(props: Props): ReactElement {
           </Button>   
         </Typography>
         
-      {addClass?<div>{data && <CreateClass course_id={data.course.id}></CreateClass> }</div>:
+      {addClass?<div>{data && data.course && <CreateClass course_id={data.course.id}></CreateClass> }</div>:
       showClassTable()
       }
         
