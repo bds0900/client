@@ -1,5 +1,5 @@
 import React, { Fragment, ReactElement } from 'react'
-import { AppBar, Tabs, Tab, Box,Typography,makeStyles,Breadcrumbs,Chip, Button, Icon } from '@material-ui/core';
+import { AppBar, Tabs, Tab, Box,Typography,makeStyles,Breadcrumbs,Chip, Button, Icon, Divider } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
 import { Role, FacultyType } from './Interfaces';
 
@@ -129,23 +129,11 @@ const Nav = (props: Props):ReactElement => {
             </ListItemIcon>
             <ListItemText primary="Programs" />
           </ListItem>
-          <ListItem button component={NavLink} to="/create/program">
-            <ListItemIcon>
-              <AddBoxOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Add Program" />
-          </ListItem>
           <ListItem button component={NavLink} to="/courses"> 
             <ListItemIcon>
               <LibraryBooksOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Courses" />
-          </ListItem>
-          <ListItem button component={NavLink} to="/create/course">  
-            <ListItemIcon>
-              <QueueOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Add Course" />
           </ListItem>
           <ListItem button component={NavLink} to="/students">     
             <ListItemIcon>
@@ -153,17 +141,30 @@ const Nav = (props: Props):ReactElement => {
             </ListItemIcon>
             <ListItemText primary="Student" />
           </ListItem>
-          <ListItem button component={NavLink} to="/create/student">  
-            <ListItemIcon>
-              <GroupAddIcon />
-            </ListItemIcon>
-            <ListItemText primary="Add Student" />
-          </ListItem>
           <ListItem button component={NavLink} to="/faculties">  
             <ListItemIcon>
               <PeopleAltTwoToneIcon />
             </ListItemIcon>
             <ListItemText primary="Faculty" />
+          </ListItem>
+          <Divider />
+          <ListItem button component={NavLink} to="/create/program">
+            <ListItemIcon>
+              <AddBoxOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add Program" />
+          </ListItem>
+          <ListItem button component={NavLink} to="/create/course">  
+            <ListItemIcon>
+              <QueueOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add Course" />
+          </ListItem>
+          <ListItem button component={NavLink} to="/create/student">  
+            <ListItemIcon>
+              <GroupAddIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add Student" />
           </ListItem>
           <ListItem button component={NavLink} to="/create/faculty">
             <ListItemIcon>
@@ -196,29 +197,30 @@ const Nav = (props: Props):ReactElement => {
             </ListItemIcon>
             <ListItemText primary="Courses" />
           </ListItem>
-          <ListItem button component={NavLink} to="/create/course">  
-            <ListItemIcon>
-              <QueueOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Add Course" />
-          </ListItem>
           <ListItem button component={NavLink} to="/students">     
             <ListItemIcon>
               <PeopleIcon />
             </ListItemIcon>
             <ListItemText primary="Student" />
           </ListItem>
-          <ListItem button component={NavLink} to="/create/student">  
-            <ListItemIcon>
-              <GroupAddIcon />
-            </ListItemIcon>
-            <ListItemText primary="Add Student" />
-          </ListItem>
           <ListItem button component={NavLink} to="/faculties">  
             <ListItemIcon>
               <PeopleAltTwoToneIcon />
             </ListItemIcon>
             <ListItemText primary="Faculty" />
+          </ListItem>
+          <Divider />
+          <ListItem button component={NavLink} to="/create/course">  
+            <ListItemIcon>
+              <QueueOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add Course" />
+          </ListItem>
+          <ListItem button component={NavLink} to="/create/student">  
+            <ListItemIcon>
+              <GroupAddIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add Student" />
           </ListItem>
         </div>
 
