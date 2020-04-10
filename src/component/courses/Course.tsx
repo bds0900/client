@@ -1,10 +1,10 @@
 import React, { ReactElement, Fragment, useState } from 'react'
 import { useQuery, useSubscription } from '@apollo/react-hooks';
-import { CourseType, Role, ClassSubscriptionPayload } from '../Interfaces';
+import { CourseType, Role, ClassSubscriptionPayload, AttendanceType } from '../Interfaces';
 import { NavLink } from 'react-router-dom';
 import {Typography ,Button, makeStyles} from '@material-ui/core';
 import {GET_COURSE } from '../Query'
-import {GET_CLASS_SUB}from '../Subscription'
+import {GET_CLASS_SUB, GET_ATTENDANCE_SUB}from '../Subscription'
 import UpdateCourse from './UpdateCourse';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
@@ -28,8 +28,9 @@ interface CourseVars{
 interface Props {
     match:any
 }
-interface AddClass{
-    class:ClassSubscriptionPayload
+
+interface AddAttendace{
+  attendance:AttendanceType
 }
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,18 +48,200 @@ export default function Course(props: Props): ReactElement {
     const role=localStorage.getItem("role");
     const [open, setOpen] = useState(false);
     const [update, setUpdate] = useState(false);
-    const { loading, data, refetch } = useQuery<CourseData, CourseVars>(
+    const [addClass, setAddClass] = useState(false);
+    const { loading, data, refetch,networkStatus  } = useQuery<CourseData, CourseVars>(
         GET_COURSE,
-        { variables: { coure_id: props.match.params.id } }
+        { variables: { coure_id: props.match.params.id },notifyOnNetworkStatusChange: true }
+        
     );
-    const sub=useSubscription<AddClass>(GET_CLASS_SUB);
-    if(sub.data?.class) 
+
+
+    const sub=useSubscription<AddAttendace>(GET_ATTENDANCE_SUB);
+    if(sub.data)
     {
-      console.log(sub.data?.class)
-      console.log("subscription get data")
+      console.log("get response from subscription")
+      console.log(sub.data)
       refetch()
     }
+    const showSuperAdminCourse = () => (
+      <Fragment>
+      <Grid container spacing={3} className={classes.container}>
+      <Grid item xs={6}>
+        <Typography variant="h6">
+          Student List
+        </Typography>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableCell>Name</TableCell>
+              <TableCell>ID</TableCell>
+            </TableHead>
+            <TableBody>
+              {data && data.course.enrollments && data.course.enrollments.map(enrollment=>(
+                <TableRow>
+                  <TableCell key={enrollment.student.id}>
+                    <NavLink to={"/student/"+enrollment.student.id}>
+                      {enrollment.student.firstName} {enrollment.student.LastName}
+                    </NavLink>
+                  </TableCell>
+                  <TableCell key={enrollment.student.id}>
+                    <NavLink to={"/student/"+enrollment.student.id}>
+                      {enrollment.student.id}
+                    </NavLink>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
+      <Grid item xs={6}>
+        <Typography variant="h6">
+          Class List
+        </Typography>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">Room</TableCell>
+                <TableCell align="center">Start Time</TableCell>
+                <TableCell align="center">End Time</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data && data.course.class && data.course.class.map((clas)=>(
+                <TableRow key={clas.id}>
+                  <TableCell align="center">{clas.room}</TableCell>
+                  <TableCell align="center">{clas.startTime}</TableCell>
+                  <TableCell align="center">{clas.endTime}</TableCell>
+                </TableRow>
+            ))} 
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
+      <Grid item xs={6}>
+        <Button variant="contained" color="primary" onClick={()=>setUpdate(!update)}>update</Button>
+      </Grid>
+    </Grid>
+    </Fragment>
+    ); 
+    const showAdminCourse = () => (
+      <Fragment>
+      <Grid container spacing={3} className={classes.container}>
+      <Grid item xs={6}>
+        <Typography variant="h6">
+          Student List
+        </Typography>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableCell>Name</TableCell>
+              <TableCell>ID</TableCell>
+            </TableHead>
+            <TableBody>
+              {data && data.course.enrollments && data.course.enrollments.map(enrollment=>(
+                <TableRow>
+                  <TableCell key={enrollment.student.id}>
+                    <NavLink to={"/student/"+enrollment.student.id}>
+                      {enrollment.student.firstName} {enrollment.student.LastName}
+                    </NavLink>
+                  </TableCell>
+                  <TableCell key={enrollment.student.id}>
+                    <NavLink to={"/student/"+enrollment.student.id}>
+                      {enrollment.student.id}
+                    </NavLink>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
+      <Grid item xs={6}>
+        <Typography variant="h6">
+          Class List
+        </Typography>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">Room</TableCell>
+                <TableCell align="center">Start Time</TableCell>
+                <TableCell align="center">End Time</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data && data.course.class && data.course.class.map((clas)=>(
+                <TableRow key={clas.id}>
+                  <TableCell align="center">{clas.room}</TableCell>
+                  <TableCell align="center">{clas.startTime}</TableCell>
+                  <TableCell align="center">{clas.endTime}</TableCell>
+                </TableRow>
+            ))} 
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
+      <Grid item xs={6}>
+        <Button variant="contained" color="primary" onClick={()=>setUpdate(!update)}>update</Button>
+      </Grid>
+    </Grid>
+    </Fragment>
+    ); 
+    const showUserCourse = () => (
+      <Fragment>
+      <Grid container spacing={3} className={classes.container}>
+      <Grid item xs={6}>
+        <Typography variant="h6">
+         Enrolled Students
+        </Typography>
+        {data && <CourseStudentList course_id={data.course.id} classes={data.course.class}/> }
+        
+      </Grid>
+      <Grid item xs={6}>
+        <Typography variant="h6">
+          Classes      
+          <Button color="primary" variant="text" style={{display:addClass?"none":"inline"}} onClick={() => 
+            setAddClass(true) }>
+            Add Class
+          </Button>   
+        </Typography>
+        
+      {addClass?<div>{data && <CreateClass course_id={data.course.id}></CreateClass> }</div>:
+      <TableContainer component={Paper}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell align="center">Room</TableCell>
+            <TableCell align="center">Start Time</TableCell>
+            <TableCell align="center">End Time</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data && data.course.class && data.course.class.map((clas)=>(
+            <TableRow key={clas.id}>
+              <TableCell align="center">{clas.room}</TableCell>
+              <TableCell align="center">{clas.startTime}</TableCell>
+              <TableCell align="center">{clas.endTime}</TableCell>
+            </TableRow>
+        ))} 
+        </TableBody>
+      </Table>
+      </TableContainer>
+      }
+        
+      </Grid>
+
+    </Grid>
+    </Fragment>
+    ); 
+
+    
     return (
+      <Fragment>
+        {loading?
+        <div>loading...</div>:
         <Fragment>
         {update ? (
           data && <UpdateCourse course={data.course}></UpdateCourse>
@@ -71,169 +254,13 @@ export default function Course(props: Props): ReactElement {
             {data && data.course.program.name}
           </Typography>
           <Divider/>
-          
           {role==Role.SUPERADMIN?
-            <Grid container spacing={3} className={classes.container}>
-            <Grid item xs={6}>
-              <Typography variant="h6">
-                Student List
-              </Typography>
-              <TableContainer component={Paper}>
-                <Table>
-                  <TableHead>
-                    <TableCell>Name</TableCell>
-                    <TableCell>ID</TableCell>
-                  </TableHead>
-                  <TableBody>
-                    {data && data.course.enrollments && data.course.enrollments.map(enrollment=>(
-                      <TableRow>
-                        <TableCell key={enrollment.student.id}>
-                          <NavLink to={"/student/"+enrollment.student.id}>
-                            {enrollment.student.firstName} {enrollment.student.LastName}
-                          </NavLink>
-                        </TableCell>
-                        <TableCell key={enrollment.student.id}>
-                          <NavLink to={"/student/"+enrollment.student.id}>
-                            {enrollment.student.id}
-                          </NavLink>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Grid>
-            <Grid item xs={6}>
-              <Typography variant="h6">
-                Class List
-              </Typography>
-              <TableContainer component={Paper}>
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell align="center">Room</TableCell>
-                      <TableCell align="center">Start Time</TableCell>
-                      <TableCell align="center">End Time</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {data && data.course.class && data.course.class.map((clas)=>(
-                      <TableRow key={clas.id}>
-                        <TableCell align="center">{clas.room}</TableCell>
-                        <TableCell align="center">{clas.startTime}</TableCell>
-                        <TableCell align="center">{clas.endTime}</TableCell>
-                      </TableRow>
-                  ))} 
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Grid>
-            <Grid item xs={6}>
-              <Button variant="contained" color="primary" onClick={()=>setUpdate(!update)}>update</Button>
-            </Grid>
-          </Grid>
+            showSuperAdminCourse()
             :
-          role==Role.ADMIN?  
-          <Grid container spacing={3} className={classes.container}>
-            <Grid item xs={6}>
-              <Typography variant="h6">
-                Student List
-              </Typography>
-              <TableContainer component={Paper}>
-                <Table>
-                  <TableHead>
-                    <TableCell>Name</TableCell>
-                    <TableCell>ID</TableCell>
-                  </TableHead>
-                  <TableBody>
-                    {data && data.course.enrollments && data.course.enrollments.map(enrollment=>(
-                      <TableRow>
-                        <TableCell key={enrollment.student.id}>
-                          <NavLink to={"/student/"+enrollment.student.id}>
-                            {enrollment.student.firstName} {enrollment.student.LastName}
-                          </NavLink>
-                        </TableCell>
-                        <TableCell key={enrollment.student.id}>
-                          <NavLink to={"/student/"+enrollment.student.id}>
-                            {enrollment.student.id}
-                          </NavLink>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Grid>
-            <Grid item xs={6}>
-              <Typography variant="h6">
-                Class List
-              </Typography>
-              <TableContainer component={Paper}>
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell align="center">Room</TableCell>
-                      <TableCell align="center">Start Time</TableCell>
-                      <TableCell align="center">End Time</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {data && data.course.class && data.course.class.map((clas)=>(
-                      <TableRow key={clas.id}>
-                        <TableCell align="center">{clas.room}</TableCell>
-                        <TableCell align="center">{clas.startTime}</TableCell>
-                        <TableCell align="center">{clas.endTime}</TableCell>
-                      </TableRow>
-                  ))} 
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Grid>
-            <Grid item xs={6}>
-              <Button variant="contained" color="primary" onClick={()=>setUpdate(!update)}>update</Button>
-            </Grid>
-          </Grid>
+            role==Role.ADMIN?  
+            showAdminCourse()
             :
-          
-          <Grid container spacing={3} className={classes.container}>
-            <Grid item xs={6}>
-              <Typography variant="h6">
-                Student List
-              </Typography>
-              {data && <CourseStudentList course_id={data.course.id} classes={data.course.class}/> }
-              
-              
-
-            </Grid>
-            <Grid item xs={6}>
-              <Typography variant="h6">
-                Class List
-              </Typography>
-              
-              <TableContainer component={Paper}>
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell align="center">Room</TableCell>
-                      <TableCell align="center">Start Time</TableCell>
-                      <TableCell align="center">End Time</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {data && data.course.class && data.course.class.map((clas)=>(
-                      <TableRow key={clas.id}>
-                        <TableCell align="center">{clas.room}</TableCell>
-                        <TableCell align="center">{clas.startTime}</TableCell>
-                        <TableCell align="center">{clas.endTime}</TableCell>
-                      </TableRow>
-                  ))} 
-                  </TableBody>
-                </Table>
-              </TableContainer>
-              {data && <CreateClass course_id={data.course.id}></CreateClass>}
-            </Grid>
-
-          </Grid>
+            showUserCourse()
           }
           
           </Fragment>
@@ -241,5 +268,7 @@ export default function Course(props: Props): ReactElement {
         )}
         
         </Fragment>
+      }
+      </Fragment>
     )
 }

@@ -38,16 +38,3 @@ subscription GET_CLASS_SUB{
 }
 
 `;
-export const GET_STUDENT_COURSE_ATTENDANCE_SUB=gql`
-subscription GET_STUDENT_COURSE_ATTENDANCE_SUB{
-    attendance{
-        mutation
-        class{
-            id
-            room
-            startTime
-            endTime
-        }
-    }
-}
-`;

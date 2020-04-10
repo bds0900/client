@@ -19,7 +19,7 @@ const wsLink = new WebSocketLink({
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
   const token = localStorage.getItem('token');
-  console.log("in header:"+token)
+  console.log("sending token")
   // return the headers to the context so httpLink can read them
   return {
     headers: {

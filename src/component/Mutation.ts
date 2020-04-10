@@ -246,6 +246,9 @@ export const CREATE_CLASS=gql`
             }
         }){
             id
+            room
+            startTime
+            endTime
         }
     }
 `;
