@@ -42,7 +42,8 @@ export const GET_STUDENT=gql`
 
 export const GET_STUDENTS_BY_COURSE=gql`
     query GET_STUDENTS_BY_COURSE($course_id:ID){
-        students(where:{enrollments_some:{course:{id:$course_id}}}){
+        students(orderBy:LastName_ASC,
+        where:{enrollments_some:{course:{id:$course_id}}}){
             id
             firstName
             LastName
