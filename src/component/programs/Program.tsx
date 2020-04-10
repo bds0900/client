@@ -49,7 +49,9 @@ export default function Program(props: Props): ReactElement {
         id={props.program.id}
       >
         <Typography className={classes.heading}>{props.program.name}</Typography>
-        <NavLink to={"/program/"+props.program.id}>detail</NavLink>
+        <NavLink to={"/program/"+props.program.id}>
+          <Button color="primary" variant="text">detail</Button>
+        </NavLink>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
       <List>
