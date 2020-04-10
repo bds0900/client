@@ -82,7 +82,7 @@ export default function Course(props: Props): ReactElement {
                 <TableRow>
                   <TableCell key={enrollment.student.id}>
                     <NavLink to={"/student/"+enrollment.student.id}>
-                      {enrollment.student.firstName} {enrollment.student.LastName}
+                      {enrollment.student.FirstName} {enrollment.student.LastName}
                     </NavLink>
                   </TableCell>
                   <TableCell key={enrollment.student.id}>
@@ -127,7 +127,7 @@ export default function Course(props: Props): ReactElement {
                 <TableRow>
                   <TableCell key={enrollment.student.id}>
                     <NavLink to={"/student/"+enrollment.student.id}>
-                      {enrollment.student.firstName} {enrollment.student.LastName}
+                      {enrollment.student.FirstName} {enrollment.student.LastName}
                     </NavLink>
                   </TableCell>
                   <TableCell key={enrollment.student.id}>
@@ -160,7 +160,7 @@ export default function Course(props: Props): ReactElement {
         <Typography variant="h6">
          Enrolled Students
         </Typography>
-        {data && data.course && <CourseStudentList course_id={data.course.id} classes={data.course.class}/> }
+        {data && data.course && <CourseStudentList course_id={data.course.id} classes={data.course.classes}/> }
       </Grid>
       <Grid item xs={6}>
         <Typography variant="h6">
@@ -191,7 +191,7 @@ export default function Course(props: Props): ReactElement {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data && data.course.class && data.course.class.map((clas)=>(
+          {data && data.course.classes && data.course.classes.map((clas)=>(
             <TableRow key={clas.id}>
               <TableCell align="center">{clas.room}</TableCell>
               <TableCell align="center">{clas.startTime}</TableCell>

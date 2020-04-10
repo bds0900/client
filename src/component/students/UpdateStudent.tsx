@@ -37,7 +37,7 @@ interface EnrollmentVars {
 
 export default function Signup(props: Props): ReactElement {
     const student=props.student
-    const [firstName, setFirstName] = useState(student.firstName)
+    const [FirstName, setFirstName] = useState(student.FirstName)
     const [lastName, setLastName] = useState(student.LastName)
     const [program, setProgram] = useState(student.program.id)
     const [password, setPassword] = useState(student.password)
@@ -52,7 +52,7 @@ export default function Signup(props: Props): ReactElement {
         UPDATE_STUDENT,
         {variables:{
             id:id,
-            firstName:firstName,
+            FirstName:FirstName,
             lastName:lastName,
             password:password,
             program_id:program
@@ -74,7 +74,7 @@ export default function Signup(props: Props): ReactElement {
                     Student ID: {data && data.updateStudent.id}
                 </Typography>
                 <Typography variant="h5" gutterBottom>
-                    Student name: {data && data.updateStudent.firstName} {data.updateStudent.LastName}
+                    Student name: {data && data.updateStudent.FirstName} {data.updateStudent.LastName}
                 </Typography>
                 <Typography variant="h5" gutterBottom>
                     Student Email: {data && data.updateStudent.email}
@@ -102,7 +102,7 @@ export default function Signup(props: Props): ReactElement {
                     <TextField
                     placeholder="Enter your first name"
                     label="First Name"
-                    value={firstName}
+                    value={FirstName}
                     onChange={e=>{
                         setFirstName(e.target.value)
 
@@ -139,7 +139,7 @@ export default function Signup(props: Props): ReactElement {
                     <br/>
                     
                     <Button color="primary" variant="text" onClick={() => 
-                        id && firstName && lastName && password && program && saveStudent() }>
+                        id && FirstName && lastName && password && program && saveStudent() }>
                         Update User
                     </Button>
                 </div>

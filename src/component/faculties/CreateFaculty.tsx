@@ -28,13 +28,13 @@ interface FacultyData {
 
 
 export default function CreateFaculty({}: Props): ReactElement {
-    const [firstName, setFirstName] = useState("")
+    const [FirstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [program, setProgram] = useState("")
     const [password, setPassword] = useState("")
     const [id, setID] = useState("")
     const [email, setEmail] = useState("")
-    const [firstNameValid,setFirstNameValid]=useState<"success" | "error" | "warning" | undefined>();
+    const [FirstNameValid,setFirstNameValid]=useState<"success" | "error" | "warning" | undefined>();
     const [lastNameValid,setLastNameValid]=useState<"success" | "error" | "warning" | undefined>();
     const [passwordValid,setPasswrodValid] =useState<"success" | "error" | "warning" | undefined>();
 
@@ -49,7 +49,7 @@ export default function CreateFaculty({}: Props): ReactElement {
         CREATE_FACULTY,
         {variables:{
             id:id,
-            firstName:firstName,
+            FirstName:FirstName,
             lastName:lastName,
             password:password,
             email:email,
@@ -63,9 +63,9 @@ export default function CreateFaculty({}: Props): ReactElement {
         return user_id
     }
     
-    const genEmail=(firstName:string,lastName:string,id:string)=>{
+    const genEmail=(FirstName:string,lastName:string,id:string)=>{
         
-        const email= firstName[0]+
+        const email= FirstName[0]+
                 lastName+
                 "@conestogac.on.ca";
         setEmail(email)
@@ -85,7 +85,7 @@ export default function CreateFaculty({}: Props): ReactElement {
                 Faculty ID: {data && data.createFaculty.id}
             </Typography>
             <Typography variant="h5" gutterBottom>
-                Faculty name: {data && data.createFaculty.firstName} {data.createFaculty.LastName}
+                Faculty name: {data && data.createFaculty.FirstName} {data.createFaculty.LastName}
             </Typography>
             <Typography variant="h5" gutterBottom>
                 Faculty Email: {data && data.createFaculty.email}
@@ -100,11 +100,11 @@ export default function CreateFaculty({}: Props): ReactElement {
                 <TextField
                     placeholder="Enter your first name"
                     label="First Name"
-                    value={firstName}
+                    value={FirstName}
                     onChange={e=>{
                         setFirstName(e.target.value)
                         setFirstNameValid(nameRegex.test(e.target.value.toLowerCase()) ? 'success' : 'error')
-                        genEmail(firstName,lastName,genID(1111,9999))
+                        genEmail(FirstName,lastName,genID(1111,9999))
                         }}
                     />
                 <br/>
@@ -115,7 +115,7 @@ export default function CreateFaculty({}: Props): ReactElement {
                 onChange={e=>{
                     setLastName(e.target.value)
                     setLastNameValid(nameRegex.test(e.target.value.toLowerCase()) ? 'success' : 'error')
-                    genEmail(firstName,lastName,genID(1111,9999))
+                    genEmail(FirstName,lastName,genID(1111,9999))
                 }}
                 />
                 <br/>
@@ -127,15 +127,15 @@ export default function CreateFaculty({}: Props): ReactElement {
                 onChange={e=>{
                     setPassword(e.target.value)
                     setPasswrodValid(e.target.value.length < 8 ? 'error' : 'success')
-                    genEmail(firstName,lastName,genID(1111,9999))
+                    genEmail(FirstName,lastName,genID(1111,9999))
                 }}
                 />
                 <br/>
                 <SelectProgram programs={result.data?.programs} onProgramClick={onProgramClick}/>
                 <br/>
                 <Button color="primary" variant="text" 
-                disabled={passwordValid !== 'success' || firstNameValid !== 'success' || lastNameValid !== 'success' }    
-                onClick={() =>id && firstName && lastName && email &&password && saveFaculty()}>
+                disabled={passwordValid !== 'success' || FirstNameValid !== 'success' || lastNameValid !== 'success' }    
+                onClick={() =>id && FirstName && lastName && email &&password && saveFaculty()}>
                     Add
                 </Button>
             </form>

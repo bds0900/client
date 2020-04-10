@@ -17,12 +17,12 @@ export interface CourseType{
     enrollments: EnrollmentType[];
     instructings:InstructingType[];
     attendances:Array<AttendanceType>;// same with Attendance[]
-    class:ClassType[];
+    classes:ClassType[];
 }
 
 export interface StudentType{
     id: string
-    firstName: string
+    FirstName: string
     LastName: string
     email: string
     password: string
@@ -34,7 +34,7 @@ export interface StudentType{
 
 export interface FacultyType{
     id: string
-    firstName: string
+    FirstName: string
     LastName: string
     email: string
     password: string

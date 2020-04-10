@@ -91,7 +91,7 @@ export default function Program(props: Props): ReactElement {
         {data?.program.faculties?.map(faculty=>(
           <ListItem key={faculty.id}>
             <NavLink to={"/faculty/"+faculty.id}>
-            <Typography>{faculty.firstName} {faculty.LastName}</Typography>
+            <Typography>{faculty.FirstName} {faculty.LastName}</Typography>
             </NavLink> 
           </ListItem>
         ))}
@@ -111,7 +111,7 @@ export default function Program(props: Props): ReactElement {
         {data?.program.students?.map(student=>(
           <ListItem key={student.id}>
             <NavLink to={"/student/"+student.id}>
-            <Typography>{student.firstName} {student.LastName}</Typography>
+            <Typography>{student.FirstName} {student.LastName}</Typography>
             </NavLink> 
           </ListItem>
         ))}

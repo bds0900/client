@@ -2,11 +2,11 @@ import gql from "graphql-tag";
 
 export const CREATE_STUDENT=gql`
     mutation CREATE_STUDENT(
-        $id:ID!,$firstName:String!,$lastName:String!,$password:String!,
+        $id:ID!,$FirstName:String!,$lastName:String!,$password:String!,
         $email:String!,$program_id:ID){
         createStudent(data:{
             id:$id
-            firstName:$firstName
+            FirstName:$FirstName
             LastName:$lastName
             email:$email
             password:$password
@@ -16,7 +16,7 @@ export const CREATE_STUDENT=gql`
             }
         }){
             id
-            firstName
+            FirstName
             LastName
             email
             program{
@@ -28,12 +28,12 @@ export const CREATE_STUDENT=gql`
 `;
 export const UPDATE_STUDENT=gql`
     mutation UPDATE_STUDENT(
-        $id:ID!,$firstName:String!,$lastName:String!,$password:String!,
+        $id:ID!,$FirstName:String!,$lastName:String!,$password:String!,
         $program_id:ID){
         updateStudent(
             where:{id:$id},
             data:{
-                firstName:$firstName
+                FirstName:$FirstName
                 LastName:$lastName
                 password:$password
                 status:"full-time"
@@ -43,7 +43,7 @@ export const UPDATE_STUDENT=gql`
             }
         ){
             id
-            firstName
+            FirstName
             LastName
             email
 
@@ -149,11 +149,11 @@ export const CREATE_ENROLLMENT=gql`
 
 export const CREATE_FACULTY=gql`
     mutation CREATE_FACULTY(
-        $id:ID!,$firstName:String!,$lastName:String!,$password:String!,
+        $id:ID!,$FirstName:String!,$lastName:String!,$password:String!,
         $email:String!,$program_id:ID){
         createFaculty(data:{
             id:$id
-            firstName:$firstName
+            FirstName:$FirstName
             LastName:$lastName
             email:$email
             password:$password
@@ -163,7 +163,7 @@ export const CREATE_FACULTY=gql`
             }
         }){
             id
-            firstName
+            FirstName
             LastName
             email
             program{
@@ -181,7 +181,7 @@ export const LOGIN=gql`
         }){
             Faculty{
                 id,
-                firstName,
+                FirstName,
                 LastName,
                 email
                 status
@@ -212,12 +212,12 @@ export const CREATE_INSTRUCTING=gql`
 `;
 export const UPDATE_FACULTY=gql`
     mutation UPDATE_FACULTY(
-        $id:ID!,$firstName:String!,$lastName:String!,$password:String!,
+        $id:ID!,$FirstName:String!,$lastName:String!,$password:String!,
         $program_id:ID){
         updateFaculty(
             where:{id:$id},
             data:{
-                firstName:$firstName
+                FirstName:$FirstName
                 LastName:$lastName
                 password:$password
                 status:"USER"
@@ -227,7 +227,7 @@ export const UPDATE_FACULTY=gql`
             }
         ){
             id
-            firstName
+            FirstName
             LastName
             email
             status

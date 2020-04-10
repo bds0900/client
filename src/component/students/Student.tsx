@@ -83,7 +83,7 @@ export default function Student(props: Props): ReactElement {
                       </TableCell>
                       <TableCell>
                         <Typography variant="h6">
-                            {data && data.student.firstName} {data && data.student.LastName}
+                            {data && data.student.FirstName} {data && data.student.LastName}
                         </Typography>
                       </TableCell>
                   </TableRow>
@@ -142,7 +142,7 @@ export default function Student(props: Props): ReactElement {
                         </ListItem>
                         <Collapse in={open} timeout="auto" unmountOnExit>
                             <List>
-                            {enrollment.course.class.map(clas=>(
+                            {enrollment.course.classes.map(clas=>(
                                 <ListItem >class room:{clas.room}</ListItem>
                             ))}
                             </List>
@@ -164,7 +164,7 @@ export default function Student(props: Props): ReactElement {
                         </ListItem>
                         <Collapse in={open} timeout="auto" unmountOnExit>
                             <List>
-                            {enrollment.course.class.map(clas=>(
+                            {enrollment.course.classes.map(clas=>(
                                 <ListItem >class room:{clas.room}</ListItem>
                             ))}
                             </List>

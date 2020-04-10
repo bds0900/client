@@ -38,7 +38,7 @@ interface EnrollmentVars {
 
 export default function Signup(props: Props): ReactElement {
     const faculty=props.faculty
-    const [firstName, setFirstName] = useState(faculty.firstName)
+    const [FirstName, setFirstName] = useState(faculty.FirstName)
     const [lastName, setLastName] = useState(faculty.LastName)
     const [program, setProgram] = useState<string|undefined>(faculty.program?faculty.program.id:undefined)
     const [password, setPassword] = useState(faculty.password)
@@ -55,7 +55,7 @@ export default function Signup(props: Props): ReactElement {
         UPDATE_FACULTY,
         {variables:{
             id:id,
-            firstName:firstName,
+            FirstName:FirstName,
             lastName:lastName,
             password:password,
             program_id:program
@@ -80,7 +80,7 @@ export default function Signup(props: Props): ReactElement {
                     Student ID: {data && data.updateFaculty.id}
                 </Typography>
                 <Typography variant="h5" gutterBottom>
-                    Student name: {data && data.updateFaculty.firstName} {data.updateFaculty.LastName}
+                    Student name: {data && data.updateFaculty.FirstName} {data.updateFaculty.LastName}
                 </Typography>
                 <Typography variant="h5" gutterBottom>
                     Student Email: {data && data.updateFaculty.email}
@@ -106,7 +106,7 @@ export default function Signup(props: Props): ReactElement {
                     <TextField
                     placeholder="Enter your first name"
                     label="First Name"
-                    value={firstName}
+                    value={FirstName}
                     onChange={e=>{
                         setFirstName(e.target.value)
 
@@ -150,7 +150,7 @@ export default function Signup(props: Props): ReactElement {
                     <br/>
                     
                     <Button color="primary" variant="text" onClick={() => 
-                        id && firstName && lastName && password && program && saveFaculty() }>
+                        id && FirstName && lastName && password && program && saveFaculty() }>
                         Update User
                     </Button>
                 </div>

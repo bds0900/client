@@ -26,13 +26,13 @@ interface StudentVars {
 }
 
 export default function Signup({}: Props): ReactElement {
-    const [firstName, setFirstName] = useState("")
+    const [FirstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [program, setProgram] = useState("")
     const [password, setPassword] = useState("")
     const [id, setID] = useState("")
     const [email, setEmail] = useState("")
-    const [firstNameValid,setFirstNameValid]=useState<"success" | "error" | "warning" | undefined>();
+    const [FirstNameValid,setFirstNameValid]=useState<"success" | "error" | "warning" | undefined>();
     const [lastNameValid,setLastNameValid]=useState<"success" | "error" | "warning" | undefined>();
     const [passwordValid,setPasswrodValid] =useState<"success" | "error" | "warning" | undefined>();
 
@@ -47,7 +47,7 @@ export default function Signup({}: Props): ReactElement {
         CREATE_STUDENT,
         {variables:{
             id:id,
-            firstName:firstName,
+            FirstName:FirstName,
             lastName:lastName,
             password:password,
             email:email,
@@ -63,9 +63,9 @@ export default function Signup({}: Props): ReactElement {
         return user_id
     }
     
-    const genEmail=(firstName:string,lastName:string,id:string)=>{
+    const genEmail=(FirstName:string,lastName:string,id:string)=>{
         
-        const email= firstName[0]+
+        const email= FirstName[0]+
                 lastName+
                 id.substring(3)+
                 "@conestogac.on.ca";
@@ -85,7 +85,7 @@ export default function Signup({}: Props): ReactElement {
                 Student ID: {data && data.createStudent.id}
             </Typography>
             <Typography variant="h5" gutterBottom>
-                Student name: {data && data.createStudent.firstName} {data.createStudent.LastName}
+                Student name: {data && data.createStudent.FirstName} {data.createStudent.LastName}
             </Typography>
             <Typography variant="h5" gutterBottom>
                 Student Email: {data && data.createStudent.email}
@@ -100,11 +100,11 @@ export default function Signup({}: Props): ReactElement {
                 <TextField
                     placeholder="Enter your first name"
                     label="First Name"
-                    value={firstName}
+                    value={FirstName}
                     onChange={e=>{
                         setFirstName(e.target.value)
                         setFirstNameValid(nameRegex.test(e.target.value.toLowerCase()) ? 'success' : 'error')
-                        genEmail(firstName,lastName,genID(1111,9999))
+                        genEmail(FirstName,lastName,genID(1111,9999))
                         }}
                     />
                 <br/>
@@ -115,7 +115,7 @@ export default function Signup({}: Props): ReactElement {
                 onChange={e=>{
                     setLastName(e.target.value)
                     setLastNameValid(nameRegex.test(e.target.value.toLowerCase()) ? 'success' : 'error')
-                    genEmail(firstName,lastName,genID(1111,9999))
+                    genEmail(FirstName,lastName,genID(1111,9999))
                 }}
                 />
                 <br/>
@@ -127,15 +127,15 @@ export default function Signup({}: Props): ReactElement {
                 onChange={e=>{
                     setPassword(e.target.value)
                     setPasswrodValid(e.target.value.length < 8 ? 'error' : 'success')
-                    genEmail(firstName,lastName,genID(1111,9999))
+                    genEmail(FirstName,lastName,genID(1111,9999))
                 }}
                 />
                 <br/>
                 <SelectProgram programs={result.data?.programs} onProgramClick={onProgramClick}/>
                 <br/>
                 <Button color="primary" variant="text"
-                disabled={passwordValid !== 'success' || firstNameValid !== 'success' || lastNameValid !== 'success' }
-                onClick={() => id && firstName && lastName && email && program && saveStudent()}>
+                disabled={passwordValid !== 'success' || FirstNameValid !== 'success' || lastNameValid !== 'success' }
+                onClick={() => id && FirstName && lastName && email && program && saveStudent()}>
                     Sign Up
                 </Button>
             </form>

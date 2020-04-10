@@ -21,7 +21,7 @@ export default function ClassAttendance(props: Props): ReactElement {
             <div>loading...</div>
             :
             <List>{data && data.attendances.map(attendance=>(
-                <ListItem>{attendance.student.firstName} {attendance.time} </ListItem>
+                <ListItem>{attendance.student.FirstName} {attendance.time} </ListItem>
             ))}
             </List>
             }

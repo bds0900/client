@@ -8,7 +8,7 @@ subscription GET_ATTENDANCE_SUB{
             time
             student{
                 id
-                firstName
+                FirstName
                 enrollments{
                     course{
                         attendances{

@@ -53,7 +53,7 @@ export default function Faculty(props: Props): ReactElement {
                Faculty ID: {data && data.faculty && data.faculty.id} 
             </Typography>
             <Typography variant="h5" gutterBottom>
-               Faculty Name: {data && data.faculty && data.faculty.firstName} {data && data.faculty && data.faculty.LastName}
+               Faculty Name: {data && data.faculty && data.faculty.FirstName} {data && data.faculty && data.faculty.LastName}
             </Typography>
             <Typography variant="h5" gutterBottom>
                 Faculty Eamil: {data && data.faculty && data.faculty.email}
@@ -73,7 +73,7 @@ export default function Faculty(props: Props): ReactElement {
                     </ListItem>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <List>
-                        {instructing.course.class.map(clas=>(
+                        {instructing.course.classes.map(clas=>(
                             <ListItem ><Class class={clas}/></ListItem>
                         ))}
                         </List>

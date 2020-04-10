@@ -4,7 +4,7 @@ export const GET_STUDENTS = gql`
 {
   students{
     id
-    firstName
+    FirstName
     LastName
   }
 }
@@ -13,7 +13,7 @@ export const GET_STUDENT=gql`
     query GET_STUDENT($student_id:ID){
     student(where:{id:$student_id}){
         id
-        firstName
+        FirstName
         LastName
         email
         status
@@ -45,7 +45,7 @@ export const GET_STUDENTS_BY_COURSE=gql`
         students(orderBy:LastName_ASC,
         where:{enrollments_some:{course:{id:$course_id}}}){
             id
-            firstName
+            FirstName
             LastName
             email
         }
@@ -158,11 +158,11 @@ export const GET_COURSES_BY_FACULTY_ID = gql`
       enrollments{
         student{
           id
-          firstName
+          FirstName
           LastName
         }
         course{
-            class{
+            classes{
                 id
                 room
                 startTime
@@ -170,7 +170,7 @@ export const GET_COURSES_BY_FACULTY_ID = gql`
             }
         }
       }
-      class{
+      classes{
           id
           room
           startTime
@@ -192,11 +192,11 @@ export const GET_COURSE = gql`
       enrollments{
         student{
           id
-          firstName
+          FirstName
           LastName
         }
         course{
-            class{
+            classes{
                 id
                 room
                 startTime
@@ -204,7 +204,7 @@ export const GET_COURSE = gql`
             }
         }
       }
-      class{
+      classes{
           id
           room
           startTime
@@ -225,7 +225,7 @@ export const GET_FACULTIES=gql`
     query{
         faculties{
             id
-            firstName
+            FirstName
             LastName
             email
             status
@@ -236,7 +236,7 @@ export const GET_FACULTIES=gql`
                     attendances{
                         time
                     }
-                    class{
+                    classes{
                         room
                         startTime
                         endTime
@@ -255,7 +255,7 @@ export const  GET_FACULTY=gql`
     query($faculty_id:ID){
         faculty(where:{id:$faculty_id}){
             id
-            firstName
+            FirstName
             LastName
             email
             status
@@ -266,7 +266,7 @@ export const  GET_FACULTY=gql`
                     attendances{
                         time
                     }
-                    class{
+                    classes{
                         room
                         startTime
                         endTime
@@ -286,7 +286,7 @@ export const  GET_FACULTY_BY_EMAIL=gql`
     query($faculty_id:ID){
         faculty(where:{id:$faculty_id}){
             id
-            firstName
+            FirstName
             LastName
             email
             status
@@ -297,7 +297,7 @@ export const  GET_FACULTY_BY_EMAIL=gql`
                     attendances{
                         time
                     }
-                    class{
+                    classes{
                         room
                         startTime
                         endTime
@@ -320,7 +320,7 @@ export const GET_COURSE_ATTENDANCE=gql`
         attendances(where:{course:{id:$course_id}}){
             id
             student{
-                firstName
+                FirstName
                 LastName
                 id
             }
@@ -333,7 +333,7 @@ export const GET_CLASS_ATTENDANCE=gql`
     query GET_CLASS_ATTENDANCE($class_id:ID){
         attendances(where:{class:{id:$class_id}}){
             student{
-                firstName
+                FirstName
                 LastName
                 id
             }
@@ -349,7 +349,7 @@ export const GET_STUDENT_COURSE_ATTENDANCE=gql`
             }){
             id
             student{
-                firstName
+                FirstName
                 LastName
             }
             class{

@@ -31,7 +31,7 @@ export default function StudentList(props: Props): ReactElement {
                 <Fragment>
                 {data && data.students.map(student => (
                     <List key={student.id} className="student-list"> 
-                    <NavLink to={"/student/"+student.id}> {student.firstName} {student.LastName}</NavLink>
+                    <NavLink to={"/student/"+student.id}> {student.FirstName} {student.LastName}</NavLink>
                     </List>
                 ))}
                 </Fragment>

@@ -8,7 +8,7 @@ interface Props {
 export default function Attendacne(props: Props): ReactElement {
     return (
         <div>
-            <h5>{props.attendance.student.firstName} {props.attendance.student.LastName}</h5>
+            <h5>{props.attendance.student.FirstName} {props.attendance.student.LastName}</h5>
             <h5>{props.attendance.time}</h5>
         </div>
     )

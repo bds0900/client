@@ -31,7 +31,7 @@ export default function FacultyList(props: Props): ReactElement {
                 <Fragment>
                 {data && data.faculties.map(faculty => (
                     <List key={faculty.id} className="student-list"> 
-                    <NavLink to={"/faculty/"+faculty.id}> {faculty.firstName} {faculty.LastName}</NavLink>
+                    <NavLink to={"/faculty/"+faculty.id}> {faculty.FirstName} {faculty.LastName}</NavLink>
                     </List>
                 ))}
                 </Fragment>
