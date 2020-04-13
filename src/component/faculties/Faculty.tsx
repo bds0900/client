@@ -33,7 +33,7 @@ export default function Faculty(props: Props): ReactElement {
     )
     const sub=useSubscription<CheckIn>(GET_ATTENDANCE_SUB);
     if(!sub.loading) refetch()
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const [update,setUpdate]=useState(false);
 
     return (
@@ -49,38 +49,31 @@ export default function Faculty(props: Props): ReactElement {
         (
             data &&
             <Fragment>
-            <Typography variant="h5" gutterBottom>
-               Faculty ID: {data && data.faculty && data.faculty.id} 
-            </Typography>
-            <Typography variant="h5" gutterBottom>
-               Faculty Name: {data && data.faculty && data.faculty.FirstName} {data && data.faculty && data.faculty.LastName}
-            </Typography>
-            <Typography variant="h5" gutterBottom>
-                Faculty Eamil: {data && data.faculty && data.faculty.email}
-            </Typography>
-            <Typography variant="h5" gutterBottom>
-                Faculty Status: {data && data.faculty && data.faculty.status}
-            </Typography>
-            <Typography variant="h5" gutterBottom>
-                Program: {data && data.faculty.program && data.faculty.program.name}
-            </Typography>
+            <Table>
+                <TableBody>
+                    <TableRow>
+                    <TableCell><Typography variant="body2" gutterBottom>ID</Typography></TableCell>
+                    <TableCell>{data && data.faculty && data.faculty.id}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell>{data && data.faculty && data.faculty.FirstName} {data && data.faculty && data.faculty.LastName}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                    <TableCell>Eamil</TableCell>
+                    <TableCell>{data && data.faculty && data.faculty.email}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                    <TableCell>Status</TableCell>
+                    <TableCell>{data && data.faculty && data.faculty.status}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                    <TableCell>Program</TableCell>
+                    <TableCell>{data && data.faculty.program && data.faculty.program.name}</TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
 
-            {data && data.faculty && data.faculty.instructings && data.faculty.instructings.map(instructing=>(
-                
-                <List>
-                    <ListItem button onClick={()=>(setOpen(!open))} >
-                        {instructing.course.name}
-                    </ListItem>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <List>
-                        {instructing.course.classes.map(clas=>(
-                            <ListItem ><Class class={clas}/></ListItem>
-                        ))}
-                        </List>
-                    </Collapse>
-                </List>
-                
-            ))}
             <Button onClick={()=>setUpdate(!update)}>Update</Button>
             </Fragment>
           )
