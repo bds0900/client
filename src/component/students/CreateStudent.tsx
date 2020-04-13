@@ -6,6 +6,8 @@ import { ProgramType, StudentType } from '../Interfaces';
 import { GET_PROGRAMS} from '../Query';
 import {CREATE_STUDENT}from '../Mutation'
 import SelectProgram from '../common/SelectProgram';
+
+
 const nameRegex= /(?!^.*[A-Z]{2,}.*$)^[A-Za-z]*$/;
 interface Props {
     
@@ -75,7 +77,7 @@ export default function Signup({}: Props): ReactElement {
     }
     return (
         <div>
-        <h3>Sign Up</h3>
+        <h3>Add Student</h3>
             {error ? <p>Oh no! {error.message}</p> : null}
             {data && data.createStudent 
                 ? 
@@ -136,7 +138,7 @@ export default function Signup({}: Props): ReactElement {
                 <Button color="primary" variant="text"
                 disabled={passwordValid !== 'success' || FirstNameValid !== 'success' || lastNameValid !== 'success' }
                 onClick={() => id && FirstName && lastName && email && program && saveStudent()}>
-                    Sign Up
+                    Add
                 </Button>
             </form>
             </div>
