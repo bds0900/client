@@ -61,31 +61,7 @@ export default function Course(props: Props): ReactElement {
         <Typography variant="h6">
           Student List
         </Typography>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableCell>Name</TableCell>
-              <TableCell>ID</TableCell>
-            </TableHead>
-            <TableBody>
-              {data && data.course.enrollments && data.course.enrollments.map(enrollment=>(
-                enrollment && enrollment.student &&
-                <TableRow>
-                  <TableCell key={enrollment.student.id}>
-                    <NavLink to={"/student/"+enrollment.student.id}>
-                      {enrollment.student.FirstName} {enrollment.student.LastName}
-                    </NavLink>
-                  </TableCell>
-                  <TableCell key={enrollment.student.id}>
-                    <NavLink to={"/student/"+enrollment.student.id}>
-                      {enrollment.student.id}
-                    </NavLink>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        {showStudnetTable()}
       </Grid>
       <Grid item xs={6}>
         <Typography variant="h6">
@@ -106,31 +82,7 @@ export default function Course(props: Props): ReactElement {
         <Typography variant="h6">
           Student List
         </Typography>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableCell>Name</TableCell>
-              <TableCell>ID</TableCell>
-            </TableHead>
-            <TableBody>
-              {data && data.course.enrollments && data.course.enrollments.map(enrollment=>(
-                enrollment && enrollment.student &&
-                <TableRow>
-                  <TableCell key={enrollment.student.id}>
-                    <NavLink to={"/student/"+enrollment.student.id}>
-                      {enrollment.student.FirstName} {enrollment.student.LastName}
-                    </NavLink>
-                  </TableCell>
-                  <TableCell key={enrollment.student.id}>
-                    <NavLink to={"/student/"+enrollment.student.id}>
-                      {enrollment.student.id}
-                    </NavLink>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        {showStudnetTable()}
       </Grid>
       <Grid item xs={6}>
         <Typography variant="h6">
@@ -192,6 +144,33 @@ export default function Course(props: Props): ReactElement {
         </TableBody>
       </Table>
       </TableContainer>
+    )
+    const showStudnetTable=()=>(
+      <TableContainer component={Paper}>
+      <Table>
+        <TableHead>
+          <TableCell>Name</TableCell>
+          <TableCell>ID</TableCell>
+        </TableHead>
+        <TableBody>
+          {data && data.course.enrollments && data.course.enrollments.map(enrollment=>(
+            enrollment && enrollment.student &&
+            <TableRow>
+              <TableCell key={enrollment.student.id}>
+                <NavLink to={"/student/"+enrollment.student.id}>
+                  {enrollment.student.FirstName} {enrollment.student.LastName}
+                </NavLink>
+              </TableCell>
+              <TableCell key={enrollment.student.id}>
+                <NavLink to={"/student/"+enrollment.student.id}>
+                  {enrollment.student.id}
+                </NavLink>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
     )
     
     return (

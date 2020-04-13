@@ -1,7 +1,7 @@
 import React, { ReactElement, Fragment, useState } from 'react'
 import { StudentType,AttendanceSubscriptionPayload } from '../Interfaces'
 import { useQuery,useSubscription } from '@apollo/react-hooks'
-import {List,ListItem,Collapse,Typography, Button, makeStyles} from '@material-ui/core';
+import {List,ListItem,Collapse,Typography, Button, makeStyles, Grid} from '@material-ui/core';
 import UpdateStudent from './UpdateStudent'
 import {  GET_STUDENT } from '../Query';
 import {GET_ATTENDANCE_SUB} from '../Subscription'
@@ -32,10 +32,16 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: 752,
     },
     table: {
-      width: '50%'
+      width: '90%'
     },
     marginTop:{
         marginTop: 20,
+    },
+    container: {
+        marginTop: 10,
+    },
+    title: {
+        margin: theme.spacing(4, 0, 2),
     }
 
   }));
@@ -61,6 +67,11 @@ export default function Student(props: Props): ReactElement {
             : 
         (
             <Fragment>
+            <Grid container spacing={3} className={classes.container}>
+            <Grid xs={6}>
+            <Typography variant="h6" className={classes.title}>
+            Student Info
+            </Typography>
             <TableContainer component={Paper} className={classes.table}>
                 <Table>
                   <TableRow>
@@ -124,60 +135,45 @@ export default function Student(props: Props): ReactElement {
                       </TableCell>
                   </TableRow>
                 </Table>
-            </TableContainer>
-
-            {role!=='USER'? 
-                <div className={classes.marginTop}>
-                    <Typography variant="h5">
-                        Enrolled Courses
-                    </Typography>
-                {data && data.student.enrollments.map(enrollment=>(
-                    
-                    <List>
-                        <ListItem button onClick={()=>(setOpen(!open))} >
-                            <Typography variant="h5">
-                                {enrollment.course.name}
-                            </Typography>
-                            
-                        </ListItem>
-                        <Collapse in={open} timeout="auto" unmountOnExit>
-                            <List>
-                            {enrollment.course.classes.map(clas=>(
-                                <ListItem >class room:{clas.room}</ListItem>
-                            ))}
-                            </List>
-                        </Collapse>
-                    </List>
-                    
-                ))}
-                <Button onClick={()=>setUpdate(!update)}>Update</Button>
-                </div>
-
-                :
-                <div>
-                Enrolled Course List
-                {data && data.student.enrollments.map(enrollment=>(
-                    
-                    <List>
-                        <ListItem button onClick={()=>(setOpen(!open))} >
-                            {enrollment.course.name}
-                        </ListItem>
-                        <Collapse in={open} timeout="auto" unmountOnExit>
-                            <List>
-                            {enrollment.course.classes.map(clas=>(
-                                <ListItem >class room:{clas.room}</ListItem>
-                            ))}
-                            </List>
-                        </Collapse>
-                    </List>
-                    
-                ))}
-                <Button onClick={()=>setUpdate(!update)}>Update</Button>
-                </div>
-            }
                 
-            
+            </TableContainer>
+            </Grid>
 
+            <Grid xs={6}>
+            <Typography variant="h6" className={classes.title}>
+            Enrolled Courses
+            </Typography>
+            <TableContainer component={Paper} className={classes.table}>
+            
+            <Table>
+                <div className={classes.marginTop}>
+                <List>
+                {data && data.student.enrollments.map(enrollment=>(
+                    <div>
+                    <ListItem button onClick={()=>(setOpen(!open))} >
+                        <Typography variant="h5">
+                            {enrollment.course.name}
+                        </Typography>
+                    </ListItem>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <List>
+                        {enrollment.course.classes.map(clas=>(
+                            <ListItem >class room:{clas.room}</ListItem>
+                        ))}
+                        </List>
+                    </Collapse>
+                    </div>
+                ))}
+                </List>
+                </div>
+            </Table>
+            </TableContainer>
+            </Grid>
+            <Grid item xs={6}>
+            <Button variant="contained" color="primary" onClick={()=>setUpdate(!update)}>Update</Button>
+            </Grid>
+            </Grid>
+            
             </Fragment>
           )
         }
