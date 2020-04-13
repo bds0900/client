@@ -91,10 +91,12 @@ export default function Signup(props: Props): ReactElement {
                 </div>
                     : 
                 <div>
+                {localStorage("role")=="USER"?null:
                 <Button color="primary" variant="text" onClick={() => 
                     setCourse(true) }>
                     Add courese
                 </Button>
+                }
                 <br/>
                     <TextField
                     disabled
