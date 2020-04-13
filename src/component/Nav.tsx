@@ -233,12 +233,6 @@ const Nav = (props: Props):ReactElement => {
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
-          <ListItem activeClassName={classes.avtive} button component={NavLink} to="/programs">        
-            <ListItemIcon className={classes.sidebarIcon}>
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="Programs" />
-          </ListItem>
           <ListItem activeClassName={classes.avtive} button component={NavLink} to={`/courses`}> 
             <ListItemIcon>
               <LibraryBooksOutlinedIcon />
