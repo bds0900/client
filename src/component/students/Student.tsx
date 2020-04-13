@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: 752,
     },
     table: {
-      width: '40%'
+      width: '50%'
     },
     marginTop:{
         marginTop: 20,
