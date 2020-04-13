@@ -42,7 +42,7 @@ export default function CreateInstructing(props: Props): ReactElement {
     return (
         <div>
         <h3>Add a Course</h3>
-        {error ? <p>Oh no! {error.message}</p> : null}
+        {error ? <p>You already added that course {error.message}</p> : null}
         {data && data.createInstructing 
             ? 
         <div>

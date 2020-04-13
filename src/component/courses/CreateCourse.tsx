@@ -59,7 +59,7 @@ export default function CreateProgram({}: Props): ReactElement {
     return (
         <div>
         <h3>Add a Course</h3>
-        {error ? <p>Oh no! {error.message}</p> : null}
+        {error ? <p>Course is already added {error.message}</p> : null}
         {data && data.createCourse 
             ? 
         <p>Saved!</p> 

@@ -126,7 +126,7 @@ export default function Signup(props: Props): ReactElement {
                     />
                     <br/>
                     <TextField
-                    placeholder="Enter your password(at least 8 digits)"
+                    placeholder="At least 8 digits"
                     type="password"
                     label="Password"
                     value={password}
