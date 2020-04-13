@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "./component/signup/Home";
 import Login from "./component/signup/Login";
-import Signup from "./component/signup/Signup";
+import CreateStudent from "./component/students/CreateStudent";
 import ProgramList from "./component/programs/ProgramList";
 import ProgramDetail from "./component/programs/ProgramDetail";
 import CourseList from "./component/courses/CourseList";
@@ -24,13 +24,12 @@ interface RouteProps {
 export const Routes: React.FunctionComponent<RouteProps> = (childProps) =>
   <Switch>
     <Route path="/home" exact render={(props) => <Home {...props} {...childProps} />}/>
-    <Route path='/signup' exact render={(props) => <Signup {...props} {...childProps} />}/>
     <Route path='/login' exact render={(props) => <Login {...props} {...childProps} />}/>
 
     <Route path="/create/program" exact component={CreateProgram} />
     <Route path="/create/course" exact component={CreateCourse} />
     <Route path="/create/faculty" exact component={CreateFaculty} />
-    <Route path="/create/student" exact component={Signup} />
+    <Route path="/create/student" exact component={CreateStudent} />
 
     <Route path="/programs" exact component={ProgramList} />
     <Route path="/courses" exact component={CourseList} />
