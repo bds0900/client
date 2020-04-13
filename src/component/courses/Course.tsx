@@ -29,9 +29,6 @@ interface Props {
     match:any
 }
 
-interface AddAttendace{
-  attendance:AttendanceType
-}
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -56,13 +53,7 @@ export default function Course(props: Props): ReactElement {
     );
 
 
-    const sub=useSubscription<AddAttendace>(GET_ATTENDANCE_SUB);
-    if(sub.data)
-    {
-      console.log("get response from subscription")
-      console.log(sub.data)
-      refetch()
-    }
+    
     const showSuperAdminCourse = () => (
       <Fragment>
       <Grid container spacing={3} className={classes.container}>
@@ -206,7 +197,7 @@ export default function Course(props: Props): ReactElement {
     return (
       <Fragment>
         {loading?
-        <div>loading...</div>:
+        <div>loading course page...</div>:
         <Fragment>
         {update ? (
           data && <UpdateCourse course={data.course}></UpdateCourse>

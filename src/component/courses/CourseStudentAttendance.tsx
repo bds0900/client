@@ -5,6 +5,7 @@ import { AttendanceType, ClassType } from '../Interfaces'
 import { TableHead, Table, TableCell, TableRow, TableBody } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
+import { GET_ATTENDANCE_SUB } from '../Subscription';
 interface Props {
     course_id:string,
     student_id:string
@@ -13,13 +14,17 @@ interface Props {
 interface AttendanceListData{
   attendances:AttendanceType[]
 }
-
+interface AddAttendace{
+  attendance:AttendanceType
+}
 export default function CourseStudentAttendance(props: Props): ReactElement {
     const classes=props.classes;
     const {loading,data,refetch}=useQuery<AttendanceListData>(
         GET_STUDENT_COURSE_ATTENDANCE,
         {variables:{student_id:props.student_id,course_id:props.course_id}}
     )
+    const sub=useSubscription<AddAttendace>(GET_ATTENDANCE_SUB);
+    if(!sub.loading) refetch()
     
     function check(class_id:string,attendances:AttendanceType[]){
         let ret=false;
@@ -36,7 +41,7 @@ export default function CourseStudentAttendance(props: Props): ReactElement {
     return (
         <div>
             {loading?
-            <div>loading...</div>
+            <div>loading attendance...</div>
             :
             <div>
             <Table>

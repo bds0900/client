@@ -13,6 +13,7 @@ interface Props {
 interface StudentListData{
     students:StudentType[]
 }
+
 export default function CourseStudentList(props: Props): ReactElement {
     const course_id=props.course_id
     const classes=props.classes
@@ -23,7 +24,7 @@ export default function CourseStudentList(props: Props): ReactElement {
     return (
         <div>
             {loading?
-            <div>loading...</div>:
+            <div>loading student list...</div>:
             
             <List>
             {data && data.students && data.students.map(student=>(
