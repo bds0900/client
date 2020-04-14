@@ -382,12 +382,20 @@ export const GET_CLASS=gql`
         class(where:{id:$class_id}){
             startTime
             endTime
+            room
             course{
                 id
                 name
                 attendances{
                     course{
                         name
+                    }
+                }
+                enrollments{
+                    student{
+                        id
+                        FirstName
+                        LastName
                     }
                 }
             }

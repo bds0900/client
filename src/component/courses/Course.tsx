@@ -142,9 +142,15 @@ export default function Course(props: Props): ReactElement {
         <TableBody>
           {data && data.course.classes && data.course.classes.map((clas)=>(
             <TableRow key={clas.id}>
-              <TableCell align="center">{clas.room}</TableCell>
-              <TableCell align="center">{clas.startTime}</TableCell>
-              <TableCell align="center">{clas.endTime}</TableCell>
+              <TableCell align="center">
+                <NavLink to={"/classpage/"+clas.id}>{clas.room}</NavLink>
+              </TableCell>
+              <TableCell align="center">
+                <NavLink to={"/classpage/"+clas.id}>{clas.startTime}</NavLink>
+              </TableCell>
+              <TableCell align="center">
+                <NavLink to={"/classpage/"+clas.id}>{clas.endTime}</NavLink>
+              </TableCell>
             </TableRow>
         ))} 
         </TableBody>
