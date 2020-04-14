@@ -55,7 +55,7 @@ export default function CourseStudentAttendance(props: Props): ReactElement {
                   </TableHead>
                   <TableBody>
                     {data && classes.map(clas=>(
-                      <TableRow key={clas.id}>
+                      <TableRow key={clas.id} style={{background: check(clas.id, data.attendances)?"#50C878":"pink"}}>
                         <TableCell align="center">{clas.room}</TableCell>
                         <TableCell align="center">{clas.startTime}</TableCell>
                         <TableCell align="center">{clas.endTime}</TableCell>

@@ -1,7 +1,7 @@
 import React, { ReactElement, Fragment, useState } from 'react'
 import { StudentType,AttendanceSubscriptionPayload } from '../Interfaces'
 import { useQuery,useSubscription } from '@apollo/react-hooks'
-import {List,ListItem,Collapse,Typography, Button, makeStyles, Grid} from '@material-ui/core';
+import {List,ListItem,Collapse,Typography, Button, makeStyles, Grid, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails} from '@material-ui/core';
 import UpdateStudent from './UpdateStudent'
 import {  GET_STUDENT } from '../Query';
 import {GET_ATTENDANCE_SUB} from '../Subscription'
@@ -10,7 +10,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
+import CourseStudentAttendance from '../courses/CourseStudentAttendance';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 interface CheckIn{
     attendance:AttendanceSubscriptionPayload
 }
@@ -148,22 +149,35 @@ export default function Student(props: Props): ReactElement {
             <Table>
                 <div className={classes.marginTop}>
                 <List>
+                
+
                 {data && data.student.enrollments.map(enrollment=>(
                     <div>
-                    <ListItem button onClick={()=>(setOpen(!open))} >
-                        <Typography variant="h5">
+                    <ListItem >
+                    <ExpansionPanel>
+                    <ExpansionPanelSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id={enrollment.id}
+                    >
+                    <Typography variant="h5">
                             {enrollment.course.name}
                         </Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                    <CourseStudentAttendance 
+                        student_id={props.match.params.id} 
+                        course_id={enrollment.course.id} 
+                        classes={enrollment.course.classes}/>
+                    </ExpansionPanelDetails>
+                    
+                    </ExpansionPanel>
                     </ListItem>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <List>
-                        {enrollment.course.classes.map(clas=>(
-                            <ListItem >class room:{clas.room}</ListItem>
-                        ))}
-                        </List>
-                    </Collapse>
                     </div>
                 ))}
+                
+
+
                 </List>
                 </div>
             </Table>
