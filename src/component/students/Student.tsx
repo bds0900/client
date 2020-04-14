@@ -66,7 +66,7 @@ export default function Student(props: Props): ReactElement {
             ? 
         (data && <UpdateStudent student={data.student}></UpdateStudent>) 
             : 
-        (
+        (data &&
             <Fragment>
             <Grid container spacing={3} className={classes.container}>
             <Grid xs={6}>
@@ -107,7 +107,7 @@ export default function Student(props: Props): ReactElement {
                       </TableCell>
                       <TableCell>
                         <Typography variant="h6">
-                            {data && data.student.program.name}
+                            {data && data.student.program && data.student.program.name}
                         </Typography>
                       </TableCell>
                   </TableRow>
