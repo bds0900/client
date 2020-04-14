@@ -113,9 +113,9 @@ export default function Course(props: Props): ReactElement {
             </Typography>
           </Box>
           <Box>
-            <Button color="primary" variant="contained" style={{display:addClass?"none":"inline"}} onClick={() => 
+            <Button color="primary" size="small" variant="contained" style={{display:addClass?"none":"inline"}} onClick={() => 
               setAddClass(true) }>
-              Add Class
+              + Add Class
             </Button>  
           </Box>
         </Box>
