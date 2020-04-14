@@ -2,7 +2,7 @@ import React, { ReactElement, Fragment, useState } from 'react'
 import { useQuery, useSubscription } from '@apollo/react-hooks';
 import { CourseType, Role, ClassSubscriptionPayload, AttendanceType } from '../Interfaces';
 import { NavLink } from 'react-router-dom';
-import {Typography ,Button, makeStyles} from '@material-ui/core';
+import {Typography ,Button, makeStyles, Box} from '@material-ui/core';
 import {GET_COURSE } from '../Query'
 import {GET_CLASS_SUB, GET_ATTENDANCE_SUB}from '../Subscription'
 import UpdateCourse from './UpdateCourse';
@@ -106,13 +106,19 @@ export default function Course(props: Props): ReactElement {
         {data && data.course && <CourseStudentList course_id={data.course.id} classes={data.course.classes}/> }
       </Grid>
       <Grid item xs={6}>
-        <Typography variant="h6">
-          Classes      
-          <Button color="primary" variant="text" style={{display:addClass?"none":"inline"}} onClick={() => 
-            setAddClass(true) }>
-            Add Class
-          </Button>   
-        </Typography>
+        <Box display="flex" p={1}>
+          <Box flexGrow={1}>
+            <Typography variant="h6">
+              Classes     
+            </Typography>
+          </Box>
+          <Box>
+            <Button color="primary" variant="contained" style={{display:addClass?"none":"inline"}} onClick={() => 
+              setAddClass(true) }>
+              Add Class
+            </Button>  
+          </Box>
+        </Box>
         
       {addClass?<div>{data && data.course && <CreateClass course_id={data.course.id}></CreateClass> }</div>:
       showClassTable()
