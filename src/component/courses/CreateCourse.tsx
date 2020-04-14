@@ -9,7 +9,7 @@ import {CREATE_COURSE} from '../Mutation'
 import SelectProgram from '../common/SelectProgram';
 
 
-const nameRegex= /(?!^.*[A-Z]{2,}.*$)^[A-Za-z]*$/;
+const nameRegex= /(?!^.*[A-Z]{2,}.*$)^[A-Za-z0-9 ]*$/;
 
 
 interface Props {
