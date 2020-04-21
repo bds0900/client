@@ -103,10 +103,10 @@ export default function Course(props: Props): ReactElement {
                                     </TableHead>
                                     <TableBody>
                                         {classRes && classRes.data && classRes.data.class.course.enrollments.map((e)=>(
-                                            <TableRow key={e.student.id}>
+                                            <TableRow key={e.student.id} >
                                                 <TableCell align="left">{e.student.id}</TableCell>
                                                 <TableCell align="center">{e.student.FirstName} {e.student.LastName}</TableCell>
-                                                <TableCell align="center">
+                                                <TableCell align="center" >
                                                     {attendanceRes && attendanceRes.data && isAttended(e.student.id, attendanceRes.data.attendances)?<CheckIcon/>:<RemoveIcon/>}
                                                 </TableCell>
                                             </TableRow>

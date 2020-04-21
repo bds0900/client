@@ -50,7 +50,7 @@ export default function Course(props: Props): ReactElement {
         ) : (
           <Fragment>
           <Typography variant="h5" gutterBottom>
-            {data && data.course.id} - {data && data.course.name} 
+            {/*data && data.course.id*/}Course name : {data && data.course.name} 
           </Typography>
           </Fragment>
 

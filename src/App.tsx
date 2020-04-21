@@ -229,7 +229,7 @@ function App(props:AppProps): ReactElement<AppProps> {
                  Welcome!
               </Typography>
               <Typography component="h1" variant="h5" color="inherit" noWrap className={classes.title}>
-                 {localStorage.getItem("firstName")}{localStorage.getItem("lastName")}
+                 {localStorage.getItem("firstName")} {localStorage.getItem("lastName")}
               </Typography>
               <Button color="inherit" component={NavLink} to="/" onClick={handleLogout}>
                     Log Out

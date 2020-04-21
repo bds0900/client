@@ -36,7 +36,7 @@ export default function CourseStudentList(props: Props): ReactElement {
                     aria-controls="panel1a-content"
                     id={student.id}
                 >
-                    <Typography >{student.FirstName}</Typography>
+                    <Typography >{student.FirstName} {student.LastName}</Typography>
                     
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>

@@ -49,27 +49,30 @@ export default function Faculty(props: Props): ReactElement {
         (
             data &&
             <Fragment>
+            <Typography component="h1" variant="h6" color="inherit" noWrap >
+                 My Information
+             </Typography>
             <Table>
                 <TableBody>
                     <TableRow>
-                    <TableCell><Typography variant="body2" gutterBottom>ID</Typography></TableCell>
-                    <TableCell>{data && data.faculty && data.faculty.id}</TableCell>
+                    <TableCell style={{width: 20}}><Typography variant="body2" gutterBottom>ID</Typography></TableCell>
+                    <TableCell style={{fontWeight: "bold"}}>{data && data.faculty && data.faculty.id}</TableCell>
                     </TableRow>
                     <TableRow>
                     <TableCell>Name</TableCell>
-                    <TableCell>{data && data.faculty && data.faculty.FirstName} {data && data.faculty && data.faculty.LastName}</TableCell>
+                    <TableCell style={{fontWeight: "bold"}}>{data && data.faculty && data.faculty.FirstName} {data && data.faculty && data.faculty.LastName}</TableCell>
                     </TableRow>
                     <TableRow>
                     <TableCell>Eamil</TableCell>
-                    <TableCell>{data && data.faculty && data.faculty.email}</TableCell>
+                    <TableCell style={{fontWeight: "bold"}}>{data && data.faculty && data.faculty.email}</TableCell>
                     </TableRow>
                     <TableRow>
                     <TableCell>Status</TableCell>
-                    <TableCell>{data && data.faculty && data.faculty.status}</TableCell>
+                    <TableCell style={{fontWeight: "bold"}}>{data && data.faculty && data.faculty.status}</TableCell>
                     </TableRow>
                     <TableRow>
                     <TableCell>Program</TableCell>
-                    <TableCell>{data && data.faculty.program && data.faculty.program.name}</TableCell>
+                    <TableCell style={{fontWeight: "bold"}}>{data && data.faculty.program && data.faculty.program.name}</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>
